@@ -1,0 +1,2852 @@
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"><title>Change I9c2f55e3: Since 'net' is of nova.network.model.VIF class and 'ips' is an empty list, net needs to be pulled from hydrated nw_info.fixed_ips(), and appended to ips. | review.openstack Code Review</title><meta content="locale=en_US" name="gwt:property"><style id="gerrit_sitecss" type="text/css">
+body {color: #000 !important; background: url("static/openstack-page-bkg.jpg") no-repeat scroll 0 0 white !important; position: static}
+a,a:visited {color: #264D69 !important; text-decoration: none;}
+a:hover {color: #000 !important; text-decoration: underline}
+
+a.gwt-InlineHyperlink {background: none !important}
+
+#gerrit_header {display: block !important; position: relative; top: -60px; margin-bottom: -60px; width: 200px; padding-left: 17px}
+#gerrit_header h1 {font-family: 'PT Sans', sans-serif; font-weight: normal; letter-spacing: -1px}
+
+#gerrit_topmenu {background: none; position:relative; top: 0px; left: 200px; margin-right: 200px}
+
+#gerrit_topmenu tbody tr td table {border: 0}
+
+#gerrit_topmenu tbody tr td table.gwt-TabBar {color: #353535; border-bottom: 1px solid #C5E2EA;}
+#gerrit_topmenu .gwt-Button {padding: 3px 6px}
+.gwt-TabBarItem-selected {color: #CF2F19 !important; border-bottom: 3px solid #CF2F19;}
+.gwt-TabBarItem {color: #353535; border-right: 0 !important}
+.gwt-TabBar .gwt-TabBarItem, .gwt-TabBar .gwt-TabBarRest, .gwt-TabPanelBottom {background: 0 !important;}
+
+#gerrit_topmenu .gwt-TextBox {width: 250px}
+
+#change_infoTable {
+  border-collapse: collapse;
+}
+
+#change_infoTable th {
+  padding: 2px 4px 2px 6px;
+  background-color: #eef3f5;
+  font-style: italic;
+  text-align: left;
+}
+
+#change_infoTable td {
+  padding: 2px 4px 2px 6px;
+  border-bottom: 1px solid #eef3f5;
+  border-right: 1px solid #eef3f5;
+}
+
+#change_infoTable tr:last-child td {
+  border: none;
+}
+
+.com-google-gerrit-client-change-ChangeScreen_BinderImpl_GenCss_style-cs2 {
+  padding-left: 10px;
+  padding-right: 10px;
+}
+
+/* Section headers */
+.com-google-gerrit-client-change-ChangeScreen_BinderImpl_GenCss_style-cs2
+    .com-google-gerrit-client-change-ChangeScreen_BinderImpl_GenCss_style-headerLine,
+.com-google-gerrit-client-change-ChangeScreen_BinderImpl_GenCss_style-cs2
+    .com-google-gerrit-client-change-ChangeScreen_BinderImpl_GenCss_style-sectionHeader {
+  margin-top: 10px !important;
+  margin-bottom: 10px !important;
+}
+
+/* Commit message */
+.com-google-gerrit-client-change-ChangeScreen_BinderImpl_GenCss_style-cs2
+    .com-google-gerrit-client-change-CommitBox_BinderImpl_GenCss_style-text::first-line {
+  font-weight: bold !important;
+}
+
+/* Commit metadata */
+.com-google-gerrit-client-change-ChangeScreen_BinderImpl_GenCss_style-cs2
+    .com-google-gerrit-client-change-ChangeScreen_BinderImpl_GenCss_style-commitColumn
+    .com-google-gerrit-client-change-CommitBox_BinderImpl_GenCss_style-header th {
+  padding: 2px 4px 2px 6px;
+  background-color: #eef3f5;
+  font-style: italic;
+  text-align: left;
+}
+
+.com-google-gerrit-client-change-ChangeScreen_BinderImpl_GenCss_style-cs2
+    .com-google-gerrit-client-change-ChangeScreen_BinderImpl_GenCss_style-commitColumn
+    .com-google-gerrit-client-change-CommitBox_BinderImpl_GenCss_style-header td {
+  border-bottom: 1px solid #eef3f5;
+  padding: 2px 4px 2px 6px;
+}
+
+.com-google-gerrit-client-change-ChangeScreen_BinderImpl_GenCss_style-cs2
+    .com-google-gerrit-client-change-ChangeScreen_BinderImpl_GenCss_style-commitColumn
+    .com-google-gerrit-client-change-CommitBox_BinderImpl_GenCss_style-header td:last-child {
+  border-right: 1px solid #eef3f5;
+}
+
+/* increase the middle info column to fill empty space (for wide
+monitors), but ensure there is a sufficient lower bound to kick in
+horiz scroll bar. This will relieve the preasure on the hideci test
+results. */
+.com-google-gerrit-client-change-ChangeScreen_BinderImpl_GenCss_style-infoColumn {
+    width: 100% !important;
+    min-width: 400px;
+}
+
+/* Review history */
+.com-google-gerrit-client-change-ChangeScreen_BinderImpl_GenCss_style-cs2
+    .com-google-gerrit-client-change-Message_BinderImpl_GenCss_style-name {
+  font-weight: bold !important;
+}
+.com-google-gerrit-client-change-ChangeScreen_BinderImpl_GenCss_style-cs2
+    .com-google-gerrit-client-change-Message_BinderImpl_GenCss_style-messageBox {
+  width: inherit;
+  max-width: 1168px;
+}
+
+.comment_test_name {
+  display: inline-block;
+  *display: inline;
+  *zoom: 1;
+  width: auto !important;
+  width: 25em;
+  min-width: 20em;
+  padding-bottom: 2pt;
+}
+
+.comment_test_result {
+}
+
+.result_SUCCESS {
+    color: #007f00;
+}
+.result_FAILURE {
+    color: #cf2f19;
+}
+.result_UNSTABLE, .result_WARNING {
+    color: #e39f00;
+}
+.result_LOST {
+    color: #e39f00;
+}
+li.comment_test {list-style-type: none; }
+
+/* this is for support of 'Display Person Name In Review Category' */
+.cAPPROVAL {
+    max-width: 100px;
+    overflow: hidden;
+}
+/* fixes to make this like old gerrit */
+.changeTable td.dataCell {
+    height: 1em;
+}
+
+/* don't make the non voting stand out more than the voting */
+table.infoTable td.notVotable,
+.changeTable td.dataCell.labelNotApplicable {
+    background: inherit;
+}
+
+.test_result_table {
+  border-collapse: collapse;
+}
+
+.test_result_table tr {
+  border-left: 1px solid #eef3f5;
+  border-right: 1px solid #eef3f5;
+}
+
+.test_result_table td.header {
+  background-color: #eef3f5;
+}
+
+.test_result_table td {
+  padding: 2px 4px 2px 6px;
+  border: 1px solid #eef3f5;
+}
+
+.addMemberTextBox {
+    width: 20em;
+}
+
+/* css attribute selector to make -1s show up red in new screen */
+[title="Doesn't seem to work"],
+[title="This patch needs further work before it can be merged"] {
+    color: red;
+}
+
+</style><link href="favicon.ico" rel="shortcut icon" type="image/x-icon"><link rel="stylesheet" href="https://review.openstack.org/gerrit_ui/gwt/chrome/7CF1DE6EF2AABFEFAE4D469A16D60071.cache.css"><script src="https://review.openstack.org/gerrit_ui/0C40ED00DB8DEEA20F0CBEAB2290317F.cache.js"></script><style>/* @external gwt-Button; */
+/* @external gwt-DialogBox dialogMiddleCenter; */
+/* @external gwt-TabBar; */
+/* @external gwt-TabBarFirst; */
+/* @external gwt-TabBarItem; */
+/* @external gwt-TabBarItem-selected; */
+/* @external gwt-TabBarRest; */
+/* @external gwt-TabPanel; */
+/* @external gwt-TabPanelBottom; */
+/* CssEval */
+/* CssEval */
+/* CssEval */
+/* CssEval */
+body, .gwt-DialogBox .dialogMiddleCenter {
+  background : #ffffff;
+  color : #264d69;
+}
+.gwt-Button {
+  white-space : nowrap;
+}
+.gwt-TabBar .gwt-TabBarItem, .gwt-TabBar .gwt-TabBarRest, .gwt-TabPanelBottom {
+  background : transparent;
+}
+.gwt-TabBar {
+  border-bottom : 1px solid black;
+}
+.gwt-TabBar .gwt-TabBarFirst {
+  display : none;
+}
+.gwt-TabBar .gwt-TabBarItem {
+  color : #353535;
+  margin : 0;
+  background : #eef3f5;
+  padding-top : 0.5em;
+  padding-bottom : 1px;
+  padding-left : 1em;
+  padding-right : 1em;
+  border-bottom : 3px solid transparent;
+  border-right : 0;
+}
+.gwt-TabBar .gwt-TabBarItem-selected {
+  color : #900;
+  background : #d1e6ea;
+  border-bottom-color : #900;
+}
+.gwt-TabBar .gwt-TabBarRest {
+  background : #eef3f5;
+  padding-top : 0.5em;
+  padding-bottom : 1px;
+}
+.gwt-TabBar .gwt-TabPanelBottom {
+  background : #eef3f5;
+  border-top : 1px solid black;
+  border-left : none;
+  border-right : none;
+  border-bottom : none;
+  padding : 1px;
+}
+.gwt-TabPanel .gwt-TabPanelBottom {
+  border : none;
+}
+/* @external *; */
+/* CssDef */
+/* CssDef */
+/* CssDef */
+/* CssDef */
+/* CssEval */
+/* CssEval */
+/* CssEval */
+/* CssEval */
+/* CssEval */
+/* CssEval */
+/* CssEval */
+/* CssEval */
+.greenCheckClass {
+  height : 15px;
+  width : 15px;
+  overflow : hidden;
+  background : url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAA8AAAAPCAYAAAA71pVKAAAAh0lEQVR42mNgGDJgzu2Z/3uudvwnWWPUoVDSNb7/+e6/5Tbj/9XnysnTCLKVZKeCNGpuUPoPMoRkP3IsYfh/7u0Z/Bq99rig2AAKGJBGggEEMhmkEab43ue7YDbIyUQ5EWQASIPEKsH/IFcQ5VxsfgTh7BNppAXQ3ue74baDnE5WKiJLI6kAAN+fdJsknylQAAAAAElFTkSuQmCC") -0px -0px  no-repeat;
+}
+.gerritTopMenu {
+  font-size : 9pt;
+  padding-left : 5px;
+  padding-right : 5px;
+  background : transparent;
+}
+body, table td, select {
+  font-family : sans-serif;
+}
+.gerritBody {
+  font-size : small;
+  padding-left : 5px;
+  padding-right : 5px;
+}
+a, a:visited {
+  color : #0654ac;
+  text-decoration : none;
+}
+a:hover {
+  color : #0654ac;
+  text-decoration : underline;
+}
+#gerrit_btmmenu {
+  clear : both;
+  color : #a0adcc;
+  text-align : right;
+  padding-right : 10px;
+}
+.version a, .version a:visited, .version a:hover {
+  color : #2a5db0;
+}
+.gwt-Button {
+  color : #000;
+}
+.accountLinkPanel {
+  display : inline;
+}
+.accountLinkPanel img {
+  margin-right : 0.2em;
+  position : relative;
+  top : 2px;
+  height : 16px !important;
+  width : 16px;
+}
+.accountLinkPanel a {
+  position : relative;
+  top : -1px;
+}
+.inputFieldTypeHint {
+  color : grey;
+}
+.smallHeading {
+  margin-top : 5px;
+  font-weight : bold;
+}
+.link {
+  cursor : pointer;
+}
+.menuScreenMenuBar {
+  background : #ffffff;
+  padding-top : 0.5em;
+  padding-bottom : 10em;
+  padding-left : 0.5em;
+  padding-right : 0.5em;
+  border-right : 1px solid #000;
+  margin-right : 0.5em;
+}
+.menuScreenMenuBar .menuItem {
+  white-space : nowrap;
+  display : block;
+  border-right : none;
+  padding : 0.2em;
+}
+.menuScreenMenuBar .menuItem.activeRow, .menuItem.activeRow {
+  background : #d1e6ea;
+}
+.commentPanelHeader {
+  cursor : pointer;
+  width : 100%;
+}
+.commentPanelSummary {
+  color : #777;
+  white-space : nowrap;
+  overflow : hidden;
+}
+.commentPanelAuthorCell {
+  font-weight : bold;
+  white-space : nowrap;
+}
+.commentPanelSummaryCell, .topmenu, .topmenuTDglue {
+  width : 100%;
+}
+.commentPanelDateCell {
+  white-space : nowrap;
+}
+.commentPanelContent {
+  padding-bottom : 1px;
+}
+.commentPanelMessage {
+  font-size : small;
+  padding-left : 0.5em;
+  padding-right : 0.5em;
+}
+.commentPanelMessage p {
+  margin-top : 0;
+  margin-bottom : 0;
+  padding-top : 0.5em;
+  padding-bottom : 0.5em;
+  max-height : 100000px;
+}
+.commentPanelButtons {
+  margin-left : 0.5em;
+}
+.commentPanelButtons .gwt-Button {
+  margin-right : 2em;
+  font-size : 7pt;
+  padding : 1px;
+}
+.commentEditorPanel textarea {
+  margin-left : 0.5em;
+  font-size : small;
+  font-family : sans-serif;
+}
+.linkMenuBar {
+  font-size : 9pt;
+  display : inline;
+  white-space : nowrap;
+  padding-left : 6px;
+}
+.menuItem {
+  padding-left : 5px;
+  padding-right : 5px;
+}
+.linkMenuItemNotLast {
+  border-right : 1px solid #000;
+}
+.topmenuTDmenu {
+  vertical-align : top;
+}
+.topmenuMenuLeft {
+  width : 300px;
+  font-size : 9pt;
+  padding-top : 5px;
+  padding-left : 5px;
+  padding-right : 5px;
+  background : none;
+  position : relative;
+  top : 0;
+}
+.topmenuMenuLeft tbody tr td table {
+  border : 0;
+}
+.topmenuMenuLeft tbody tr td table.gwt-TabBar {
+  border-bottom : 1px solid #ddd;
+}
+.topmenuMenuLeft .gwt-TextBox {
+  width : 250px;
+}
+.topmenuMenuLeft .gwt-Button {
+  padding : 3px 6px;
+}
+.topmenuMenuLeft .gwt-TabBarFirst {
+  display : none;
+}
+.topmenuMenuLeft .gwt-TabBarItem {
+  margin : 0;
+  background : transparent;
+  padding-top : 0;
+  padding-bottom : 1px;
+  padding-left : 1em;
+  padding-right : 1em;
+}
+.topmenuMenuLeft .gwt-TabBarRest {
+  background : transparent;
+  padding-top : 0;
+}
+.topmenuMenuLeft .gwt-TabPanelBottom {
+  background : transparent;
+  border-top : none;
+  border-left : none;
+  border-right : none;
+  border-bottom : none;
+  padding : 1px;
+}
+.topmenuMenuLeft .menuItem {
+  padding-left : 1em;
+  padding-right : 1em;
+  border-right : none;
+}
+.topmenuMenuRight {
+  float : right;
+  text-align : right;
+}
+.menuBarUserName {
+  padding-left : 5px;
+  padding-right : 5px;
+  white-space : nowrap;
+}
+.menuBarUserNameAvatar {
+  vertical-align : middle;
+}
+.menuBarUserNameFocusPanel {
+  display : inline;
+}
+.menuBarUserNamePanel {
+  display : inline;
+  cursor : pointer;
+  font-weight : bold;
+}
+.userInfoPopup {
+  border : 1px solid #000;
+  background : #fff;
+  box-shadow : 3px 3px 5px #888;
+  z-index : 200;
+}
+.searchPanel {
+  white-space : nowrap;
+  display : inline;
+}
+.searchPanel .gwt-TextBox {
+  font-size : 9pt;
+}
+.searchPanel .gwt-Button {
+  font-size : 9pt;
+  margin-left : 2px;
+  padding : 3px 6px;
+}
+.suggestBoxPopup {
+  z-index : 200;
+}
+.rpcStatus {
+  position : fixed;
+  top : 6px;
+  left : 50%;
+  padding-top : 4px;
+  padding-bottom : 4px;
+  padding-left : 10px;
+  padding-right : 10px;
+  text-align : center;
+  font-weight : bold;
+  background : #fff1a8;
+  z-index : 200;
+}
+.errorDialog {
+  background : none;
+  border : none;
+  padding : 10px;
+  width : 600px;
+  color : #ffffff;
+  font-size : 15px;
+  font-family : verdana;
+  z-index : 200;
+}
+.errorDialogGlass {
+  opacity : 0.75;
+  z-index : 200;
+}
+.errorDialogTitle {
+  font-size : 30px;
+  font-weight : bold;
+  margin-bottom : 15px;
+}
+.errorDialogErrorType {
+  font-weight : bold;
+  white-space : nowrap;
+  margin-bottom : 15px;
+}
+.errorDialogButtons {
+  width : 100%;
+  margin-top : 15px;
+}
+.errorDialog a, .errorDialog a:visited, .errorDialog a:hover {
+  color : #fff;
+  font-weight : bold;
+  font-size : 15px;
+  font-family : verdana;
+}
+.loadingPluginsDialog {
+  background : #fff;
+  color : #000;
+  width : auto;
+}
+.screenHeader {
+  white-space : nowrap;
+  font-size : 16pt;
+  margin : 3px 0 8px;
+  text-overflow : ellipsis;
+  overflow : hidden;
+}
+.changeTable {
+  border-collapse : separate;
+  border-spacing : 0;
+}
+.changeTable tr:nth-child(even) {
+  background : #f5f5ff;
+}
+.changeTable tr:nth-child(odd) {
+  background : #ffffff;
+}
+.changeTable .iconCell {
+  width : 1px;
+  padding : 0;
+  vertical-align : middle;
+  border-bottom : 1px solid #eef3f5;
+}
+.changeTable .changeTypeCell {
+  width : 1px;
+  padding-left : 5px;
+  padding-right : 5px;
+  border-right : 1px solid #eef3f5;
+  border-bottom : 1px solid #eef3f5;
+  vertical-align : top;
+}
+.changeTable .commentCell {
+  text-align : right;
+  font-weight : bold;
+  white-space : nowrap;
+}
+.changeTable .commentCell span.drafts {
+  color : #f55;
+}
+.changeTable .patchCellReverseDiff {
+  color : red;
+}
+.changeTable .patchSizeCell {
+  text-align : right;
+  white-space : nowrap;
+}
+.changeTable td.noborder {
+  border : none;
+}
+.changeTable .filePathCell, .changeTable .diffLinkCell {
+  white-space : nowrap;
+}
+.changeTable .sourceFilePath {
+  font-style : italic;
+  font-size : 9pt;
+}
+.changeTable .leftMostCell {
+  border-left : 1px solid #eef3f5;
+}
+.changeTable .topMostCell {
+  border-top : 1px solid #eef3f5;
+}
+.changeTable .dataCell {
+  padding-left : 5px;
+  padding-right : 5px;
+  border-right : 1px solid #eef3f5;
+  border-bottom : 1px solid #eef3f5;
+  vertical-align : middle;
+  height : 20px;
+}
+.changeTable .dataCellHidden {
+  display : none;
+}
+.changeTable a.gwt-InlineHyperlink, .changeTable a.gwt-Anchor {
+  color : #222 !important;
+}
+.changeTable .changeSize {
+  height : 10px;
+  display : inline-block;
+  opacity : 0.6;
+}
+.accountDashboard.changeTable tr {
+  color : #444;
+}
+.accountDashboard.changeTable tr a {
+  color : #444;
+  text-decoration : none;
+}
+.accountDashboard.changeTable .needsReview, .accountDashboard.changeTable .needsReview a {
+  font-weight : bold;
+  color : #264d69;
+}
+.changeTable .activeRow, .accountDashboard.changeTable .activeRow, .accountDashboard.changeTable .activeRow a {
+  background : #d1e6ea !important;
+}
+.changeTable .cSIZE {
+  width : 70px;
+  text-align : right;
+}
+.changeTable .cSUBJECT div {
+  text-overflow : ellipsis;
+  overflow : hidden;
+  white-space : nowrap;
+}
+.changeTable .cOWNER, .changeTable .cSTATUS {
+  white-space : nowrap;
+}
+.changeTable .cLastUpdate {
+  white-space : nowrap;
+  text-align : right;
+  width : 1em;
+}
+.changeTable .groupName, .changeTable .dataCell.singleLine {
+  white-space : nowrap;
+}
+.changeTable .cAPPROVAL {
+  width : 0.5em;
+  text-align : center;
+}
+.changeTable .dataCell.negscore {
+  color : red;
+}
+.changeTable .dataCell.posscore {
+  color : #08a400;
+}
+.changeTable .dataCell.labelNotApplicable {
+  background : #f5f5f5;
+}
+.changeTable .iconHeader {
+  border-top : 1px solid #ffffff;
+  border-bottom : 1px solid #ffffff;
+  background-color : #eef3f5;
+}
+.changeTable .dataHeader {
+  border : 1px solid #ffffff;
+  padding : 2px 6px 1px;
+  background-color : #eef3f5;
+  font-style : italic;
+  white-space : nowrap;
+  color : #264d69;
+}
+.changeTable .dataHeaderHidden {
+  display : none;
+}
+.changeTable .sectionHeader {
+  border-top : 8px solid #ffffff;
+  padding : 2px 6px 1px;
+  background-color : #eef3f5;
+  white-space : nowrap;
+  font-weight : bold;
+  color : #264d69;
+}
+.changeTable .emptySection {
+  border-left : 1px solid #eef3f5;
+  border-right : 1px solid #eef3f5;
+  border-bottom : 1px solid #eef3f5;
+  font-style : italic;
+  padding-left : 25px;
+}
+.changeTablePrevNextLinks {
+  float : right;
+  padding-right : 5px;
+}
+.changeTablePrevNextLinks td {
+  width : 5em;
+  text-align : right;
+}
+.changeTablePrevNextLinks .gwt-Hyperlink {
+  font-size : 9pt;
+  color : #2a5db0;
+}
+.reviewedPanelBottom {
+  float : right;
+  font-size : small;
+}
+.linkPanel img {
+  padding-right : 3px;
+}
+.patchContentTable {
+  width : 100%;
+  border-collapse : separate;
+  border-spacing : 0;
+  background : #fff;
+  color : #000;
+}
+.patchContentTable td {
+  padding-top : 0;
+  padding-bottom : 0;
+  font-size : 9pt;
+  font-family : monospace;
+}
+.patchContentTable .iconCell {
+  width : 1px;
+  padding : 0;
+  vertical-align : middle;
+}
+.patchContentTable .diffText {
+  white-space : pre;
+  padding-left : 0.2em;
+  border-left : thin solid #b0bdcc;
+}
+.patchContentTable .diffTextFileHeader, .patchContentTable .diffTextNoLF {
+  color : grey;
+  font-weight : bold;
+}
+.patchContentTable .diffTextHunkHeader {
+  color : blue;
+}
+.patchContentTable .diffTextDELETE {
+  color : #a00000;
+}
+.patchContentTable .diffTextCONTEXT {
+  color : grey;
+}
+.patchContentTable .diffTextINSERT {
+  color : #006000;
+}
+.patchContentTable tr.commentHolder {
+  background : #e5ecf9;
+}
+.patchContentTable tr.commentHolder .iconCell {
+  background : #fff;
+}
+.patchContentTable tr.commentHolder .iconCellOfFileCommentRow {
+  background : #eef3f5;
+}
+.patchContentTable td.commentHolder {
+  padding-left : 0;
+  padding-right : 0;
+  border-top : 1px solid #000;
+  border-right : 1px solid #000;
+}
+.patchContentTable td.commentHolderLeftmost {
+  border-left : 1px solid #000;
+}
+.patchContentTable td.commentHolder.commentPanelLast {
+  border-bottom : 1px solid #000;
+}
+.patchContentTable .commentPanel, .patchContentTable .commentPanel td {
+  font-family : sans-serif;
+}
+.patchContentTable .commentPanelMessage {
+  padding-left : 1px;
+  padding-right : 1px;
+  white-space : normal;
+}
+.patchContentTable .commentPanelButtons, .patchContentTable .commentPanel textarea {
+  margin-left : 1px;
+}
+.lineNumber {
+  padding-left : 0.2em;
+  white-space : pre;
+  width : 1.5em;
+  text-align : center;
+  padding-right : 0.2em;
+  background : #fff;
+  border-bottom : 1px solid #fff;
+}
+.lineNumber.rightBorder {
+  border-right : thin solid #b0bdcc;
+}
+.lineNumber a {
+  color : #888;
+  text-decoration : none;
+}
+.patchContentTable td.fileColumnHeader {
+  background : #eef3f5;
+  font-family : sans-serif;
+  font-weight : bold;
+  text-align : center;
+}
+.patchContentTable td.fileColumnHeader.unifiedTableHeader {
+  text-align : left;
+}
+.lineNumber.fileColumnHeader {
+  border-bottom : 1px solid #eef3f5;
+}
+.fileLine {
+  padding-left : 0;
+  padding-right : 0;
+  white-space : pre;
+  border-left : thin solid #b0bdcc;
+}
+.fileLineDELETE, .fileLineDELETE .wdc {
+  background : #fee;
+  border-bottom : 1px solid #fee;
+}
+.fileLineINSERT, .fileLineINSERT .wdc {
+  background : #dfd;
+  border-bottom : 1px solid #dfd;
+}
+.patchContentTable .wdd {
+  border-bottom : 1px solid #faa;
+}
+.patchContentTable .wdi {
+  border-bottom : 1px solid #9f9;
+}
+.patchContentTable td.cellsNextToFileComment {
+  background : #eef3f5;
+  border-top : #eef3f5;
+  border-bottom : #eef3f5;
+}
+.patchContentTable .activeRow .iconCell, .patchContentTable .activeRow .lineNumber {
+  background : #d1e6ea;
+  border-bottom : 1px solid blue;
+}
+.patchContentTable .activeRow .fileLine, .patchContentTable .activeRow .diffText, .patchContentTable .activeRow td.commentHolder, .patchContentTable .activeRow .wdc, .patchContentTable .activeRow .wdd, .patchContentTable .activeRow .wdi, .patchContentTable .activeRow .iconCellOfFileCommentRow, .patchContentTable .activeRow td.commentHolder.commentPanelLast {
+  border-bottom : 1px solid blue;
+}
+.patchContentTable .fileCommentBorder .iconCellOfFileCommentRow, .patchContentTable .fileCommentBorder .lineNumber, .patchContentTable .fileCommentBorder .diffText {
+  height : 20px;
+  background : #eef3f5;
+  border-bottom : 1px solid #eef3f5;
+}
+.changeScreenStarIcon {
+  margin-right : 5px;
+}
+.changeScreenDescription, .changeScreenDescription textarea {
+  white-space : pre;
+  font-family : monospace;
+  font-size : 9pt;
+}
+.changeScreenDescription p {
+  margin-top : 0;
+  padding-top : 0.5em;
+}
+.avatarInfoPanel {
+  margin-right : 10px;
+}
+.avatarInfoPanel td {
+  text-align : center;
+}
+.infoBlock {
+  border-collapse : collapse;
+  border-spacing : 0;
+}
+.infoBlock td {
+  padding : 2px 4px 2px 6px;
+  border-right : 1px solid #eef3f5;
+  border-bottom : 1px solid #eef3f5;
+  text-align : left;
+  white-space : nowrap;
+}
+.infoBlock td td {
+  padding-left : 0;
+  border-right : 0;
+}
+.infoBlock td.topmost {
+  border-top : 1px solid #eef3f5;
+}
+.infoBlock td.header {
+  background-color : #eef3f5;
+  font-style : italic;
+  text-align : right;
+}
+.infoBlock td.noborder {
+  border-right : none;
+}
+.infoBlock td.bottomheader {
+  border-bottom : 1px solid #eef3f5;
+}
+.patchSetActions {
+  margin-bottom : 10px;
+}
+.patchSetActions .gwt-Button {
+  margin-right : 30px;
+  font-size : 8pt;
+}
+.downloadBox {
+  min-width : 580px;
+  margin : 5px;
+  margin-right : 15px;
+}
+.downloadBoxTable {
+  border-spacing : 0;
+  width : 100%;
+}
+.downloadBoxTableCommandColumn {
+  text-align : left;
+  font-weight : normal;
+  white-space : nowrap;
+  max-height : 18px;
+  width : 80px;
+  padding-right : 5px;
+}
+.downloadBoxSpacer {
+  margin-left : 5px;
+  margin-right : 5px;
+}
+.downloadBoxScheme, .downloadBoxCopyLabel div {
+  float : right;
+}
+.downloadBoxCopyLabel {
+  font-size : smaller;
+  font-family : monospace;
+}
+.downloadBoxCopyLabel span {
+  width : 500px;
+  white-space : nowrap;
+  display : inline-block;
+  overflow : hidden;
+  text-overflow : ellipsis;
+}
+.downloadBoxCopyLabel .gwt-TextBox {
+  padding : 0;
+  margin : 0;
+  border : 0;
+  max-height : 18px;
+  width : 500px;
+}
+.downloadLinkHeader {
+  background : #eef3f5;
+  white-space : nowrap;
+  border-bottom : 1px solid #000;
+}
+.downloadLinkHeaderGap {
+  margin-left : 5em;
+}
+.downloadLinkList {
+  display : inline;
+  white-space : nowrap;
+}
+.downloadLink {
+  color : #000;
+  text-decoration : none;
+  white-space : nowrap;
+  background : #eef3f5;
+  border-right : 1px solid #000;
+  padding-left : 0.5em;
+  padding-right : 0.5em;
+}
+a:hover.downloadLink {
+  color : #000;
+}
+.downloadLink_Active {
+  background : #d1e6ea;
+}
+.downloadLinkCopyLabel {
+  white-space : pre;
+  font-family : monospace;
+  font-size : 12px;
+  margin-left : 0.5em;
+  margin-right : 0.5em;
+}
+.downloadLinkCopyLabel .gwt-TextBox {
+  width : 30em;
+}
+.unifiedTable {
+  width : 100%;
+  border : 1px solid #b0bdcc;
+  display : table;
+}
+.sideBySideScreenLinkTable {
+  width : 100%;
+}
+.sideBySideScreenLinkTable td {
+  width : 33%;
+}
+.patchNoDifference {
+  margin-top : 1em;
+  margin-bottom : 2em;
+  margin-left : 1em;
+  margin-right : 5em;
+  font-weight : bold;
+  font-size : medium;
+  font-family : sans-serif;
+}
+.patchHistoryTable {
+  width : auto;
+  margin-bottom : 10px;
+}
+.patchHistoryTable .dataCell, .usernameField {
+  white-space : nowrap;
+}
+.patchHistoryTablePatchSetHeader {
+  text-align : right;
+}
+.accountUsername, .accountPassword {
+  font-family : monospace;
+  font-size : small;
+}
+.sshKeyPanelEncodedKey {
+  white-space : nowrap;
+  text-overflow : ellipsis;
+  overflow : hidden;
+  font-family : monospace;
+  font-size : small;
+}
+.sshKeyPanelInvalid, .identityUntrustedExternalId {
+  white-space : nowrap;
+  color : red;
+  font-weight : bold;
+}
+.accountInfoBlock {
+  margin-bottom : 10px;
+}
+.accountInfoBlock .gwt-Button {
+  margin-left : 10px;
+}
+.accountContactPrivacyDetails {
+  margin-left : 10px;
+  margin-top : 5px;
+  margin-bottom : 5px;
+  width : 40em;
+}
+.accountContactOnFile {
+  margin-left : 10px;
+  margin-top : 5px;
+  margin-bottom : 5px;
+  font-weight : bold;
+}
+.addWatchPanel {
+  margin-top : 10px;
+  padding : 5px 5px 5px 5px;
+}
+.watchedProjectFilter {
+  margin-left : 1em;
+  color : grey;
+}
+.addBranch, .addSshKeyPanel {
+  margin-top : 10px;
+  background-color : #eef3f5;
+  padding : 5px 5px 5px 5px;
+}
+.addSshKeyPanel ol {
+  margin-top : 0;
+  margin-bottom : 5px;
+}
+.addSshKeyPanel td {
+  width : 100%;
+}
+.createProjectPanel {
+  margin-bottom : 10px;
+  background-color : #eef3f5;
+  padding : 5px 5px 5px 5px;
+}
+.sshHostKeyPanel {
+  margin-top : 10px;
+  border : 1px solid #eef3f5;
+  padding : 5px 5px 5px 5px;
+}
+.sshHostKeyPanelHeading {
+  white-space : nowrap;
+  margin-top : 5px;
+  margin-left : 1em;
+}
+.sshHostKeyPanelFingerprintData {
+  margin-left : 2em;
+  white-space : nowrap;
+  font-family : monospace;
+  font-size : small;
+}
+.sshHostKeyPanelKnownHostEntry {
+  margin-left : 2em;
+  white-space : nowrap;
+  font-family : monospace;
+  font-size : small;
+  width : 80em;
+}
+.contributorAgreementButton {
+  font-weight : bold;
+}
+.contributorAgreementShortDescription {
+  margin-left : 20px;
+  margin-right : 20px;
+  margin-bottom : 10px;
+  padding : 5px 5px 5px 5px;
+  border : 1px solid #b0bdcc;
+}
+.contributorAgreementAlreadySubmitted {
+  margin-left : 20px;
+  margin-right : 20px;
+  padding : 5px 5px 5px 5px;
+  color : red;
+}
+.contributorAgreementLegal {
+  margin-left : 20px;
+  margin-right : 20px;
+  padding : 5px 5px 5px 5px;
+  border : 1px solid #b0bdcc;
+}
+.registerScreenSection {
+  margin-top : 2em;
+}
+.registerScreenExplain {
+  margin-left : 10px;
+  margin-top : 5px;
+  margin-bottom : 5px;
+  width : 45em;
+}
+.registerScreenNextLinks {
+  margin-top : 2em;
+}
+.registerScreenNextLinks .gwt-InlineHyperlink {
+  margin-left : 2em;
+  white-space : nowrap;
+}
+.registerScreenSection .changeTable, .registerScreenSection .sshHostKeyPanel .sshHostKeyPanelKnownHostEntry {
+  width : 45em;
+}
+.registerScreenSection .addSshKeyPanel {
+  background : none;
+}
+.registerScreenSection .sshHostKeyPanel {
+  border : none;
+}
+.projectActions {
+  margin-bottom : 10px;
+}
+.commentedActionDialog .gwt-DisclosurePanel .header td {
+  font-weight : bold;
+  white-space : nowrap;
+}
+.commentedActionDialog .smallHeading {
+  font-size : small;
+  font-weight : bold;
+  white-space : nowrap;
+}
+.commentedActionDialog .commentedActionMessage {
+  margin-left : 10px;
+  background : #eef3f5;
+  padding : 5px 5px 5px 5px;
+}
+.commentedActionDialog .commentedActionMessage textarea {
+  font-size : small;
+}
+.commentedActionDialog .gwt-Hyperlink {
+  white-space : nowrap;
+  font-size : small;
+}
+.commentedActionDialog .rebaseContentPanel {
+  margin-left : 10px;
+  background : #eef3f5;
+  padding : 5px 5px 5px 5px;
+  width : 300px;
+}
+.commentedActionDialog .rebaseContentPanel .rebaseSuggestBox {
+  font-size : small;
+  width : 100%;
+}
+.patchBrowserPopup {
+  opacity : 0.9;
+}
+.patchBrowserPopupBody {
+  background : #ffffff;
+  margin : 4px;
+  opacity : 0.9;
+}
+.groupUUIDPanel {
+  margin-bottom : 10px;
+}
+.groupDescriptionPanel, .groupNamePanel {
+  margin-bottom : 3px;
+}
+.groupNameTextBox {
+  margin-bottom : 2px;
+}
+.groupOptionsPanel {
+  margin-bottom : 5px;
+}
+.groupOwnerPanel {
+  margin-bottom : 3px;
+}
+.groupOwnerTextBox, .groupMembersTable, .groupIncludesTable {
+  margin-bottom : 2px;
+}
+.addMemberTextBox {
+  margin-right : 2px;
+  margin-bottom : 2px;
+}
+.specialBranchIconCell {
+  background : #ececec;
+  border-bottom : 1px solid #fff;
+  border-top : 1px solid #fff;
+}
+.specialBranchDataCell {
+  background : #ececec;
+  border : 1px solid #fff;
+  font-style : italic;
+  padding : 2px 6px 1px;
+}
+.editHeadButton {
+  float : right;
+  cursor : pointer;
+}
+.branchTablePrevNextLinks {
+  position : relative;
+}
+.branchTablePrevNextLinks td {
+  float : left;
+  width : 5em;
+  text-align : left;
+  padding-right : 10px;
+}
+.branchTablePrevNextLinks .gwt-Hyperlink {
+  font-size : 9pt;
+  color : #2a5db0;
+}
+.projectFilterPanel {
+  margin-bottom : 10px;
+}
+.projectFilterPanel input {
+  width : 200px;
+}
+.projectFilterLabel {
+  margin-right : 5px;
+}
+.projectNameColumn {
+  min-width : 300px;
+}
+.maxObjectSizeLimitEffectiveLabel, .pluginProjectConfigInheritedValue {
+  padding-top : 5px;
+  padding-left : 5px;
+}
+.stringListPanelButtons {
+  margin-left : 0.5em;
+}
+.stringListPanelButtons .gwt-Button {
+  margin-right : 2em;
+  font-size : 7pt;
+  padding : 1px;
+}
+/* @external popupContent; */
+.com-google-gwtexpui-globalkey-client-KeyCss-helpPopup {
+  background : #000 none repeat scroll 0 50%;
+  color : #fff;
+  font-family : arial, sans-serif;
+  font-weight : bold;
+  overflow : hidden;
+  text-align : left;
+  text-shadow : 1px 1px 7px #000;
+  width : 92%;
+  z-index : 1002;
+  opacity : 0.85;
+  border-radius : 10px;
+  -moz-border-radius : 10px;
+}
+.com-google-gwtexpui-globalkey-client-KeyCss-helpPopup .popupContent {
+  margin : 10px;
+}
+.com-google-gwtexpui-globalkey-client-KeyCss-helpPopup hr, .com-google-gwtexpui-globalkey-client-KeyCss-helpHeader, .com-google-gwtexpui-globalkey-client-KeyCss-helpHeaderGlue {
+  width : 100%;
+}
+.com-google-gwtexpui-globalkey-client-KeyCss-helpHeader td {
+  white-space : nowrap;
+  color : #fff;
+}
+.com-google-gwtexpui-globalkey-client-KeyCss-helpHeader a, .com-google-gwtexpui-globalkey-client-KeyCss-helpHeader a:visited, .com-google-gwtexpui-globalkey-client-KeyCss-helpHeader a:hover {
+  color : #dd0;
+}
+.com-google-gwtexpui-globalkey-client-KeyCss-helpTable {
+  width : 90%;
+}
+.com-google-gwtexpui-globalkey-client-KeyCss-helpTable td {
+  vertical-align : top;
+  white-space : nowrap;
+}
+.com-google-gwtexpui-globalkey-client-KeyCss-helpTableGlue {
+  width : 25px;
+}
+.com-google-gwtexpui-globalkey-client-KeyCss-helpGroup {
+  color : #dd0;
+  text-align : left;
+}
+.com-google-gwtexpui-globalkey-client-KeyCss-helpKeyStroke {
+  text-align : right;
+}
+.com-google-gwtexpui-globalkey-client-KeyCss-helpSeparator {
+  width : 0.5em;
+  text-align : center;
+  font-weight : bold;
+}
+.com-google-gwtexpui-globalkey-client-KeyCss-helpKey {
+  color : #dd0;
+}
+/* CssEval */
+/* CssEval */
+/* CssDef */
+/* CssDef */
+/* CssDef */
+.com-google-gerrit-client-change-ChangeScreen_BinderImpl_GenCss_style-cs2 {
+  margin-bottom : 1em;
+}
+.com-google-gerrit-client-change-ChangeScreen_BinderImpl_GenCss_style-headerLine {
+  position : relative;
+  background-color : #eef3f5;
+  height : 30px;
+  margin : 0 -5px;
+  padding : 0 5px;
+}
+.com-google-gerrit-client-change-ChangeScreen_BinderImpl_GenCss_style-subjectLine {
+  position : relative;
+  width : 560px;
+  height : 30px;
+  background-color : #eef3f5;
+  color : #264d69;
+  font-family : sans-serif;
+}
+.com-google-gerrit-client-change-ChangeScreen_BinderImpl_GenCss_style-subjectText {
+  width : 460px;
+  height : 30px;
+  line-height : 30px;
+  overflow : hidden;
+  text-overflow : ellipsis;
+  white-space : nowrap;
+}
+.com-google-gerrit-client-change-ChangeScreen_BinderImpl_GenCss_style-infoLine {
+  position : absolute;
+  top : 0;
+  left : 560px;
+  height : 30px;
+  padding-left : 25px;
+}
+.com-google-gerrit-client-change-ChangeScreen_BinderImpl_GenCss_style-infoLineHeaderButtons {
+  display : inline-block;
+  height : 30px;
+}
+.com-google-gerrit-client-change-ChangeScreen_BinderImpl_GenCss_style-statusRight {
+  position : absolute;
+  top : 0;
+  right : 0;
+  height : 30px;
+}
+.com-google-gerrit-client-change-ChangeScreen_BinderImpl_GenCss_style-idAndStatus {
+  display : inline-block;
+  position : relative;
+  height : 30px;
+  width : 300px;
+}
+.com-google-gerrit-client-change-ChangeScreen_BinderImpl_GenCss_style-star {
+  position : absolute;
+  top : 5px;
+  right : 2px;
+  cursor : pointer;
+  outline : none;
+}
+.com-google-gerrit-client-change-ChangeScreen_BinderImpl_GenCss_style-changeId {
+  width : 300px;
+  white-space : nowrap;
+  line-height : 30px;
+  overflow : hidden;
+  text-overflow : ellipsis;
+}
+.com-google-gerrit-client-change-ChangeScreen_BinderImpl_GenCss_style-statusText, .com-google-gerrit-client-change-ChangeScreen_BinderImpl_GenCss_style-popdown button.com-google-gerrit-client-change-ChangeScreen_BinderImpl_GenCss_style-selected {
+  font-weight : bold;
+}
+div.com-google-gerrit-client-change-ChangeScreen_BinderImpl_GenCss_style-popdown {
+  display : inline-block;
+  margin-top : 2px;
+  margin-left : 5px;
+  margin-right : 25px;
+}
+.com-google-gerrit-client-change-ChangeScreen_BinderImpl_GenCss_style-popdown button {
+  cursor : pointer;
+  height : 25px;
+  border : none;
+  background-color : #eef3f5;
+  margin : 0 0 0 -2px;
+  padding-left : 2px;
+  padding-right : 2px;
+  min-width : 100px;
+}
+.com-google-gerrit-client-change-ChangeScreen_BinderImpl_GenCss_style-popdown button div {
+  padding-left : 6px;
+  padding-right : 6px;
+}
+.com-google-gerrit-client-change-ChangeScreen_BinderImpl_GenCss_style-popdown button div:after {
+  content : " ";
+}
+.com-google-gerrit-client-change-ChangeScreen_BinderImpl_GenCss_style-popdown button:focus {
+  outline : none;
+}
+.com-google-gerrit-client-change-ChangeScreen_BinderImpl_GenCss_style-headerButtons button:disabled, #change_infoTable button:disabled, .com-google-gerrit-client-change-ChangeScreen_BinderImpl_GenCss_style-popdown button:disabled {
+  background-color : #999;
+  background-image : -webkit-linear-gradient(top, #999, #999);
+}
+.com-google-gerrit-client-change-ChangeScreen_BinderImpl_GenCss_style-infoTable {
+  border-spacing : 0;
+}
+.com-google-gerrit-client-change-ChangeScreen_BinderImpl_GenCss_style-infoTable th {
+  width : 60px;
+  color : #444;
+  font-weight : normal;
+  vertical-align : top;
+  text-align : left;
+  padding : 0 5px 0 0;
+}
+.com-google-gerrit-client-change-ChangeScreen_BinderImpl_GenCss_style-projectSettings {
+  float : right;
+  cursor : pointer;
+}
+.com-google-gerrit-client-change-ChangeScreen_BinderImpl_GenCss_style-infoColumn {
+  width : 440px;
+  padding-left : 17px;
+  padding-right : 17px;
+  vertical-align : top;
+}
+#change_infoTable {
+  border-spacing : 0;
+  width : 100%;
+  margin-left : 2px;
+  margin-right : 5px;
+}
+.com-google-gerrit-client-change-ChangeScreen_BinderImpl_GenCss_style-notMergeable {
+  float : right;
+  font-weight : bold;
+  color : #d00;
+}
+.com-google-gerrit-client-change-ChangeScreen_BinderImpl_GenCss_style-commitColumn {
+  padding : 0;
+  vertical-align : top;
+  width : 560px;
+}
+.com-google-gerrit-client-change-ChangeScreen_BinderImpl_GenCss_style-relatedColumn {
+  padding : 0;
+  vertical-align : top;
+  width : 375px;
+}
+.com-google-gerrit-client-change-ChangeScreen_BinderImpl_GenCss_style-labels {
+  border-spacing : 0;
+  padding : 0;
+}
+.com-google-gerrit-client-change-ChangeScreen_BinderImpl_GenCss_style-labelName {
+  color : #444;
+  vertical-align : top;
+  text-align : left;
+  padding-top : 3px;
+  padding-right : 5px;
+  white-space : nowrap;
+}
+.com-google-gerrit-client-change-ChangeScreen_BinderImpl_GenCss_style-label_user {
+  display : inline-block;
+  margin-bottom : 2px;
+  padding : 1px 3px 0 3px;
+  border-radius : 5px;
+  -webkit-border-radius : 5px;
+  background : #eef3f5;
+  border : 1px solid #eef3f5;
+  white-space : nowrap;
+}
+.com-google-gerrit-client-change-ChangeScreen_BinderImpl_GenCss_style-label_user img.com-google-gerrit-client-change-ChangeScreen_BinderImpl_GenCss_style-avatar {
+  margin : 0 2px 0 0;
+  width : 16px;
+  height : 16px;
+  vertical-align : bottom;
+}
+.com-google-gerrit-client-change-ChangeScreen_BinderImpl_GenCss_style-label_user button {
+  cursor : pointer;
+  padding : 0;
+  margin : 0 0 0 5px;
+  border : 0;
+  background-color : transparent;
+  white-space : nowrap;
+}
+.com-google-gerrit-client-change-ChangeScreen_BinderImpl_GenCss_style-label_ok {
+  color : #060;
+}
+.com-google-gerrit-client-change-ChangeScreen_BinderImpl_GenCss_style-label_reject {
+  color : #d14836;
+}
+.com-google-gerrit-client-change-ChangeScreen_BinderImpl_GenCss_style-label_need {
+  color : #000;
+}
+.com-google-gerrit-client-change-ChangeScreen_BinderImpl_GenCss_style-label_may {
+  color : #777;
+}
+.com-google-gerrit-client-change-ChangeScreen_BinderImpl_GenCss_style-hashtagName {
+  display : inline-block;
+  margin-bottom : 2px;
+  padding : 1px 3px 0 3px;
+  border-radius : 5px;
+  -webkit-border-radius : 5px;
+  background : #e2f5ff;
+  border : 1px solid #579fda;
+  white-space : nowrap;
+}
+.com-google-gerrit-client-change-ChangeScreen_BinderImpl_GenCss_style-hashtagName button {
+  cursor : pointer;
+  padding : 0;
+  margin : 0 0 0 5px;
+  border : 0;
+  background-color : transparent;
+  white-space : nowrap;
+}
+.com-google-gerrit-client-change-ChangeScreen_BinderImpl_GenCss_style-headerButtons button {
+  margin : 5.286px 3px 0 0;
+  text-align : center;
+  font-size : 8pt;
+  font-weight : bold;
+  cursor : pointer;
+  border : 2px solid;
+  color : rgba(0, 0, 0, 0.15);
+  background-color : #f5f5f5;
+  -webkit-border-radius : 2px;
+  -webkit-box-sizing : content-box;
+}
+.com-google-gerrit-client-change-ChangeScreen_BinderImpl_GenCss_style-headerButtons button div {
+  color : #444;
+  min-width : 54px;
+  white-space : nowrap;
+  height : 14px;
+  line-height : 14px;
+}
+button.com-google-gerrit-client-change-ChangeScreen_BinderImpl_GenCss_style-highlight {
+  background-color : #4d90fe;
+}
+button.com-google-gerrit-client-change-ChangeScreen_BinderImpl_GenCss_style-highlight div {
+  color : #fff;
+}
+.com-google-gerrit-client-change-ChangeScreen_BinderImpl_GenCss_style-sectionHeader {
+  position : relative;
+  background-color : #eef3f5;
+  font-weight : bold;
+  color : #264d69;
+  height : 20px;
+  line-height : 20px;
+  margin : 0 -5px;
+  padding : 5px 5px;
+}
+.com-google-gerrit-client-change-ChangeScreen_BinderImpl_GenCss_style-sectionHeader .com-google-gerrit-client-change-ChangeScreen_BinderImpl_GenCss_style-headerButtons {
+  position : absolute;
+  left : 300px;
+  top : 2px;
+  height : 18px;
+  line-height : 18px;
+  border-left : 1px inset #fff;
+  padding-left : 5px;
+  padding-top : 3px;
+  padding-bottom : 3px;
+}
+.com-google-gerrit-client-change-ChangeScreen_BinderImpl_GenCss_style-sectionHeader button {
+  margin-top : 0;
+}
+.com-google-gerrit-client-change-ChangeScreen_BinderImpl_GenCss_style-diffBase {
+  display : inline-block;
+  height : 18px;
+  line-height : 18px;
+  font-size : smaller;
+  font-weight : normal;
+  vertical-align : top;
+}
+.com-google-gerrit-client-change-ChangeScreen_BinderImpl_GenCss_style-diffBase select {
+  margin : 0;
+  border : 2px solid rgba(0, 0, 0, 0.15);
+  height : 20px;
+  font-size : 8pt;
+  font-weight : bold;
+  border-radius : 2px;
+  background-color : #f5f5f5;
+}
+.com-google-gerrit-client-change-ChangeScreen_BinderImpl_GenCss_style-replyBox {
+  background-color : #eef3f5;
+}
+.com-google-gerrit-client-change-ChangeScreen_BinderImpl_GenCss_style-ownerPanel img {
+  margin : 0 2px 0 0;
+  width : 16px;
+  height : 16px !important;
+  vertical-align : bottom;
+}
+/* CssEval */
+.com-google-gerrit-client-change-CommitBox_BinderImpl_GenCss_style-collapsed .com-google-gerrit-client-change-CommitBox_BinderImpl_GenCss_style-scroll {
+  height : 250px;
+}
+.com-google-gerrit-client-change-CommitBox_BinderImpl_GenCss_style-scroll {
+  width : 560px;
+  border-right : 1px solid #eef3f5;
+  border-bottom : 1px solid #eef3f5;
+}
+.com-google-gerrit-client-change-CommitBox_BinderImpl_GenCss_style-more {
+  width : 560px;
+  height : 8px;
+  line-height : 8px;
+  text-align : center;
+}
+.com-google-gerrit-client-change-CommitBox_BinderImpl_GenCss_style-text {
+  font-family : monospace;
+  white-space : pre;
+}
+.com-google-gerrit-client-change-CommitBox_BinderImpl_GenCss_style-moreButton {
+  padding : 0 5px 0 5px;
+  margin : 0;
+  border : none;
+  height : 8px;
+  background-color : #f7f7f7;
+}
+.com-google-gerrit-client-change-CommitBox_BinderImpl_GenCss_style-moreButton:focus {
+  outline : none;
+}
+.com-google-gerrit-client-change-CommitBox_BinderImpl_GenCss_style-toggle {
+  height : 16px;
+  width : 26px;
+  overflow : hidden;
+  background : url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABoAAAAQCAYAAAAI0W+oAAAAsklEQVR42qWS0Q0DIQiGr+lLF+lj0xuJBTSuoyO4lCPcCB4k7cNdEAFNCDEf/BBg25iXUtpjjI28h6vifvBA6+S5IEqWOKPTJNhHYrNmRH6HIQTwiJmKqJKszS2NwTDuy2Kxo695scoDMp8q2hu/D6/O5ZVS9pxzI39ntdYnss+Ia3X+8EDr5LkgSpY4o9Mk2Edis2ZEzkDwiA2LAMDLnORpbmkMhnGvL1Z5QPIJGuJm/ASMfgCsQpR8UQAAAABJRU5ErkJggg==") -0px -0px  no-repeat;
+  width : 13px;
+  height : 8px;
+  padding : 0;
+}
+.com-google-gerrit-client-change-CommitBox_BinderImpl_GenCss_style-collapsed .com-google-gerrit-client-change-CommitBox_BinderImpl_GenCss_style-toggle {
+  background-position : -13px -8px;
+}
+.com-google-gerrit-client-change-CommitBox_BinderImpl_GenCss_style-expanded .com-google-gerrit-client-change-CommitBox_BinderImpl_GenCss_style-toggle {
+  background-position : 0 -8px;
+}
+.com-google-gerrit-client-change-CommitBox_BinderImpl_GenCss_style-collapsed button:hover .com-google-gerrit-client-change-CommitBox_BinderImpl_GenCss_style-toggle {
+  background-position : -13px 0;
+}
+.com-google-gerrit-client-change-CommitBox_BinderImpl_GenCss_style-expanded button:hover .com-google-gerrit-client-change-CommitBox_BinderImpl_GenCss_style-toggle {
+  background-position : 0 0;
+}
+.com-google-gerrit-client-change-CommitBox_BinderImpl_GenCss_style-header {
+  border-spacing : 0;
+  padding : 0;
+  width : 560px;
+}
+.com-google-gerrit-client-change-CommitBox_BinderImpl_GenCss_style-header th {
+  width : 72px;
+}
+.com-google-gerrit-client-change-CommitBox_BinderImpl_GenCss_style-header td {
+  white-space : nowrap;
+}
+.com-google-gerrit-client-change-CommitBox_BinderImpl_GenCss_style-date {
+  width : 132px;
+}
+.com-google-gerrit-client-change-CommitBox_BinderImpl_GenCss_style-clippy {
+  position : relative;
+}
+.com-google-gerrit-client-change-CommitBox_BinderImpl_GenCss_style-clippy div {
+  position : absolute;
+  top : 0;
+  right : -16px;
+}
+.com-google-gerrit-client-change-CommitBox_BinderImpl_GenCss_style-webLinkPanel a:first-child {
+  margin-left : 16px;
+}
+.com-google-gerrit-client-change-CommitBox_BinderImpl_GenCss_style-webLinkPanel>a {
+  margin-left : 2px;
+}
+.com-google-gerrit-client-change-CommitBox_BinderImpl_GenCss_style-parentWebLink a:first-child {
+  margin-left : 16px;
+}
+.com-google-gerrit-client-change-CommitBox_BinderImpl_GenCss_style-parentWebLink>a {
+  margin-left : 2px;
+}
+.com-google-gerrit-client-change-CommitBox_BinderImpl_GenCss_style-commit {
+  margin-right : 3px;
+  float : left;
+}
+.com-google-gerrit-client-change-CommitBox_BinderImpl_GenCss_style-userPanel img {
+  margin : 0 2px 0 0;
+  width : 16px;
+  height : 16px !important;
+  vertical-align : bottom;
+}
+.com-google-gerrit-client-change-CommitBox_BinderImpl_GenCss_style-parent {
+  margin-right : 3px;
+  float : left;
+}
+.com-google-gerrit-client-change-CommitBox_BinderImpl_GenCss_style-parentNotCurrent {
+  color : #ffa62f;
+  font-weight : bold;
+}
+.com-google-gwtexpui-clippy-client-ClippyCss-label {
+  vertical-align : top;
+}
+.com-google-gwtexpui-clippy-client-ClippyCss-swf {
+  margin-left : 5px;
+  height : 14px;
+  width : 14px;
+  display : inline-block !important;
+  overflow : hidden;
+}
+.com-google-gwtexpui-clippy-client-ClippyCss-copier {
+  margin-left : 5px;
+  height : 14px;
+  width : 14px;
+  display : inline-block;
+  font-size : 12px;
+  vertical-align : top;
+  padding : 0;
+  border : 0;
+  background-color : inherit;
+  cursor : pointer;
+}
+.com-google-gwtexpui-clippy-client-ClippyCss-copier:focus {
+  outline : none;
+}
+.com-google-gwtexpui-user-client-Tooltip-Css-tooltip {
+  position : relative;
+}
+.com-google-gwtexpui-user-client-Tooltip-Css-tooltip:hover:before {
+  position : absolute;
+  z-index : 51;
+  border : solid;
+  border-color : #333 transparent;
+  border-width : 0 4px 4px 4px;
+  pointer-events : none;
+  content : "";
+  top : auto;
+  right : 50%;
+  bottom : -5px;
+  margin-right : -5px;
+}
+.com-google-gwtexpui-user-client-Tooltip-Css-tooltip:hover:after {
+  position : absolute;
+  z-index : 50;
+  font : normal normal 11px/ 1.5 Helvetica, arial, sans-serif;
+  text-align : center;
+  white-space : pre;
+  pointer-events : none;
+  background : rgba(0, 0, 0, 0.7);
+  color : #fff;
+  border-radius : 3px;
+  padding : 5px;
+  content : attr(aria-label);
+  top : 100%;
+  right : 50%;
+  margin-top : 5px;
+  -webkit-transform : translateX(50%);
+  -ms-transform : translateX(50%);
+  transform : translateX(50%);
+}
+button.com-google-gerrit-client-change-Reviewers_BinderImpl_GenCss_style-openAdd {
+  margin : 3px 3px 0 0;
+  float : right;
+  color : rgba(0, 0, 0, 0.15);
+  background-color : #f5f5f5;
+  background-image : none;
+  -webkit-border-radius : 2px;
+  -moz-border-radius : 2px;
+  border-radius : 2px;
+  -webkit-box-sizing : content-box;
+  -moz-box-sizing : content-box;
+  box-sizing : content-box;
+}
+button.com-google-gerrit-client-change-Reviewers_BinderImpl_GenCss_style-openAdd div {
+  width : auto;
+  color : #444;
+}
+.com-google-gerrit-client-change-Reviewers_BinderImpl_GenCss_style-suggestBox {
+  margin-bottom : 2px;
+}
+.com-google-gerrit-client-change-Reviewers_BinderImpl_GenCss_style-error {
+  color : #d33d3d;
+  font-weight : bold;
+}
+.com-google-gerrit-client-change-Reviewers_BinderImpl_GenCss_style-cancel {
+  float : right;
+}
+.com-google-gerrit-client-change-Topic_BinderImpl_GenCss_style-show {
+  cursor : pointer;
+}
+.com-google-gerrit-client-change-Topic_BinderImpl_GenCss_style-edit, .com-google-gerrit-client-change-Topic_BinderImpl_GenCss_style-cancel {
+  float : right;
+}
+button.com-google-gerrit-client-change-Hashtags_BinderImpl_GenCss_style-openAdd {
+  margin : 3px 3px 0 0;
+  float : right;
+  color : rgba(0, 0, 0, 0.15);
+  background-color : #f5f5f5;
+  background-image : -webkit-linear-gradient(top, #f5f5f5, #f1f1f1);
+  -webkit-border-radius : 2px;
+  -moz-border-radius : 2px;
+  border-radius : 2px;
+  -webkit-box-sizing : content-box;
+  -moz-box-sizing : content-box;
+  box-sizing : content-box;
+}
+button.com-google-gerrit-client-change-Hashtags_BinderImpl_GenCss_style-openAdd div {
+  width : auto;
+  color : #444;
+}
+.com-google-gerrit-client-change-Hashtags_BinderImpl_GenCss_style-hashtagTextBox {
+  margin-bottom : 2px;
+}
+.com-google-gerrit-client-change-Hashtags_BinderImpl_GenCss_style-error {
+  color : #d33d3d;
+  font-weight : bold;
+}
+.com-google-gerrit-client-change-Hashtags_BinderImpl_GenCss_style-cancel {
+  float : right;
+}
+/* CssDef */
+#change_actions {
+  padding-top : 2px;
+  padding-bottom : 20px;
+}
+#change_actions button {
+  margin : 6px 3px 0 0;
+  text-align : center;
+  font-size : 8pt;
+  font-weight : bold;
+  border : 2px solid;
+  cursor : pointer;
+  color : rgba(0, 0, 0, 0.15);
+  background-color : #f5f5f5;
+  -webkit-border-radius : 2px;
+  -webkit-box-sizing : content-box;
+}
+#change_actions button div {
+  color : #444;
+  min-width : 54px;
+  white-space : nowrap;
+  height : 14px;
+  line-height : 14px;
+}
+#change_actions button.com-google-gerrit-client-change-Actions_BinderImpl_GenCss_style-submit {
+  float : right;
+  background-color : #4d90fe;
+  background-image : -webkit-linear-gradient(top, #4d90fe, #4d90fe);
+}
+#change_actions button.com-google-gerrit-client-change-Actions_BinderImpl_GenCss_style-submit div {
+  color : #fff;
+}
+#change_actions button:disabled {
+  font-weight : normal;
+  background-color : #999;
+  background-image : -webkit-linear-gradient(top, #999, #999);
+}
+/* @external gwt-TabBarItem; */
+/* @external gwt-TabBarItem-disabled; */
+/* @external gwt-TabBarItem-selected; */
+/* @external gwt-TabBarRest; */
+/* @external gwt-TabPanelBottom; */
+/* CssEval */
+.com-google-gerrit-client-change-RelatedChanges-RelatedChangesCss-row {
+  white-space : nowrap;
+}
+.com-google-gerrit-client-change-RelatedChanges-RelatedChangesCss-activeRow {
+  background-color : #d1e6ea !important;
+}
+.com-google-gerrit-client-change-RelatedChanges-RelatedChangesCss-activeRow .com-google-gerrit-client-change-RelatedChanges-RelatedChangesCss-pointer {
+  visibility : visible;
+}
+.com-google-gerrit-client-change-RelatedChanges-RelatedChangesCss-pointer {
+  display : inline-block;
+  vertical-align : top;
+  visibility : hidden;
+}
+.com-google-gerrit-client-change-RelatedChanges-RelatedChangesCss-subject {
+  display : inline-block;
+  overflow : hidden;
+  text-overflow : ellipsis;
+  white-space : nowrap;
+  width : 355px;
+}
+.com-google-gerrit-client-change-RelatedChanges-RelatedChangesCss-tabPanel .gwt-TabBarItem {
+  background : none repeat scroll 0 0 #fff !important;
+}
+.com-google-gerrit-client-change-RelatedChanges-RelatedChangesCss-tabPanel .gwt-TabBarItem-selected {
+  background : none repeat scroll 0 0 #fff !important;
+  border-bottom-color : #000 !important;
+  color : #000 !important;
+}
+.com-google-gerrit-client-change-RelatedChanges-RelatedChangesCss-tabPanel .gwt-TabBarRest {
+  background : none repeat scroll 0 0 #fff !important;
+}
+.com-google-gerrit-client-change-RelatedChanges-RelatedChangesCss-tabPanel .gwt-TabPanelBottom {
+  padding : 2px 0 0 0;
+}
+.com-google-gerrit-client-change-RelatedChanges-RelatedChangesCss-tabPanel .gwt-TabBarItem-disabled {
+  display : none;
+}
+.com-google-gerrit-client-change-RelatedChanges-RelatedChangesCss-current {
+  display : inline-block;
+  text-align : center;
+  vertical-align : top;
+  width : 12px;
+}
+.com-google-gerrit-client-change-RelatedChanges-RelatedChangesCss-gitweb {
+  display : inline-block;
+  text-align : center;
+  vertical-align : top;
+  width : 12px;
+  color : #000;
+}
+.com-google-gerrit-client-change-RelatedChanges-RelatedChangesCss-indirect {
+  display : inline-block;
+  text-align : center;
+  vertical-align : top;
+  width : 12px;
+  color : #090;
+  font-weight : bold;
+}
+.com-google-gerrit-client-change-RelatedChanges-RelatedChangesCss-notCurrent {
+  display : inline-block;
+  text-align : center;
+  vertical-align : top;
+  width : 12px;
+  color : #ffa62f;
+}
+.com-google-gerrit-client-change-FileTable-FileTableCss-pointer {
+  padding : 0;
+  vertical-align : top;
+  width : 12px;
+}
+.com-google-gerrit-client-change-FileTable-FileTableCss-reviewed, .com-google-gerrit-client-change-FileTable-FileTableCss-removeButton {
+  padding : 0;
+  vertical-align : top;
+  height : 19px;
+  width : 20px;
+}
+.com-google-gerrit-client-change-FileTable-FileTableCss-table th {
+  vertical-align : top;
+  text-align : left;
+}
+.com-google-gerrit-client-change-FileTable-FileTableCss-table tr {
+  vertical-align : top;
+}
+.com-google-gerrit-client-change-FileTable-FileTableCss-table tr:hover {
+  background : rgba(209, 245, 248, 0.32);
+}
+.com-google-gerrit-client-change-FileTable-FileTableCss-table tr.com-google-gerrit-client-change-FileTable-FileTableCss-nohover:hover {
+  background : transparent;
+}
+.com-google-gerrit-client-change-FileTable-FileTableCss-status {
+  padding-right : 4px;
+  color : #888;
+}
+.com-google-gerrit-client-change-FileTable-FileTableCss-pathColumn {
+  white-space : nowrap;
+  min-width : 600px;
+}
+.com-google-gerrit-client-change-FileTable-FileTableCss-pathColumn a {
+  color : #000;
+  cursor : pointer;
+}
+.com-google-gerrit-client-change-FileTable-FileTableCss-commonPrefix {
+  color : #888;
+}
+.com-google-gerrit-client-change-FileTable-FileTableCss-renameCopySource {
+  color : #888;
+  font-size : smaller;
+}
+.com-google-gerrit-client-change-FileTable-FileTableCss-draftColumn {
+  white-space : nowrap;
+  color : #d44;
+  font-weight : bold;
+}
+.com-google-gerrit-client-change-FileTable-FileTableCss-newColumn {
+  white-space : nowrap;
+  font-weight : bold;
+}
+.com-google-gerrit-client-change-FileTable-FileTableCss-commentColumn {
+  white-space : nowrap;
+}
+.com-google-gerrit-client-change-FileTable-FileTableCss-deltaColumn1 {
+  white-space : nowrap;
+  text-align : right;
+}
+.com-google-gerrit-client-change-FileTable-FileTableCss-deltaColumn2 {
+  padding-left : 5px;
+  white-space : nowrap;
+  text-align : right;
+}
+.com-google-gerrit-client-change-FileTable-FileTableCss-inserted {
+  height : 10px;
+  display : inline-block;
+  background-color : #4d4;
+}
+.com-google-gerrit-client-change-FileTable-FileTableCss-deleted {
+  height : 10px;
+  display : inline-block;
+  background-color : #d44;
+}
+.com-google-gerrit-client-change-FileTable-FileTableCss-removeButton button {
+  cursor : pointer;
+  padding : 0;
+  margin : 0 0 0 5px;
+  border : 0;
+  background-color : transparent;
+  white-space : nowrap;
+}
+/* CssEval */
+.com-google-gerrit-client-change-Resources-Style-popup {
+  background-color : #eef3f5;
+  min-width : 300px;
+  min-height : 90px;
+}
+.com-google-gerrit-client-change-Resources-Style-popupContent {
+  padding : 5px;
+}
+.com-google-gerrit-client-change-Resources-Style-button, .com-google-gerrit-client-change-Resources-Style-popup button, .com-google-gerrit-client-change-Resources-Style-popup input[type="button"] {
+  margin : 0 3px 0 0;
+  border-color : rgba(0, 0, 0, 0.15) !important;
+  text-align : center;
+  font-size : 11px;
+  font-weight : bold;
+  border : 2px solid;
+  cursor : pointer;
+  color : #fff;
+  background-color : #4d90fe;
+  background-image : -webkit-linear-gradient(top, #4d90fe, #4d90fe);
+  -webkit-border-radius : 2px;
+  -webkit-box-sizing : content-box;
+}
+.com-google-gerrit-client-change-Resources-Style-button:disabled, .com-google-gerrit-client-change-Resources-Style-popup button:disabled, .com-google-gerrit-client-change-Resources-Style-popup input[type="button"]:disabled {
+  background-color : #999;
+  background-image : -webkit-linear-gradient(top, #999, #999);
+}
+.com-google-gerrit-client-change-Resources-Style-button div, .com-google-gerrit-client-change-Resources-Style-popup button div {
+  width : 54px;
+  white-space : nowrap;
+  color : #fff;
+  height : 14px;
+  line-height : 14px;
+}
+.com-google-gerrit-client-change-Resources-Style-section {
+  padding : 5px 5px;
+  border-bottom : 1px solid #b8b8b8;
+}
+</style><style>.com-google-gwtexpui-safehtml-client-SafeHtmlCss-wikiPreFormat {
+  white-space : pre;
+  font-family : "Lucida Console", "Lucida Sans Typewriter", Monaco, monospace;
+  font-size : small;
+}
+.com-google-gwtexpui-safehtml-client-SafeHtmlCss-wikiQuote {
+  margin-left : 0;
+  border-left : 1px solid #888;
+  padding-left : 5px;
+}
+.com-google-gerrit-client-change-IncludedInBox_BinderImpl_GenCss_style-includedInBox {
+  min-width : 300px;
+  max-width : 580px;
+  margin : 5px;
+}
+.com-google-gerrit-client-change-IncludedInBox_BinderImpl_GenCss_style-includedInTable {
+  border-spacing : 0;
+}
+.com-google-gerrit-client-change-IncludedInBox_BinderImpl_GenCss_style-includedInTable th {
+  width : 60px;
+  color : #444;
+  font-weight : normal;
+  vertical-align : top;
+  text-align : left;
+  padding-right : 5px;
+}
+.com-google-gerrit-client-change-IncludedInBox_BinderImpl_GenCss_style-includedInElement {
+  font-size : smaller;
+  font-family : monospace;
+}
+.com-google-gerrit-client-change-IncludedInBox_BinderImpl_GenCss_style-includedInElement span {
+  width : 500px;
+  white-space : nowrap;
+  display : inline-block;
+  overflow : hidden;
+  text-overflow : ellipsis;
+}
+.com-google-gerrit-client-change-IncludedInBox_BinderImpl_GenCss_style-includedInElement .com-google-gerrit-client-change-IncludedInBox_BinderImpl_GenCss_style-gwt-TextBox {
+  padding : 0;
+  margin : 0;
+  border : 0;
+  max-height : 18px;
+  width : 500px;
+}
+.com-google-gerrit-client-change-IncludedInBox_BinderImpl_GenCss_style-includedInElement div {
+  float : right;
+}
+/* CssEval */
+.com-google-gerrit-client-change-PatchSetsBox_BinderImpl_GenCss_style-revisionBox {
+  min-width : 300px;
+  margin : 10px 0 5px 5px;
+}
+.com-google-gerrit-client-change-PatchSetsBox_BinderImpl_GenCss_style-scroll {
+  min-width : 300px;
+  height : 200px;
+}
+.com-google-gerrit-client-change-PatchSetsBox_BinderImpl_GenCss_style-table {
+  border-spacing : 0;
+  width : 100%;
+}
+.com-google-gerrit-client-change-PatchSetsBox_BinderImpl_GenCss_style-table td, .com-google-gerrit-client-change-PatchSetsBox_BinderImpl_GenCss_style-table th {
+  padding-left : 5px;
+  padding-right : 5px;
+  border-right : 2px solid #ddd;
+  white-space : nowrap;
+}
+.com-google-gerrit-client-change-PatchSetsBox_BinderImpl_GenCss_style-table tr.com-google-gerrit-client-change-PatchSetsBox_BinderImpl_GenCss_style-current {
+  background-color : #d1e6ea;
+}
+.com-google-gerrit-client-change-PatchSetsBox_BinderImpl_GenCss_style-table tr.com-google-gerrit-client-change-PatchSetsBox_BinderImpl_GenCss_style-current a {
+  pointer-events : none;
+  color : #000;
+}
+.com-google-gerrit-client-change-PatchSetsBox_BinderImpl_GenCss_style-legacy_id {
+  min-width : 50px;
+  text-align : right;
+  font-weight : bold;
+}
+.com-google-gerrit-client-change-PatchSetsBox_BinderImpl_GenCss_style-commit {
+  font-family : monospace;
+}
+.com-google-gerrit-client-change-PatchSetsBox_BinderImpl_GenCss_style-draft_comment {
+  margin : 0 2px 0 0;
+  width : 16px;
+  height : 16px;
+  vertical-align : bottom;
+}
+.com-google-gerrit-client-change-Message_BinderImpl_GenCss_style-messageBox {
+  position : relative;
+  width : 1168px;
+  padding : 2px 0 2px 0;
+  border-left : 1px solid #e3e9ff;
+  border-right : 1px solid #e3e9ff;
+  border-bottom : 1px solid #e3e9ff;
+  -webkit-border-bottom-left-radius : 8px;
+  -webkit-border-bottom-right-radius : 8px;
+}
+.com-google-gerrit-client-change-Message_BinderImpl_GenCss_style-header {
+  cursor : pointer;
+}
+.com-google-gerrit-client-change-Message_BinderImpl_GenCss_style-avatar {
+  position : absolute;
+  width : 26px;
+  height : 26px;
+}
+.com-google-gerrit-client-change-Message_BinderImpl_GenCss_style-closed .com-google-gerrit-client-change-Message_BinderImpl_GenCss_style-avatar {
+  position : absolute;
+  top : 0;
+  left : -1px;
+  width : 20px;
+  height : 20px;
+}
+.com-google-gerrit-client-change-Message_BinderImpl_GenCss_style-contents {
+  margin-left : 28px;
+  position : relative;
+}
+.com-google-gerrit-client-change-Message_BinderImpl_GenCss_style-contents p, .com-google-gerrit-client-change-Message_BinderImpl_GenCss_style-contents blockquote {
+  -webkit-margin-before : 0;
+  -webkit-margin-after : 0.3em;
+  white-space : pre-wrap;
+}
+.com-google-gerrit-client-change-Message_BinderImpl_GenCss_style-name {
+  white-space : nowrap;
+  font-weight : bold;
+}
+.com-google-gerrit-client-change-Message_BinderImpl_GenCss_style-closed .com-google-gerrit-client-change-Message_BinderImpl_GenCss_style-name {
+  width : 150px;
+  overflow : hidden;
+  font-weight : normal;
+}
+.com-google-gerrit-client-change-Message_BinderImpl_GenCss_style-summary {
+  color : #777;
+  position : absolute;
+  top : 0;
+  left : 150px;
+  width : 880px;
+  overflow : hidden;
+  text-overflow : ellipsis;
+  white-space : nowrap;
+}
+.com-google-gerrit-client-change-Message_BinderImpl_GenCss_style-date {
+  white-space : nowrap;
+  position : absolute;
+  top : 0;
+  right : 18px;
+}
+.com-google-gerrit-client-change-Message_BinderImpl_GenCss_style-reply {
+  position : absolute;
+  top : 0;
+  right : 1px;
+  cursor : pointer;
+  outline : none;
+  border : none;
+  background : transparent;
+  margin : 0;
+  padding : 0;
+  line-height : 15px;
+  font-family : Arial Unicode MS, sans-serif;
+  font-size : 18px;
+}
+.com-google-gerrit-client-change-Message_BinderImpl_GenCss_style-closed .com-google-gerrit-client-change-Message_BinderImpl_GenCss_style-reply {
+  visibility : hidden;
+}
+.com-google-gerrit-client-change-FileComments_BinderImpl_GenCss_style-path {
+  display : block;
+  white-space : nowrap;
+}
+.com-google-gerrit-client-change-FileComments_BinderImpl_GenCss_style-comments {
+  margin-left : 1em;
+}
+.com-google-gerrit-client-change-LineComment_BinderImpl_GenCss_style-box {
+  position : relative;
+}
+.com-google-gerrit-client-change-LineComment_BinderImpl_GenCss_style-location {
+  position : absolute;
+  top : 0;
+  left : 0;
+  font-weight : bold;
+}
+.com-google-gerrit-client-change-LineComment_BinderImpl_GenCss_style-message {
+  margin-left : 111px;
+}
+</style><style>/** @license
+Copyright (C) 2014 by Marijn Haverbeke <marijnh@gmail.com> and others
+
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in
+all copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+THE SOFTWARE.
+*/
+/* BASICS */
+
+.CodeMirror {
+  /* Set height, width, borders, and global font properties here */
+  font-family: monospace;
+  height: 300px;
+  color: black;
+}
+
+/* PADDING */
+
+.CodeMirror-lines {
+  padding: 4px 0; /* Vertical padding around content */
+}
+.CodeMirror pre {
+  padding: 0 4px; /* Horizontal padding of content */
+}
+
+.CodeMirror-scrollbar-filler, .CodeMirror-gutter-filler {
+  background-color: white; /* The little square between H and V scrollbars */
+}
+
+/* GUTTER */
+
+.CodeMirror-gutters {
+  border-right: 1px solid #ddd;
+  background-color: #f7f7f7;
+  white-space: nowrap;
+}
+.CodeMirror-linenumbers {}
+.CodeMirror-linenumber {
+  padding: 0 3px 0 5px;
+  min-width: 20px;
+  text-align: right;
+  color: #999;
+  -moz-box-sizing: content-box;
+  box-sizing: content-box;
+}
+
+.CodeMirror-guttermarker { color: black; }
+.CodeMirror-guttermarker-subtle { color: #999; }
+
+/* CURSOR */
+
+.CodeMirror div.CodeMirror-cursor {
+  border-left: 1px solid black;
+}
+/* Shown when moving in bi-directional text */
+.CodeMirror div.CodeMirror-secondarycursor {
+  border-left: 1px solid silver;
+}
+.CodeMirror.cm-fat-cursor div.CodeMirror-cursor {
+  width: auto;
+  border: 0;
+  background: #7e7;
+}
+.CodeMirror.cm-fat-cursor div.CodeMirror-cursors {
+  z-index: 1;
+}
+
+.cm-animate-fat-cursor {
+  width: auto;
+  border: 0;
+  -webkit-animation: blink 1.06s steps(1) infinite;
+  -moz-animation: blink 1.06s steps(1) infinite;
+  animation: blink 1.06s steps(1) infinite;
+}
+@-moz-keyframes blink {
+  0% { background: #7e7; }
+  50% { background: none; }
+  100% { background: #7e7; }
+}
+@-webkit-keyframes blink {
+  0% { background: #7e7; }
+  50% { background: none; }
+  100% { background: #7e7; }
+}
+@keyframes blink {
+  0% { background: #7e7; }
+  50% { background: none; }
+  100% { background: #7e7; }
+}
+
+/* Can style cursor different in overwrite (non-insert) mode */
+div.CodeMirror-overwrite div.CodeMirror-cursor {}
+
+.cm-tab { display: inline-block; text-decoration: inherit; }
+
+.CodeMirror-ruler {
+  border-left: 1px solid #ccc;
+  position: absolute;
+}
+
+/* DEFAULT THEME */
+
+.cm-s-default .cm-keyword {color: #708;}
+.cm-s-default .cm-atom {color: #219;}
+.cm-s-default .cm-number {color: #164;}
+.cm-s-default .cm-def {color: #00f;}
+.cm-s-default .cm-variable,
+.cm-s-default .cm-punctuation,
+.cm-s-default .cm-property,
+.cm-s-default .cm-operator {}
+.cm-s-default .cm-variable-2 {color: #05a;}
+.cm-s-default .cm-variable-3 {color: #085;}
+.cm-s-default .cm-comment {color: #a50;}
+.cm-s-default .cm-string {color: #a11;}
+.cm-s-default .cm-string-2 {color: #f50;}
+.cm-s-default .cm-meta {color: #555;}
+.cm-s-default .cm-qualifier {color: #555;}
+.cm-s-default .cm-builtin {color: #30a;}
+.cm-s-default .cm-bracket {color: #997;}
+.cm-s-default .cm-tag {color: #170;}
+.cm-s-default .cm-attribute {color: #00c;}
+.cm-s-default .cm-header {color: blue;}
+.cm-s-default .cm-quote {color: #090;}
+.cm-s-default .cm-hr {color: #999;}
+.cm-s-default .cm-link {color: #00c;}
+
+.cm-negative {color: #d44;}
+.cm-positive {color: #292;}
+.cm-header, .cm-strong {font-weight: bold;}
+.cm-em {font-style: italic;}
+.cm-link {text-decoration: underline;}
+.cm-strikethrough {text-decoration: line-through;}
+
+.cm-s-default .cm-error {color: #f00;}
+.cm-invalidchar {color: #f00;}
+
+/* Default styles for common addons */
+
+div.CodeMirror span.CodeMirror-matchingbracket {color: #0f0;}
+div.CodeMirror span.CodeMirror-nonmatchingbracket {color: #f22;}
+.CodeMirror-matchingtag { background: rgba(255, 150, 0, .3); }
+.CodeMirror-activeline-background {background: #e8f2ff;}
+
+/* STOP */
+
+/* The rest of this file contains styles related to the mechanics of
+   the editor. You probably shouldn't touch them. */
+
+.CodeMirror {
+  position: relative;
+  overflow: hidden;
+  background: white;
+}
+
+.CodeMirror-scroll {
+  overflow: scroll !important; /* Things will break if this is overridden */
+  /* 30px is the magic margin used to hide the element's real scrollbars */
+  /* See overflow: hidden in .CodeMirror */
+  margin-bottom: -30px; margin-right: -30px;
+  padding-bottom: 30px;
+  height: 100%;
+  outline: none; /* Prevent dragging from highlighting the element */
+  position: relative;
+  -moz-box-sizing: content-box;
+  box-sizing: content-box;
+}
+.CodeMirror-sizer {
+  position: relative;
+  border-right: 30px solid transparent;
+  -moz-box-sizing: content-box;
+  box-sizing: content-box;
+}
+
+/* The fake, visible scrollbars. Used to force redraw during scrolling
+   before actuall scrolling happens, thus preventing shaking and
+   flickering artifacts. */
+.CodeMirror-vscrollbar, .CodeMirror-hscrollbar, .CodeMirror-scrollbar-filler, .CodeMirror-gutter-filler {
+  position: absolute;
+  z-index: 6;
+  display: none;
+}
+.CodeMirror-vscrollbar {
+  right: 0; top: 0;
+  overflow-x: hidden;
+  overflow-y: scroll;
+}
+.CodeMirror-hscrollbar {
+  bottom: 0; left: 0;
+  overflow-y: hidden;
+  overflow-x: scroll;
+}
+.CodeMirror-scrollbar-filler {
+  right: 0; bottom: 0;
+}
+.CodeMirror-gutter-filler {
+  left: 0; bottom: 0;
+}
+
+.CodeMirror-gutters {
+  position: absolute; left: 0; top: 0;
+  z-index: 3;
+}
+.CodeMirror-gutter {
+  white-space: normal;
+  height: 100%;
+  -moz-box-sizing: content-box;
+  box-sizing: content-box;
+  display: inline-block;
+  margin-bottom: -30px;
+  /* Hack to make IE7 behave */
+  *zoom:1;
+  *display:inline;
+}
+.CodeMirror-gutter-wrapper {
+  position: absolute;
+  z-index: 4;
+  height: 100%;
+}
+.CodeMirror-gutter-elt {
+  position: absolute;
+  cursor: default;
+  z-index: 4;
+}
+.CodeMirror-gutter-wrapper {
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  user-select: none;
+}
+
+.CodeMirror-lines {
+  cursor: text;
+  min-height: 1px; /* prevents collapsing before first draw */
+}
+.CodeMirror pre {
+  /* Reset some styles that the rest of the page might have set */
+  -moz-border-radius: 0; -webkit-border-radius: 0; border-radius: 0;
+  border-width: 0;
+  background: transparent;
+  font-family: inherit;
+  font-size: inherit;
+  margin: 0;
+  white-space: pre;
+  word-wrap: normal;
+  line-height: inherit;
+  color: inherit;
+  z-index: 2;
+  position: relative;
+  overflow: visible;
+  -webkit-tap-highlight-color: transparent;
+}
+.CodeMirror-wrap pre {
+  word-wrap: break-word;
+  white-space: pre-wrap;
+  word-break: normal;
+}
+
+.CodeMirror-linebackground {
+  position: absolute;
+  left: 0; right: 0; top: 0; bottom: 0;
+  z-index: 0;
+}
+
+.CodeMirror-linewidget {
+  position: relative;
+  z-index: 2;
+  overflow: auto;
+}
+
+.CodeMirror-widget {}
+
+.CodeMirror-code {
+  outline: none;
+}
+
+.CodeMirror-measure {
+  position: absolute;
+  width: 100%;
+  height: 0;
+  overflow: hidden;
+  visibility: hidden;
+}
+.CodeMirror-measure pre { position: static; }
+
+.CodeMirror div.CodeMirror-cursor {
+  position: absolute;
+  border-right: none;
+  width: 0;
+}
+
+div.CodeMirror-cursors {
+  visibility: hidden;
+  position: relative;
+  z-index: 3;
+}
+.CodeMirror-focused div.CodeMirror-cursors {
+  visibility: visible;
+}
+
+.CodeMirror-selected { background: #d9d9d9; }
+.CodeMirror-focused .CodeMirror-selected { background: #d7d4f0; }
+.CodeMirror-crosshair { cursor: crosshair; }
+.CodeMirror ::selection { background: #d7d4f0; }
+.CodeMirror ::-moz-selection { background: #d7d4f0; }
+
+.cm-searching {
+  background: #ffa;
+  background: rgba(255, 255, 0, .4);
+}
+
+/* IE7 hack to prevent it from returning funny offsetTops on the spans */
+.CodeMirror span { *vertical-align: text-bottom; }
+
+/* Used to force a border model for a node */
+.cm-force-border { padding-right: .1px; }
+
+@media print {
+  /* Hide the cursor when printing */
+  .CodeMirror div.CodeMirror-cursors {
+    visibility: hidden;
+  }
+}
+
+/* See issue #2901 */
+.cm-tab-wrap-hack:after { content: ''; }
+
+/* Help users use markselection to safely style text background */
+span.CodeMirror-selectedtext { background: none; }
+.CodeMirror-dialog {
+  position: absolute;
+  left: 0; right: 0;
+  background: white;
+  z-index: 15;
+  padding: .1em .8em;
+  overflow: hidden;
+  color: #333;
+}
+
+.CodeMirror-dialog-top {
+  border-bottom: 1px solid #eee;
+  top: 0;
+}
+
+.CodeMirror-dialog-bottom {
+  border-top: 1px solid #eee;
+  bottom: 0;
+}
+
+.CodeMirror-dialog input {
+  border: none;
+  outline: none;
+  background: transparent;
+  width: 20em;
+  color: inherit;
+  font-family: monospace;
+}
+
+.CodeMirror-dialog button {
+  font-size: 70%;
+}
+.CodeMirror-simplescroll-horizontal div, .CodeMirror-simplescroll-vertical div {
+  position: absolute;
+  background: #ccc;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+  border: 1px solid #bbb;
+  border-radius: 2px;
+}
+
+.CodeMirror-simplescroll-horizontal, .CodeMirror-simplescroll-vertical {
+  position: absolute;
+  z-index: 6;
+  background: #eee;
+}
+
+.CodeMirror-simplescroll-horizontal {
+  bottom: 0; left: 0;
+  height: 8px;
+}
+.CodeMirror-simplescroll-horizontal div {
+  bottom: 0;
+  height: 100%;
+}
+
+.CodeMirror-simplescroll-vertical {
+  right: 0; top: 0;
+  width: 8px;
+}
+.CodeMirror-simplescroll-vertical div {
+  right: 0;
+  width: 100%;
+}
+
+
+.CodeMirror-overlayscroll .CodeMirror-scrollbar-filler, .CodeMirror-overlayscroll .CodeMirror-gutter-filler {
+  display: none;
+}
+
+.CodeMirror-overlayscroll-horizontal div, .CodeMirror-overlayscroll-vertical div {
+  position: absolute;
+  background: #bcd;
+  border-radius: 3px;
+}
+
+.CodeMirror-overlayscroll-horizontal, .CodeMirror-overlayscroll-vertical {
+  position: absolute;
+  z-index: 6;
+}
+
+.CodeMirror-overlayscroll-horizontal {
+  bottom: 0; left: 0;
+  height: 6px;
+}
+.CodeMirror-overlayscroll-horizontal div {
+  bottom: 0;
+  height: 100%;
+}
+
+.CodeMirror-overlayscroll-vertical {
+  right: 0; top: 0;
+  width: 6px;
+}
+.CodeMirror-overlayscroll-vertical div {
+  right: 0;
+  width: 100%;
+}
+.CodeMirror-search-match {
+  background: gold;
+  border-top: 1px solid orange;
+  border-bottom: 1px solid orange;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+  opacity: .5;
+}
+/* @external CodeMirror; */
+/* @external CodeMirror-lines; */
+/* @external CodeMirror-linenumber; */
+/* @external CodeMirror-overlayscroll-horizontal; */
+/* @external CodeMirror-overlayscroll-vertical; */
+/* @external cm-tab; */
+/* @external cm-searching; */
+/* @external cm-trailingspace; */
+.CodeMirror-lines {
+  padding : 0;
+}
+.CodeMirror pre {
+  padding : 0;
+  line-height : normal;
+}
+.CodeMirror-overlayscroll-horizontal div {
+  min-width : 25px;
+}
+.CodeMirror-overlayscroll-vertical div {
+  min-height : 25px;
+}
+.CodeMirror-overlayscroll-vertical {
+  z-index : inherit;
+}
+.CodeMirror-overlayscroll-horizontal div, .CodeMirror-overlayscroll-vertical div {
+  background-color : rgba(128, 128, 128, 0.5);
+  z-index : 8;
+}
+.net-codemirror-lib-CodeMirror-Style-activeLine .CodeMirror-linenumber {
+  background-color : #bcf !important;
+  color : #000;
+}
+.net-codemirror-lib-CodeMirror-Style-showTabs .cm-tab:before {
+  position : absolute;
+  content : "";
+  color : #f00;
+}
+.cm-searching {
+  background-color : #ffa;
+}
+.cm-trailingspace {
+  background-color : red;
+}
+.net-codemirror-lib-CodeMirror-Style-margin {
+  position : absolute;
+  top : 0;
+  bottom : 0;
+  width : 0;
+  border-right : 1px dashed #ffa500;
+  z-index : 2;
+  cursor : text;
+}
+</style></head><body><div id="gerrit_topmenu" class="gerritTopMenu"><table class="topmenu"><colgroup><col><col><col></colgroup><tbody><tr><td class="topmenuTDmenu"><table class="topmenuMenuLeft" cellspacing="0" cellpadding="0"><tbody><tr><td style="vertical-align: top;" align="left"><table class="gwt-TabBar" role="tablist" style="width: 100%;" cellspacing="0" cellpadding="0"><tbody><tr><td style="vertical-align: bottom;" class="gwt-TabBarFirst-wrapper" align="left" height="100%"><div class="gwt-TabBarFirst" style="white-space: normal; height: 100%;">&nbsp;</div></td><td style="vertical-align: bottom;" class="gwt-TabBarItem-wrapper gwt-TabBarItem-wrapper-selected" align="left"><div tabindex="0" class="gwt-TabBarItem gwt-TabBarItem-selected" role="tab"><input tabindex="-1" role="presentation" style="opacity: 0; height: 1px; width: 1px; z-index: -1; overflow: hidden; position: absolute;" type="text"><div class="gwt-Label" style="white-space: nowrap;">All</div></div></td><td style="vertical-align: bottom;" class="gwt-TabBarItem-wrapper" align="left"><div tabindex="0" class="gwt-TabBarItem" role="tab"><input tabindex="-1" role="presentation" style="opacity: 0; height: 1px; width: 1px; z-index: -1; overflow: hidden; position: absolute;" type="text"><div class="gwt-Label" style="white-space: nowrap;">Projects</div></div></td><td style="vertical-align: bottom;" class="gwt-TabBarItem-wrapper" align="left"><div tabindex="0" class="gwt-TabBarItem" role="tab"><input tabindex="-1" role="presentation" style="opacity: 0; height: 1px; width: 1px; z-index: -1; overflow: hidden; position: absolute;" type="text"><div class="gwt-Label" style="white-space: nowrap;">Documentation</div></div></td><td style="vertical-align: bottom;" class="gwt-TabBarRest-wrapper" align="left" width="100%"><div class="gwt-TabBarRest" style="white-space: normal; height: 100%;">&nbsp;</div></td></tr></tbody></table></td></tr><tr><td style="vertical-align: top;" align="left" height="100%"><div class="gwt-TabPanelBottom" role="tabpanel"><div style="width: 100%; height: 100%; padding: 0px; margin: 0px;"><div class="linkMenuBar" role="menubar" style="width: 100%; height: 100%;"><a class="menuItem linkMenuItemNotLast" href="#/q/status:open" role="menuitem">Open</a><a class="menuItem linkMenuItemNotLast" href="#/q/status:merged" role="menuitem">Merged</a><a class="menuItem" href="#/q/status:abandoned" role="menuitem">Abandoned</a></div></div><div style="width: 100%; height: 100%; padding: 0px; margin: 0px; display: none;" aria-hidden="true"><div class="linkMenuBar" role="menubar" style="width: 100%; height: 100%; display: none;" aria-hidden="true"><a class="menuItem linkMenuItemNotLast" href="#/admin/projects/" role="menuitem">List</a><a class="menuItem linkMenuItemNotLast" href="#" role="menuitem" style="display: none;" aria-hidden="true">General</a><a class="menuItem linkMenuItemNotLast" href="#" role="menuitem" style="display: none;" aria-hidden="true">Branches</a><a class="menuItem linkMenuItemNotLast" href="#" role="menuitem" style="display: none;" aria-hidden="true">Access</a><a class="menuItem" href="#" role="menuitem" style="display: none;" aria-hidden="true">Dashboards</a></div></div><div style="width: 100%; height: 100%; padding: 0px; margin: 0px; display: none;" aria-hidden="true"><div class="linkMenuBar" role="menubar" style="width: 100%; height: 100%; display: none;" aria-hidden="true"><a class="menuItem linkMenuItemNotLast" href="https://review.openstack.org/Documentation/index.html" role="menuitem" target="_blank">Table of Contents</a><a class="menuItem linkMenuItemNotLast" href="https://review.openstack.org/Documentation/user-search.html" role="menuitem" target="_blank">Searching</a><a class="menuItem linkMenuItemNotLast" href="https://review.openstack.org/Documentation/user-upload.html" role="menuitem" target="_blank">Uploading</a><a class="menuItem linkMenuItemNotLast" href="https://review.openstack.org/Documentation/access-control.html" role="menuitem" target="_blank">Access Controls</a><a class="menuItem linkMenuItemNotLast" href="https://review.openstack.org/Documentation/rest-api.html" role="menuitem" target="_blank">REST API</a><a class="menuItem" href="https://review.openstack.org/Documentation/intro-project-owner.html" role="menuitem" target="_blank">Project Owner Guide</a></div></div></div></td></tr></tbody></table></td><td class="topmenuTDglue"><div></div></td><td class="topmenuTDmenu"><div class="topmenuMenuRight"><div class="searchPanel"><input class="gwt-TextBox inputFieldTypeHint" size="70" type="text"><button type="button" class="gwt-Button">Search</button></div><div class="linkMenuBar" role="menubar"><a class="menuItem" href="javascript:;" role="menuitem">Sign In</a></div></div></td></tr></tbody></table></div><div id="gerrit_header"><div><script src="static/jquery.js?e=b4e23db1c3a89fdc3329a80d666e4425" type="text/javascript"></script><script src="static/jquery-visibility.js?e=bec8913e6237a19118d302450dfd1018" type="text/javascript"></script><script src="static/hideci.js?e=3820a6091f0996731e3f0dd72527aa14" type="text/javascript"></script><a href="/"><h1 style="color: #CF2F19"><img src="static/title.png?e=d8e0442e7fabdf96d570b41918974ab2" style="vertical-align:middle;"></h1></a></div></div><div id="gerrit_body" class="gerritBody"><div><div style=""><div class="screen"><table class="screenHeader" style="display: none;" aria-hidden="true"><colgroup><col><col><col><col></colgroup><tbody><tr><td>&nbsp;</td><td><div class="screenHeader"><span class="gwt-InlineLabel"></span></div></td><td>&nbsp;</td><td align="right" width="100%">&nbsp;</td></tr></tbody></table><div><div class="com-google-gerrit-client-change-ChangeScreen_BinderImpl_GenCss_style-cs2"><div class="com-google-gerrit-client-change-ChangeScreen_BinderImpl_GenCss_style-headerLine"><div class="com-google-gerrit-client-change-ChangeScreen_BinderImpl_GenCss_style-subjectLine"> <div class="com-google-gerrit-client-change-ChangeScreen_BinderImpl_GenCss_style-idAndStatus"> <span class="com-google-gerrit-client-change-ChangeScreen_BinderImpl_GenCss_style-changeId"> Change <a class="gwt-Anchor" title="Reload the change (Shortcut: R)" href="https://review.openstack.org/4743">4743</a> - <span class="com-google-gerrit-client-change-ChangeScreen_BinderImpl_GenCss_style-statusText">Merged</span> </span> </div> </div> <div class="com-google-gerrit-client-change-ChangeScreen_BinderImpl_GenCss_style-infoLine"> <div class="com-google-gerrit-client-change-ChangeScreen_BinderImpl_GenCss_style-headerButtons com-google-gerrit-client-change-ChangeScreen_BinderImpl_GenCss_style-infoLineHeaderButtons"> <button type="button" class="" style="" title="Reply and score (Shortcut: a)"><div>Reply</div></button> <button type="button" class="com-google-gerrit-client-change-ChangeScreen_BinderImpl_GenCss_style-highlight" title="Apply score with one click" style="display: none;" aria-hidden="true"></button> <button type="button" class="com-google-gerrit-client-change-ChangeScreen_BinderImpl_GenCss_style-highlight" style="display: none;" aria-hidden="true"><div>Publish Edit</div></button> <button type="button" class="com-google-gerrit-client-change-ChangeScreen_BinderImpl_GenCss_style-highlight" style="display: none;" aria-hidden="true"><div>Rebase Edit</div></button> <button type="button" class="" style="display: none;" aria-hidden="true"><div>Delete Edit</div></button> <button type="button" class="com-google-gerrit-client-change-ChangeScreen_BinderImpl_GenCss_style-highlight" style="display: none;" aria-hidden="true"><div>Publish</div></button> <button type="button" class="" style="display: none;" aria-hidden="true"><div>Delete Change</div></button> <button type="button" class="" style="display: none;" aria-hidden="true"><div>Delete Revision</div></button> </div> </div> <div class="com-google-gerrit-client-change-ChangeScreen_BinderImpl_GenCss_style-statusRight"> <div class="com-google-gerrit-client-change-ChangeScreen_BinderImpl_GenCss_style-popdown"><button type="button" class="" style=""><div>Included in</div></button><button type="button" class=""><div>Patch Sets (11/11)</div></button><button type="button" class=""><div>Download</div></button></div> <div tabindex="0" class="com-google-gerrit-client-change-ChangeScreen_BinderImpl_GenCss_style-star com-google-gerrit-client-change-ChangeScreen_BinderImpl_GenCss_style-star-up" role="button" title="Star the change (Shortcut: s)" aria-pressed="false" style="display: none;" aria-hidden="true"><input tabindex="-1" role="presentation" style="opacity: 0; height: 1px; width: 1px; z-index: -1; overflow: hidden; position: absolute;" type="text"><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABMAAAATCAYAAAByUDbMAAAA3UlEQVR42mNgoDPgAmJOahkmC8VUAbpQTLkXjYyMjEEY6l3KvHj//v0dIEwNr+p+//79DAiT4lWQrcboeMuWLWn///8/B8IgNjY1uFwsrKura/z48eO9MANwYZAakFqQHnwuBKUng4sXL07FZRBIDqSG2LTHDMRq79+/P4luEEgMJAdVQzQQO3ToUCW6YSAxkBypsaj86tWroyADPn36dAaEQWyQGEiOVMOM//79C4tBTRAGsUFi0BgkGgiUlZU5gjBatMsiiQuQkuYMcGgQgMoRnRskCcQWM1TNEAIAu9+6ho79HckAAAAASUVORK5CYII=" class="gwt-Image" width="19" height="19"></div> </div></div> <table class="com-google-gerrit-client-change-ChangeScreen_BinderImpl_GenCss_style-infoTable"> <tbody><tr> <td class="com-google-gerrit-client-change-ChangeScreen_BinderImpl_GenCss_style-commitColumn"> <div class="com-google-gerrit-client-change-CommitBox_BinderImpl_GenCss_style-collapsed"><div style="overflow: auto; position: relative;" class="com-google-gerrit-client-change-CommitBox_BinderImpl_GenCss_style-scroll"><div style="position: relative;"><div class="com-google-gerrit-client-change-CommitBox_BinderImpl_GenCss_style-text">Since 'net' is of nova.network.model.VIF class and 'ips' is an empty
+list, net needs to be pulled from hydrated nw_info.fixed_ips(), and
+appended to ips.
+
+<a href="https://launchpad.net/bugs/942593">bug 942593</a>
+
+Change-Id: <a href="/#q,I9c2f55e300d1dad503b15c261027d988073e8e61,n,z">I9c2f55e300d1dad503b15c261027d988073e8e61</a>
+</div></div></div> <div class="com-google-gerrit-client-change-CommitBox_BinderImpl_GenCss_style-more"> <button type="button" class="com-google-gerrit-client-change-CommitBox_BinderImpl_GenCss_style-moreButton" title="Expand/Collapse" style="display: none;" aria-hidden="true"><div class="com-google-gerrit-client-change-CommitBox_BinderImpl_GenCss_style-toggle"></div></button> </div> <table class="com-google-gerrit-client-change-CommitBox_BinderImpl_GenCss_style-header"> <tbody><tr> <th>Author</th> <td> <div class="com-google-gerrit-client-change-CommitBox_BinderImpl_GenCss_style-userPanel"><a class="gwt-InlineHyperlink" title="Search for changes by this user" href="#/q/owner:ivoks%2540ubuntu.com+status:merged">Ante Karamati &lt;ivoks@ubuntu.com&gt;</a></div> </td> <td class="com-google-gerrit-client-change-CommitBox_BinderImpl_GenCss_style-date" colspan="2">Mar 1, 2012 3:38 AM</td> </tr> <tr> <th>Committer</th> <td> <div class="com-google-gerrit-client-change-CommitBox_BinderImpl_GenCss_style-userPanel"><a class="gwt-InlineHyperlink" title="Search for changes by this user" href="#/q/owner:ivoks%2540ubuntu.com+status:merged">Ante Karamati &lt;ivoks@ubuntu.com&gt;</a></div> </td> <td class="com-google-gerrit-client-change-CommitBox_BinderImpl_GenCss_style-date" colspan="2">Mar 9, 2012 3:11 PM</td> </tr> <tr> <th> <div class="com-google-gerrit-client-change-CommitBox_BinderImpl_GenCss_style-commit"> Commit </div> <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAACFElEQVR42mNgQAL19QxMpzP5dl/M4Hl3Pp7lz7kYhv/n45l/n09mf3oqiiGNAR84kMCRejGN+8eDRpn/HxYa/f++zvr/j412/7+vsf7/Yb7R/7u1Ur/OxjE9OBvHoIepOZY59kIi6793c/T//1hj+//7VPP/v69uANNgPNPi/49l1v9fzdD7ezaW4QuKIfWhDGwX07h+vJuj9//HYmu4JhQDkPCLado/zsQwXIAbcDKdY8fDRtn/P1bboGgGAWyG/Fhi9f9WlcinszEMiWADLqZxvgf5EeRMYgz4PsP8//NpWh+BAbwNbAAwlP98X22NoRCkGWbAt1ZxFPr9AuOfZ6MZXoMNAEXVj7W2KJpBCkGav1YxwumvlQxg+vtEvf8fF5mCovgPxIA4xt/flhr+/96v+f9biyhQERMYgzWCNAExMhuEX8/U/AA04BXEgASWZx8myf7/WscCtYUJJQxgroDza1n+P5ui9hoeBseiGEruVAn/+j5RjCgD3k9W+nGjXOgWPBZA4Ews48PXExX+fWvnxelsML9L+P+jfqXHQNuPo6REUMoCmvjlxQSln98nioOdiWIAkP9hstKvB31Kj4HqXmFNzpNdGByORTBcuVEh8uXxBOXv72ao//00S/3f8ynq3x5NUH1/oUjw9rFwhvNYNSOD6S4MLbuCGE6diGT4dCaa4R+Q/rg9iOH0FGeGNgZaAADgKPSUyoLSywAAAABJRU5ErkJggg==" class="gwt-Image" title="Merge Commit" style="display: none;" aria-hidden="true" width="16" height="16"> </th> <td><div class="com-google-gerrit-client-change-CommitBox_BinderImpl_GenCss_style-clippy"><span class="com-google-gwtexpui-clippy-client-ClippyCss-label">c919ba6602d3e99b23f133b68ec3a484aca3c78d</span><div style="display: inline-block;"><button type="button" class="com-google-gwtexpui-clippy-client-ClippyCss-copier com-google-gwtexpui-user-client-Tooltip-Css-tooltip" aria-label="Copy to clipboard"></button></div></div></td> <td> <div class="com-google-gerrit-client-change-CommitBox_BinderImpl_GenCss_style-webLinkPanel"><a class="gwt-Anchor" href="gitweb?p=openstack/nova.git;a=commitdiff;h=c919ba6602d3e99b23f133b68ec3a484aca3c78d">(gitweb)</a></div> </td> </tr> <tr style=""> <th> <div class="com-google-gerrit-client-change-CommitBox_BinderImpl_GenCss_style-parent"> Parent(s) </div> <div aria-hidden="true" class="com-google-gerrit-client-change-CommitBox_BinderImpl_GenCss_style-parentNotCurrent" style="display: none" title="Not current - rebase possible"></div> </th> <td> <div><div title="Update values in test_flagfile to be different." class="com-google-gerrit-client-change-CommitBox_BinderImpl_GenCss_style-clippy"><span class="com-google-gwtexpui-clippy-client-ClippyCss-label">1c68d20e4bc9ca48a01b932f4c511f55cd54f4a9</span><div style="display: inline-block;"><button type="button" class="com-google-gwtexpui-clippy-client-ClippyCss-copier com-google-gwtexpui-user-client-Tooltip-Css-tooltip" aria-label="Copy to clipboard"></button></div></div></div> </td> <td> <div class="com-google-gerrit-client-change-CommitBox_BinderImpl_GenCss_style-parentWebLink"><a class="com-google-gerrit-client-change-CommitBox_BinderImpl_GenCss_style-parentWebLink" href="gitweb?p=openstack/nova.git;a=commitdiff;h=1c68d20e4bc9ca48a01b932f4c511f55cd54f4a9">(gitweb)</a></div> </td> </tr> <tr> <th>Change-Id</th> <td><div class="com-google-gerrit-client-change-CommitBox_BinderImpl_GenCss_style-clippy"><span class="com-google-gwtexpui-clippy-client-ClippyCss-label">I9c2f55e300d1dad503b15c261027d988073e8e61</span><div style="display: inline-block;"><button type="button" class="com-google-gwtexpui-clippy-client-ClippyCss-copier com-google-gwtexpui-user-client-Tooltip-Css-tooltip" aria-label="Copy to clipboard"></button></div></div></td> </tr> </tbody></table></div> </td> <td class="com-google-gerrit-client-change-ChangeScreen_BinderImpl_GenCss_style-infoColumn"> <table id="change_infoTable"> <tbody><tr> <th>Owner</th> <td> <div class="com-google-gerrit-client-change-ChangeScreen_BinderImpl_GenCss_style-ownerPanel"><a class="gwt-InlineHyperlink" title="ante.karamatic@canonical.com" href="#/q/owner:%22Ante+Karamatic%22+status:open">Ante Karamatic</a></div> </td> </tr> <tr> <th>Reviewers</th> <td> <div><div> <span><span role="listitem" data-id="385" title="jason@koelker.net Votable: Verified, Code-Review, Workflow" class="com-google-gerrit-client-change-ChangeScreen_BinderImpl_GenCss_style-label_user">Jason Klker</span> <span role="listitem" data-id="3" title="Votable: Verified, Code-Review, Workflow" class="com-google-gerrit-client-change-ChangeScreen_BinderImpl_GenCss_style-label_user">Jenkins</span> <span role="listitem" data-id="679" title="klmitch@mit.edu Votable: Verified, Code-Review, Workflow" class="com-google-gerrit-client-change-ChangeScreen_BinderImpl_GenCss_style-label_user">Kevin L. Mitchell</span> <span role="listitem" data-id="67" title="vishvananda@gmail.com Votable: Verified, Code-Review, Workflow" class="com-google-gerrit-client-change-ChangeScreen_BinderImpl_GenCss_style-label_user">Vish Ishaya</span></span> <button type="button" class="com-google-gerrit-client-change-Resources-Style-button com-google-gerrit-client-change-Reviewers_BinderImpl_GenCss_style-openAdd" title="Add reviewers to this change" style="display: none;" aria-hidden="true"><div>Add</div></button> </div> <div aria-hidden="true" style="display: none"> <input class="com-google-gerrit-client-change-Reviewers_BinderImpl_GenCss_style-suggestBox" size="55" type="text"> <div aria-hidden="true" class="com-google-gerrit-client-change-Reviewers_BinderImpl_GenCss_style-error" style="display: none"></div> <div> <button type="button" class="com-google-gerrit-client-change-Resources-Style-button"><div>Add</div></button> <button type="button" class="com-google-gerrit-client-change-Resources-Style-button" style="display: none;" aria-hidden="true"><div>Add Me</div></button> <button type="button" class="com-google-gerrit-client-change-Resources-Style-button com-google-gerrit-client-change-Reviewers_BinderImpl_GenCss_style-cancel"><div>Cancel</div></button> </div> </div></div> </td> </tr> <tr> <th></th> <td><span role="listitem" data-id="1030" title="cbehrens@codestud.com Votable: Verified, Code-Review, Workflow" class="com-google-gerrit-client-change-ChangeScreen_BinderImpl_GenCss_style-label_user">Chris Behrens</span> <span role="listitem" data-id="24" title="chuck.short@canonical.com Votable: Verified, Code-Review, Workflow" class="com-google-gerrit-client-change-ChangeScreen_BinderImpl_GenCss_style-label_user">Chuck Short</span> <span role="listitem" data-id="1849" title="joe.gordon0@gmail.com Votable: Verified, Code-Review, Workflow" class="com-google-gerrit-client-change-ChangeScreen_BinderImpl_GenCss_style-label_user">Joe Gordon</span> <span role="listitem" data-id="1247" title="markmc@redhat.com Votable: Verified, Code-Review, Workflow" class="com-google-gerrit-client-change-ChangeScreen_BinderImpl_GenCss_style-label_user">Mark McLoughlin</span> <span role="listitem" data-id="2166" title="Votable: Verified, Code-Review, Workflow" class="com-google-gerrit-client-change-ChangeScreen_BinderImpl_GenCss_style-label_user">SmokeStack CI</span> <span role="listitem" data-id="191" title="trey.morris@rackspace.com Votable: Verified, Code-Review, Workflow" class="com-google-gerrit-client-change-ChangeScreen_BinderImpl_GenCss_style-label_user">Trey Morris</span></td> </tr> <tr> <th>Project</th> <td><a class="gwt-InlineHyperlink" title="Go to project dashboard" href="#/projects/openstack/nova,dashboards/default">openstack/nova</a> <a class="com-google-gerrit-client-change-ChangeScreen_BinderImpl_GenCss_style-projectSettings" href="#/admin/projects/openstack/nova"> <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAMAAAAoLQ9TAAAAOVBMVEUAAAA5VXhGero5VXhMf70/Y49JfLpCa5xWgrdDb6VFer6duNq8zeOGp9JWhsNkkMd8oc+CpdGPrtVjTu4WAAAACnRSTlMAWPRZ+Jfurs3A7dcAdAAAAGJJREFUeF6Nj9sOwjAMQ5t043KctIX//1getoIEqsR5i+U4TlkAfAYDI7C3RiRdnYxTIXWQzBUNb/4QduZ1+bXuF3U4IqRWS21SMB3brd59OooRY2v+FPZzZdGjfDedv/zLC83bBPPRoUEHAAAAAElFTkSuQmCC" class="gwt-Image" title="Go to project settings" width="16" height="16"> </a> </td> </tr> <tr> <th>Branch</th> <td><a class="gwt-InlineHyperlink" title="Search for changes on this branch" href="#/q/status:merged+project:openstack/nova+branch:master">master</a> </td> </tr> <tr> <th>Topic</th> <td><div><div stylename="com-google-gerrit-client-change-Topic_BinderImpl_GenCss_style-show" title=""> <a class="gwt-InlineHyperlink" title="Search for changes on this topic" href="#/q/topic:bug/942593">bug/942593</a> <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAABW0lEQVR42mNgoBY4vJDB5cgChv/E0Bia2ztb0kCSP18c+08MjWFAR1crWOL1Rlui6P5IJjCeEMkcAzfg9evXYMk9e/aA6R07dmClQRrfvTr2//zaQjAbbgAIvHnzBie+fPkyWMP718f/X1qT9X9hc+gfDANu3779/8yZMxh4+/btKJqXtIeD+ROjGIwJugBmM9jZqzL/L2gOQ9WMzwUwm98+O/r/3LKM/wtaIDaD1EO1MuJ0AShQwZqfHvl/Yn4K3NmFhYW4DYC54PTp0/9LS0v/F0Rb/j+0uuv/4tZQSNT19/9va2uDGcCI4QWY7S9fvgRr8HFS+58dbgZmz5079/+1a9f+r1u3DtkFmGEAsv3IkSMgBWCNycnJ/3t6ev6fOnXq/61bt/5v2rQJZgATVheA/P7q1SswBrkExgfRIHkkA1Bd8O7dO7AkLrxx40Y4G5sBi0GCJODFML0AofBBi6RK+XMAAAAASUVORK5CYII=" class="com-google-gerrit-client-change-Topic_BinderImpl_GenCss_style-edit" title="Edit topic (Shortcut: t)" style="display: none;" aria-hidden="true" width="16" height="16"> </div> <div aria-hidden="true" style="display: none"> <div> <input class="gwt-TextBox" size="55" type="text"> </div> <div> <button type="button" class="com-google-gerrit-client-change-Resources-Style-button"><div>Update</div></button> <button type="button" class="com-google-gerrit-client-change-Resources-Style-button com-google-gerrit-client-change-Topic_BinderImpl_GenCss_style-cancel"><div>Cancel</div></button> </div> </div></div></td> </tr> <tr style="display: none;" aria-hidden="true"> <th>Strategy</th> <td> <span></span> <div aria-hidden="true" class="com-google-gerrit-client-change-ChangeScreen_BinderImpl_GenCss_style-notMergeable" style="display: none" title="The change cannot be merged due to a path conflict. Rebase the change and upload the rebased commit for review.">  Cannot Merge </div> </td> </tr> <tr> <th>Updated</th> <td>5 years ago</td> </tr> <tr style="display: none;" aria-hidden="true"> <td colspan="2"> <div><div> <span></span> <button type="button" class="com-google-gerrit-client-change-Resources-Style-button com-google-gerrit-client-change-Hashtags_BinderImpl_GenCss_style-openAdd" title="Add hashtags to this change" style="display: none;" aria-hidden="true"><div>Add #...</div></button> </div> <div aria-hidden="true" style="display: none"> <input class="com-google-gerrit-client-change-Hashtags_BinderImpl_GenCss_style-hashtagTextBox" size="55" type="text"> <div aria-hidden="true" class="com-google-gerrit-client-change-Hashtags_BinderImpl_GenCss_style-error" style="display: none"></div> <div> <button type="button" class="com-google-gerrit-client-change-Resources-Style-button"><div>Add</div></button> <button type="button" class="com-google-gerrit-client-change-Resources-Style-button com-google-gerrit-client-change-Hashtags_BinderImpl_GenCss_style-cancel"><div>Cancel</div></button> </div> </div></div> </td> </tr> <tr><td colspan="2"><div id="change_actions"><button type="button" class="" style="display: none;" aria-hidden="true"><div>Cherry Pick</div></button><button type="button" class="" style="display: none;" aria-hidden="true"><div>Rebase</div></button><button type="button" class="" style="display: none;" aria-hidden="true"><div>Revert</div></button><button type="button" class="" style="display: none;" aria-hidden="true"><div>Abandon</div></button><button type="button" class="" style="display: none;" aria-hidden="true"><div>Restore</div></button><button type="button" class="" style="display: none;" aria-hidden="true"><div>Follow-Up</div></button><button type="button" class="com-google-gerrit-client-change-Actions_BinderImpl_GenCss_style-submit" style="display: none;" aria-hidden="true"></button></div></td></tr> </tbody></table> <hr> <table class="com-google-gerrit-client-change-ChangeScreen_BinderImpl_GenCss_style-labels"><colgroup><col><col></colgroup><tbody><tr><td class="com-google-gerrit-client-change-ChangeScreen_BinderImpl_GenCss_style-labelName com-google-gerrit-client-change-ChangeScreen_BinderImpl_GenCss_style-label_ok">Code-Review</td><td><div class="gwt-HTML"><span title="Looks good to me (core reviewer)" class="com-google-gerrit-client-change-ChangeScreen_BinderImpl_GenCss_style-label_ok">+2 <span role="listitem" data-id="679" title="klmitch@mit.edu" class="com-google-gerrit-client-change-ChangeScreen_BinderImpl_GenCss_style-label_user">Kevin L. Mitchell</span> <span role="listitem" data-id="67" title="vishvananda@gmail.com" class="com-google-gerrit-client-change-ChangeScreen_BinderImpl_GenCss_style-label_user">Vish Ishaya</span></span><br><span title="Looks good to me, but someone else must approve">+1 <span role="listitem" data-id="385" title="jason@koelker.net" class="com-google-gerrit-client-change-ChangeScreen_BinderImpl_GenCss_style-label_user">Jason Klker</span></span></div></td></tr><tr><td class="com-google-gerrit-client-change-ChangeScreen_BinderImpl_GenCss_style-labelName com-google-gerrit-client-change-ChangeScreen_BinderImpl_GenCss_style-label_need">Verified</td><td><div class="gwt-HTML"><span title="Works for me">+1 <span role="listitem" data-id="3" class="com-google-gerrit-client-change-ChangeScreen_BinderImpl_GenCss_style-label_user">Jenkins</span></span></div></td></tr><tr><td class="com-google-gerrit-client-change-ChangeScreen_BinderImpl_GenCss_style-labelName com-google-gerrit-client-change-ChangeScreen_BinderImpl_GenCss_style-label_ok">Workflow</td><td><div class="gwt-HTML"><span title="Approved" class="com-google-gerrit-client-change-ChangeScreen_BinderImpl_GenCss_style-label_ok">+1 <span role="listitem" data-id="67" title="vishvananda@gmail.com" class="com-google-gerrit-client-change-ChangeScreen_BinderImpl_GenCss_style-label_user">Vish Ishaya</span></span></div></td></tr></tbody></table> <div id="change_plugins"></div> <table class="test_result_table infoTable" style="margin-top: 1em; margin-bottom: 1em;"></table></td> <td class="com-google-gerrit-client-change-ChangeScreen_BinderImpl_GenCss_style-relatedColumn"> <table class="gwt-TabPanel com-google-gerrit-client-change-RelatedChanges-RelatedChangesCss-tabPanel" style="display: none;" aria-hidden="true" cellspacing="0" cellpadding="0"><tbody><tr><td style="vertical-align: top;" align="left"><table class="gwt-TabBar" role="tablist" style="width: 100%;" cellspacing="0" cellpadding="0"><tbody><tr><td style="vertical-align: bottom;" class="gwt-TabBarFirst-wrapper" align="left" height="100%"><div class="gwt-TabBarFirst" style="white-space: normal; height: 100%;">&nbsp;</div></td><td style="vertical-align: bottom;" class="gwt-TabBarItem-wrapper gwt-TabBarItem-wrapper-disabled" align="left"><div tabindex="0" class="gwt-TabBarItem gwt-TabBarItem-disabled" role="tab" title="Same branch changes connected by Git history"><input tabindex="-1" role="presentation" style="opacity: 0; height: 1px; width: 1px; z-index: -1; overflow: hidden; position: absolute;" type="text"><div class="gwt-Label" style="white-space: nowrap;">Related Changes</div></div></td><td style="vertical-align: bottom;" class="gwt-TabBarItem-wrapper gwt-TabBarItem-wrapper-disabled" align="left"><div tabindex="0" class="gwt-TabBarItem gwt-TabBarItem-disabled" role="tab" title="Changes with the same topic"><input tabindex="-1" role="presentation" style="opacity: 0; height: 1px; width: 1px; z-index: -1; overflow: hidden; position: absolute;" type="text"><div class="gwt-Label" style="white-space: nowrap;">Same Topic</div></div></td><td style="vertical-align: bottom;" class="gwt-TabBarItem-wrapper gwt-TabBarItem-wrapper-disabled" align="left"><div tabindex="0" class="gwt-TabBarItem gwt-TabBarItem-disabled" role="tab" title="Open changes that conflict with this change"><input tabindex="-1" role="presentation" style="opacity: 0; height: 1px; width: 1px; z-index: -1; overflow: hidden; position: absolute;" type="text"><div class="gwt-Label" style="white-space: nowrap;">Conflicts With</div></div></td><td style="vertical-align: bottom;" class="gwt-TabBarItem-wrapper gwt-TabBarItem-wrapper-disabled" align="left"><div tabindex="0" class="gwt-TabBarItem gwt-TabBarItem-disabled" role="tab" title="Changes with the same Change-Id"><input tabindex="-1" role="presentation" style="opacity: 0; height: 1px; width: 1px; z-index: -1; overflow: hidden; position: absolute;" type="text"><div class="gwt-Label" style="white-space: nowrap;">Cherry-Picks</div></div></td><td style="vertical-align: bottom;" class="gwt-TabBarRest-wrapper" align="left" width="100%"><div class="gwt-TabBarRest" style="white-space: normal; height: 100%;">&nbsp;</div></td></tr></tbody></table></td></tr><tr><td style="vertical-align: top;" align="left" height="100%"><div class="gwt-TabPanelBottom" role="tabpanel"><div style="width: 100%; height: 100%; padding: 0px; margin: 0px; display: none;" aria-hidden="true"><div style="width: 100%; height: 100%; display: none;" aria-hidden="true"></div></div><div style="width: 100%; height: 100%; padding: 0px; margin: 0px; display: none;" aria-hidden="true"><div style="width: 100%; height: 100%; display: none;" aria-hidden="true"></div></div><div style="width: 100%; height: 100%; padding: 0px; margin: 0px; display: none;" aria-hidden="true"><div style="width: 100%; height: 100%; display: none;" aria-hidden="true"></div></div><div style="width: 100%; height: 100%; padding: 0px; margin: 0px; display: none;" aria-hidden="true"><div style="width: 100%; height: 100%; display: none;" aria-hidden="true"></div></div></div></td></tr></tbody></table> </td> </tr> </tbody></table> <div class="com-google-gerrit-client-change-ChangeScreen_BinderImpl_GenCss_style-sectionHeader com-google-gerrit-client-change-ChangeScreen_BinderImpl_GenCss_style-headerButtons"> Files <button type="button" class="" title="Add file to this change" style="display: none;" aria-hidden="true"><div>Add</div></button> <button type="button" class="" title="Delete file from the repository" style="display: none;" aria-hidden="true"><div>Delete</div></button> <button type="button" class="" title="Rename file in the repository" style="display: none;" aria-hidden="true"><div>Rename</div></button> <div class="com-google-gerrit-client-change-ChangeScreen_BinderImpl_GenCss_style-headerButtons"> <button type="button" class="" title="Open each file in a new tab"><div>Open All</div></button> <div class="com-google-gerrit-client-change-ChangeScreen_BinderImpl_GenCss_style-diffBase"> Diff against: <select class=""><option value="c919ba6602d3e99b23f133b68ec3a484aca3c78d" disabled="">11: c919ba</option><option value="14d060785646ae34268f6e24a84fc5161723e1d8">10: 14d060</option><option value="2fa57cbb995d3a8256dde4db05097297179d3659">9: 2fa57c</option><option value="eddfa1d12a233ce68013806005e6330995e9979b">8: eddfa1</option><option value="6108de28daeea1d7a854aeb84bd1f9616ed0490c">7: 6108de</option><option value="f4054a687684d577882df66e4f487fb1606544ee">6: f4054a</option><option value="003e6e29f4ca6bc0272595b90f35ba42c4e1c928">5: 003e6e</option><option value="aa627d3bd3624719a1666e7aad0fc8d3f9fcf3ac">4: aa627d</option><option value="0e4dbad09388ad2943a9fbe41c541a21e99f7a5b">3: 0e4dba</option><option value="315f0bac4cbcb2b14cf43f44be2647357aadf4dd">2: 315f0b</option><option value="bd9dd781f7c2246c65084a5aaa4cf7cc5850ad95">1: bd9dd7</option><option value="">Base</option></select> </div> <button type="button" class="" title="Switch file table to edit mode" style="display: none;" aria-hidden="true"><div>Edit</div></button> <button type="button" class="" title="Done with edit mode" style="display: none;" aria-hidden="true"><div>Done Editing</div></button> </div> </div> <div><table class="changeTable com-google-gerrit-client-change-FileTable-FileTableCss-table" style=""><colgroup><col></colgroup><tbody><tr class="com-google-gerrit-client-change-FileTable-FileTableCss-nohover"><th class="com-google-gerrit-client-change-FileTable-FileTableCss-pointer"></th><th class="com-google-gerrit-client-change-FileTable-FileTableCss-reviewed"></th><th class="com-google-gerrit-client-change-FileTable-FileTableCss-status"></th><th>File Path</th><th colspan="3">Comments</th><th colspan="2">Size</th></tr><tr class="activeRow"><td class="com-google-gerrit-client-change-FileTable-FileTableCss-pointer"><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAwAAAAJCAYAAAAGuM1UAAAAJElEQVR42mNgwAT/GUgE/0nV9J9UTf9J1fSfVE0U2UC7UMIJAG5zGOglYYULAAAAAElFTkSuQmCC" class="gwt-Image" width="12" height="9"></td><td class="com-google-gerrit-client-change-FileTable-FileTableCss-reviewed"></td><td class="com-google-gerrit-client-change-FileTable-FileTableCss-status"></td><td class="com-google-gerrit-client-change-FileTable-FileTableCss-pathColumn"><a href="#/c/4743/11//COMMIT_MSG" onclick="gwt_uid_87(event,0)">Commit Message</a></td><td class="com-google-gerrit-client-change-FileTable-FileTableCss-draftColumn"></td><td class="com-google-gerrit-client-change-FileTable-FileTableCss-newColumn"></td><td class="com-google-gerrit-client-change-FileTable-FileTableCss-commentColumn"></td><td class="com-google-gerrit-client-change-FileTable-FileTableCss-deltaColumn1"></td><td class="com-google-gerrit-client-change-FileTable-FileTableCss-deltaColumn2"></td></tr><tr><td class="com-google-gerrit-client-change-FileTable-FileTableCss-pointer"></td><td class="com-google-gerrit-client-change-FileTable-FileTableCss-reviewed"></td><td class="com-google-gerrit-client-change-FileTable-FileTableCss-status"></td><td class="com-google-gerrit-client-change-FileTable-FileTableCss-pathColumn"><a href="#/c/4743/11/Authors" onclick="gwt_uid_87(event,1)">Authors</a></td><td class="com-google-gerrit-client-change-FileTable-FileTableCss-draftColumn"></td><td class="com-google-gerrit-client-change-FileTable-FileTableCss-newColumn"></td><td class="com-google-gerrit-client-change-FileTable-FileTableCss-commentColumn"></td><td class="com-google-gerrit-client-change-FileTable-FileTableCss-deltaColumn1">1</td><td class="com-google-gerrit-client-change-FileTable-FileTableCss-deltaColumn2" title="1 inserted, 0 deleted"><div class="com-google-gerrit-client-change-FileTable-FileTableCss-inserted" style="width:5px"></div></td></tr><tr><td class="com-google-gerrit-client-change-FileTable-FileTableCss-pointer"></td><td class="com-google-gerrit-client-change-FileTable-FileTableCss-reviewed"></td><td class="com-google-gerrit-client-change-FileTable-FileTableCss-status"></td><td class="com-google-gerrit-client-change-FileTable-FileTableCss-pathColumn"><a href="#/c/4743/11/nova/tests/test_libvirt.py" onclick="gwt_uid_87(event,2)">nova/tests/test_libvirt.py</a></td><td class="com-google-gerrit-client-change-FileTable-FileTableCss-draftColumn"></td><td class="com-google-gerrit-client-change-FileTable-FileTableCss-newColumn"></td><td class="com-google-gerrit-client-change-FileTable-FileTableCss-commentColumn"></td><td class="com-google-gerrit-client-change-FileTable-FileTableCss-deltaColumn1">24</td><td class="com-google-gerrit-client-change-FileTable-FileTableCss-deltaColumn2" title="10 inserted, 14 deleted"><div class="com-google-gerrit-client-change-FileTable-FileTableCss-inserted" style="width:14px"></div><div class="com-google-gerrit-client-change-FileTable-FileTableCss-deleted" style="width:19px"></div></td></tr><tr><td class="com-google-gerrit-client-change-FileTable-FileTableCss-pointer"></td><td class="com-google-gerrit-client-change-FileTable-FileTableCss-reviewed"></td><td class="com-google-gerrit-client-change-FileTable-FileTableCss-status"></td><td class="com-google-gerrit-client-change-FileTable-FileTableCss-pathColumn"><a href="#/c/4743/11/nova/tests/test_xenapi.py" onclick="gwt_uid_87(event,3)"><span class="com-google-gerrit-client-change-FileTable-FileTableCss-commonPrefix">nova/tests/</span>test_xenapi.py</a></td><td class="com-google-gerrit-client-change-FileTable-FileTableCss-draftColumn"></td><td class="com-google-gerrit-client-change-FileTable-FileTableCss-newColumn"></td><td class="com-google-gerrit-client-change-FileTable-FileTableCss-commentColumn"></td><td class="com-google-gerrit-client-change-FileTable-FileTableCss-deltaColumn1">23</td><td class="com-google-gerrit-client-change-FileTable-FileTableCss-deltaColumn2" title="10 inserted, 13 deleted"><div class="com-google-gerrit-client-change-FileTable-FileTableCss-inserted" style="width:14px"></div><div class="com-google-gerrit-client-change-FileTable-FileTableCss-deleted" style="width:18px"></div></td></tr><tr><td class="com-google-gerrit-client-change-FileTable-FileTableCss-pointer"></td><td class="com-google-gerrit-client-change-FileTable-FileTableCss-reviewed"></td><td class="com-google-gerrit-client-change-FileTable-FileTableCss-status"></td><td class="com-google-gerrit-client-change-FileTable-FileTableCss-pathColumn"><a href="#/c/4743/11/nova/virt/firewall.py" onclick="gwt_uid_87(event,4)"><span class="com-google-gerrit-client-change-FileTable-FileTableCss-commonPrefix">nova/</span>virt/firewall.py</a></td><td class="com-google-gerrit-client-change-FileTable-FileTableCss-draftColumn"></td><td class="com-google-gerrit-client-change-FileTable-FileTableCss-newColumn"></td><td class="com-google-gerrit-client-change-FileTable-FileTableCss-commentColumn">comments: 1</td><td class="com-google-gerrit-client-change-FileTable-FileTableCss-deltaColumn1">9</td><td class="com-google-gerrit-client-change-FileTable-FileTableCss-deltaColumn2" title="5 inserted, 4 deleted"><div class="com-google-gerrit-client-change-FileTable-FileTableCss-inserted" style="width:7px"></div><div class="com-google-gerrit-client-change-FileTable-FileTableCss-deleted" style="width:5px"></div></td></tr><tr class="com-google-gerrit-client-change-FileTable-FileTableCss-nohover"><th class="com-google-gerrit-client-change-FileTable-FileTableCss-pointer"></th><th class="com-google-gerrit-client-change-FileTable-FileTableCss-reviewed"></th><th class="com-google-gerrit-client-change-FileTable-FileTableCss-status"></th><td></td><td colspan="3"></td><th class="com-google-gerrit-client-change-FileTable-FileTableCss-deltaColumn1">+26, -31</th><th class="com-google-gerrit-client-change-FileTable-FileTableCss-deltaColumn2"><div class="com-google-gerrit-client-change-FileTable-FileTableCss-inserted" style="width:36px"></div><div class="com-google-gerrit-client-change-FileTable-FileTableCss-deleted" style="width:43px"></div></th></tr></tbody></table></div> <div class="com-google-gerrit-client-change-ChangeScreen_BinderImpl_GenCss_style-sectionHeader"> History <div class="com-google-gerrit-client-change-ChangeScreen_BinderImpl_GenCss_style-headerButtons"> <button type="button" class="" title="Expand all messages in the change history"><div>Expand All</div></button> <button type="button" class="" title="Collapse all messages in the change history" style="display: none;" aria-hidden="true"><div>Collapse All</div></button> </div> </div> <div><div class="com-google-gerrit-client-change-Message_BinderImpl_GenCss_style-messageBox com-google-gerrit-client-change-Message_BinderImpl_GenCss_style-closed"><img class="com-google-gerrit-client-change-Message_BinderImpl_GenCss_style-avatar" style="display: none;" aria-hidden="true" src="https://review.openstack.org/accounts/chuck.short%40canonical.com/avatar?s=26"> <div class="com-google-gerrit-client-change-Message_BinderImpl_GenCss_style-contents"> <div class="com-google-gerrit-client-change-Message_BinderImpl_GenCss_style-header"><div class="com-google-gerrit-client-change-Message_BinderImpl_GenCss_style-name">Chuck Short</div> <div class="com-google-gerrit-client-change-Message_BinderImpl_GenCss_style-summary">Patch Set 1: Looks good to me, but someone else must approve
+
+lgtm</div> <div class="com-google-gerrit-client-change-Message_BinderImpl_GenCss_style-date">Mar 1, 2012</div> <button type="button" class="com-google-gerrit-client-change-Message_BinderImpl_GenCss_style-reply" title="Reply to this message"><div></div></button></div> <div style="overflow: auto"> <div aria-hidden="true" style="display: NONE" stylename="com-google-gerrit-client-change-Message_BinderImpl_GenCss_style-comment"><p>Patch Set 1: Looks good to me, but someone else must approve</p><p>lgtm</p></div> <div style="display: none;" aria-hidden="true"></div> </div> </div></div><div class="com-google-gerrit-client-change-Message_BinderImpl_GenCss_style-messageBox"><img class="com-google-gerrit-client-change-Message_BinderImpl_GenCss_style-avatar" style="display: none;" aria-hidden="true" src="https://review.openstack.org/accounts/chuck.short%40canonical.com/avatar?s=26"> <div class="com-google-gerrit-client-change-Message_BinderImpl_GenCss_style-contents"> <div class="com-google-gerrit-client-change-Message_BinderImpl_GenCss_style-header"><div class="com-google-gerrit-client-change-Message_BinderImpl_GenCss_style-name">Chuck Short</div> <div class="com-google-gerrit-client-change-Message_BinderImpl_GenCss_style-summary" style="display: none;" aria-hidden="true">Patch Set 1: I would prefer that you didn't submit this
+
+(1 inline comment)
+
+Please see comments</div> <div class="com-google-gerrit-client-change-Message_BinderImpl_GenCss_style-date">Mar 1, 2012</div> <button type="button" class="com-google-gerrit-client-change-Message_BinderImpl_GenCss_style-reply" title="Reply to this message"><div></div></button></div> <div style="overflow: auto"> <div style="" stylename="com-google-gerrit-client-change-Message_BinderImpl_GenCss_style-comment"><p>Patch Set 1: I would prefer that you didn't submit this</p><p>(1 inline comment)</p><p>Please see comments</p></div> <div style=""><div class="com-google-gerrit-client-change-FileComments_BinderImpl_GenCss_style-box"><a class="com-google-gerrit-client-change-FileComments_BinderImpl_GenCss_style-path" href="#/c/4743/1/nova/virt/firewall.py">nova/virt/firewall.py</a> <div class="com-google-gerrit-client-change-FileComments_BinderImpl_GenCss_style-comments"><div class="com-google-gerrit-client-change-LineComment_BinderImpl_GenCss_style-box"> <div class="com-google-gerrit-client-change-LineComment_BinderImpl_GenCss_style-location">Line <a class="gwt-InlineHyperlink" href="#/c/4743/1/nova/virt/firewall.py@333">333</a>:</div> <div class="com-google-gerrit-client-change-LineComment_BinderImpl_GenCss_style-message"><p>shouldnt this be fixed_ips()?</p></div></div></div></div></div> </div> </div></div><div class="com-google-gerrit-client-change-Message_BinderImpl_GenCss_style-messageBox"><img class="com-google-gerrit-client-change-Message_BinderImpl_GenCss_style-avatar" style="display: none;" aria-hidden="true" src="https://review.openstack.org/accounts/jason%40koelker.net/avatar?s=26"> <div class="com-google-gerrit-client-change-Message_BinderImpl_GenCss_style-contents"> <div class="com-google-gerrit-client-change-Message_BinderImpl_GenCss_style-header"><div class="com-google-gerrit-client-change-Message_BinderImpl_GenCss_style-name">Jason Klker</div> <div class="com-google-gerrit-client-change-Message_BinderImpl_GenCss_style-summary" style="display: none;" aria-hidden="true">Patch Set 1: (1 inline comment)</div> <div class="com-google-gerrit-client-change-Message_BinderImpl_GenCss_style-date">Mar 1, 2012</div> <button type="button" class="com-google-gerrit-client-change-Message_BinderImpl_GenCss_style-reply" title="Reply to this message"><div></div></button></div> <div style="overflow: auto"> <div style="" stylename="com-google-gerrit-client-change-Message_BinderImpl_GenCss_style-comment"><p>Patch Set 1: (1 inline comment)</p></div> <div style=""><div class="com-google-gerrit-client-change-FileComments_BinderImpl_GenCss_style-box"><a class="com-google-gerrit-client-change-FileComments_BinderImpl_GenCss_style-path" href="#/c/4743/1/nova/virt/firewall.py">nova/virt/firewall.py</a> <div class="com-google-gerrit-client-change-FileComments_BinderImpl_GenCss_style-comments"><div class="com-google-gerrit-client-change-LineComment_BinderImpl_GenCss_style-box"> <div class="com-google-gerrit-client-change-LineComment_BinderImpl_GenCss_style-location">Line <a class="gwt-InlineHyperlink" href="#/c/4743/1/nova/virt/firewall.py@334">334</a>:</div> <div class="com-google-gerrit-client-change-LineComment_BinderImpl_GenCss_style-message"><p>this could be simplified to:</p><p>ips = [ip['address'] for ip in nw_info.fixed_ips()]</p></div></div></div></div></div> </div> </div></div><div class="com-google-gerrit-client-change-Message_BinderImpl_GenCss_style-messageBox com-google-gerrit-client-change-Message_BinderImpl_GenCss_style-closed"><img class="com-google-gerrit-client-change-Message_BinderImpl_GenCss_style-avatar" style="display: none;" aria-hidden="true" src="https://review.openstack.org/accounts/trey.morris%40rackspace.com/avatar?s=26"> <div class="com-google-gerrit-client-change-Message_BinderImpl_GenCss_style-contents"> <div class="com-google-gerrit-client-change-Message_BinderImpl_GenCss_style-header"><div class="com-google-gerrit-client-change-Message_BinderImpl_GenCss_style-name">Trey Morris</div> <div class="com-google-gerrit-client-change-Message_BinderImpl_GenCss_style-summary">Patch Set 1: Do not submit
+
+jason nailed it in his comment.
++2 when it's fixed.</div> <div class="com-google-gerrit-client-change-Message_BinderImpl_GenCss_style-date">Mar 1, 2012</div> <button type="button" class="com-google-gerrit-client-change-Message_BinderImpl_GenCss_style-reply" title="Reply to this message"><div></div></button></div> <div style="overflow: auto"> <div aria-hidden="true" style="display: NONE" stylename="com-google-gerrit-client-change-Message_BinderImpl_GenCss_style-comment"><p>Patch Set 1: Do not submit</p><p>jason nailed it in his comment.
++2 when it's fixed.</p></div> <div style="display: none;" aria-hidden="true"></div> </div> </div></div><div class="com-google-gerrit-client-change-Message_BinderImpl_GenCss_style-messageBox com-google-gerrit-client-change-Message_BinderImpl_GenCss_style-closed"><img class="com-google-gerrit-client-change-Message_BinderImpl_GenCss_style-avatar" style="display: none;" aria-hidden="true" src="https://review.openstack.org/accounts/ante.karamatic%40canonical.com/avatar?s=26"> <div class="com-google-gerrit-client-change-Message_BinderImpl_GenCss_style-contents"> <div class="com-google-gerrit-client-change-Message_BinderImpl_GenCss_style-header"><div class="com-google-gerrit-client-change-Message_BinderImpl_GenCss_style-name">Ante Karamatic</div> <div class="com-google-gerrit-client-change-Message_BinderImpl_GenCss_style-summary">Uploaded patch set 2.</div> <div class="com-google-gerrit-client-change-Message_BinderImpl_GenCss_style-date">Mar 2, 2012</div> <button type="button" class="com-google-gerrit-client-change-Message_BinderImpl_GenCss_style-reply" title="Reply to this message"><div></div></button></div> <div style="overflow: auto"> <div aria-hidden="true" style="display: NONE" stylename="com-google-gerrit-client-change-Message_BinderImpl_GenCss_style-comment"><p>Uploaded patch set 2.</p></div> <div style="display: none;" aria-hidden="true"></div> </div> </div></div><div class="com-google-gerrit-client-change-Message_BinderImpl_GenCss_style-messageBox"><img class="com-google-gerrit-client-change-Message_BinderImpl_GenCss_style-avatar" style="display: none;" aria-hidden="true" src="https://review.openstack.org/accounts/jason%40koelker.net/avatar?s=26"> <div class="com-google-gerrit-client-change-Message_BinderImpl_GenCss_style-contents"> <div class="com-google-gerrit-client-change-Message_BinderImpl_GenCss_style-header"><div class="com-google-gerrit-client-change-Message_BinderImpl_GenCss_style-name">Jason Klker</div> <div class="com-google-gerrit-client-change-Message_BinderImpl_GenCss_style-summary" style="display: none;" aria-hidden="true">Patch Set 2: (1 inline comment)</div> <div class="com-google-gerrit-client-change-Message_BinderImpl_GenCss_style-date">Mar 2, 2012</div> <button type="button" class="com-google-gerrit-client-change-Message_BinderImpl_GenCss_style-reply" title="Reply to this message"><div></div></button></div> <div style="overflow: auto"> <div style="" stylename="com-google-gerrit-client-change-Message_BinderImpl_GenCss_style-comment"><p>Patch Set 2: (1 inline comment)</p></div> <div style=""><div class="com-google-gerrit-client-change-FileComments_BinderImpl_GenCss_style-box"><a class="com-google-gerrit-client-change-FileComments_BinderImpl_GenCss_style-path" href="#/c/4743/2/nova/virt/firewall.py">nova/virt/firewall.py</a> <div class="com-google-gerrit-client-change-FileComments_BinderImpl_GenCss_style-comments"><div class="com-google-gerrit-client-change-LineComment_BinderImpl_GenCss_style-box"> <div class="com-google-gerrit-client-change-LineComment_BinderImpl_GenCss_style-location">Line <a class="gwt-InlineHyperlink" href="#/c/4743/2/nova/virt/firewall.py@330">330</a>:</div> <div class="com-google-gerrit-client-change-LineComment_BinderImpl_GenCss_style-message"><p>You should remove this line.</p></div></div></div></div></div> </div> </div></div><div class="com-google-gerrit-client-change-Message_BinderImpl_GenCss_style-messageBox com-google-gerrit-client-change-Message_BinderImpl_GenCss_style-closed"><img class="com-google-gerrit-client-change-Message_BinderImpl_GenCss_style-avatar" style="display: none;" aria-hidden="true" src="https://review.openstack.org/accounts/ante.karamatic%40canonical.com/avatar?s=26"> <div class="com-google-gerrit-client-change-Message_BinderImpl_GenCss_style-contents"> <div class="com-google-gerrit-client-change-Message_BinderImpl_GenCss_style-header"><div class="com-google-gerrit-client-change-Message_BinderImpl_GenCss_style-name">Ante Karamatic</div> <div class="com-google-gerrit-client-change-Message_BinderImpl_GenCss_style-summary">Uploaded patch set 3.</div> <div class="com-google-gerrit-client-change-Message_BinderImpl_GenCss_style-date">Mar 2, 2012</div> <button type="button" class="com-google-gerrit-client-change-Message_BinderImpl_GenCss_style-reply" title="Reply to this message"><div></div></button></div> <div style="overflow: auto"> <div aria-hidden="true" style="display: NONE" stylename="com-google-gerrit-client-change-Message_BinderImpl_GenCss_style-comment"><p>Uploaded patch set 3.</p></div> <div style="display: none;" aria-hidden="true"></div> </div> </div></div><div class="com-google-gerrit-client-change-Message_BinderImpl_GenCss_style-messageBox com-google-gerrit-client-change-Message_BinderImpl_GenCss_style-closed"><img class="com-google-gerrit-client-change-Message_BinderImpl_GenCss_style-avatar" style="display: none;" aria-hidden="true" src="https://review.openstack.org/accounts/jason%40koelker.net/avatar?s=26"> <div class="com-google-gerrit-client-change-Message_BinderImpl_GenCss_style-contents"> <div class="com-google-gerrit-client-change-Message_BinderImpl_GenCss_style-header"><div class="com-google-gerrit-client-change-Message_BinderImpl_GenCss_style-name">Jason Klker</div> <div class="com-google-gerrit-client-change-Message_BinderImpl_GenCss_style-summary">Patch Set 3: Looks good to me, but someone else must approve
+
+Is bueno!</div> <div class="com-google-gerrit-client-change-Message_BinderImpl_GenCss_style-date">Mar 2, 2012</div> <button type="button" class="com-google-gerrit-client-change-Message_BinderImpl_GenCss_style-reply" title="Reply to this message"><div></div></button></div> <div style="overflow: auto"> <div aria-hidden="true" style="display: NONE" stylename="com-google-gerrit-client-change-Message_BinderImpl_GenCss_style-comment"><p>Patch Set 3: Looks good to me, but someone else must approve</p><p>Is bueno!</p></div> <div style="display: none;" aria-hidden="true"></div> </div> </div></div><div class="com-google-gerrit-client-change-Message_BinderImpl_GenCss_style-messageBox com-google-gerrit-client-change-Message_BinderImpl_GenCss_style-closed" style="display: none;"><img class="com-google-gerrit-client-change-Message_BinderImpl_GenCss_style-avatar" style="display: none;" aria-hidden="true"> <div class="com-google-gerrit-client-change-Message_BinderImpl_GenCss_style-contents"> <div class="com-google-gerrit-client-change-Message_BinderImpl_GenCss_style-header"><div class="com-google-gerrit-client-change-Message_BinderImpl_GenCss_style-name">SmokeStack CI</div> <div class="com-google-gerrit-client-change-Message_BinderImpl_GenCss_style-summary">Patch Set 3:
+
+SmokeStack Results (patch set 3):
+	Unit Failed:Nova tests failed.  http://smokestack.openstack.org/?go=/jobs/14318
+	Libvirt(Fedora 16) Success: http://smokestack.openstack.org/?go=/jobs/14317
+	XenServer(Ubuntu 11.04) Success: http://smokestack.openstack.org/?go=/jobs/14313</div> <div class="com-google-gerrit-client-change-Message_BinderImpl_GenCss_style-date">Mar 2, 2012</div> <button type="button" class="com-google-gerrit-client-change-Message_BinderImpl_GenCss_style-reply" title="Reply to this message"><div></div></button></div> <div style="overflow: auto"> <div aria-hidden="true" style="display: NONE" stylename="com-google-gerrit-client-change-Message_BinderImpl_GenCss_style-comment"><p>Patch Set 3:</p><p><span class="com-google-gwtexpui-safehtml-client-SafeHtmlCss-wikiPreFormat">SmokeStack Results (patch set 3):</span><br><span class="com-google-gwtexpui-safehtml-client-SafeHtmlCss-wikiPreFormat">	Unit Failed:Nova tests failed.  <a href="http://smokestack.openstack.org/?go=/jobs/14318" target="_blank" rel="nofollow">http://smokestack.openstack.org/?go=/jobs/14318</a></span><br><span class="com-google-gwtexpui-safehtml-client-SafeHtmlCss-wikiPreFormat">	Libvirt(Fedora 16) Success: <a href="http://smokestack.openstack.org/?go=/jobs/14317" target="_blank" rel="nofollow">http://smokestack.openstack.org/?go=/jobs/14317</a></span><br><span class="com-google-gwtexpui-safehtml-client-SafeHtmlCss-wikiPreFormat">	XenServer(Ubuntu 11.04) Success: <a href="http://smokestack.openstack.org/?go=/jobs/14313" target="_blank" rel="nofollow">http://smokestack.openstack.org/?go=/jobs/14313</a></span><br></p></div> <div style="display: none;" aria-hidden="true"></div> </div> </div></div><div class="com-google-gerrit-client-change-Message_BinderImpl_GenCss_style-messageBox com-google-gerrit-client-change-Message_BinderImpl_GenCss_style-closed"><img class="com-google-gerrit-client-change-Message_BinderImpl_GenCss_style-avatar" style="display: none;" aria-hidden="true" src="https://review.openstack.org/accounts/trey.morris%40rackspace.com/avatar?s=26"> <div class="com-google-gerrit-client-change-Message_BinderImpl_GenCss_style-contents"> <div class="com-google-gerrit-client-change-Message_BinderImpl_GenCss_style-header"><div class="com-google-gerrit-client-change-Message_BinderImpl_GenCss_style-name">Trey Morris</div> <div class="com-google-gerrit-client-change-Message_BinderImpl_GenCss_style-summary">Patch Set 3: Looks good to me (core reviewer)
+
+thx!</div> <div class="com-google-gerrit-client-change-Message_BinderImpl_GenCss_style-date">Mar 2, 2012</div> <button type="button" class="com-google-gerrit-client-change-Message_BinderImpl_GenCss_style-reply" title="Reply to this message"><div></div></button></div> <div style="overflow: auto"> <div aria-hidden="true" style="display: NONE" stylename="com-google-gerrit-client-change-Message_BinderImpl_GenCss_style-comment"><p>Patch Set 3: Looks good to me (core reviewer)</p><p>thx!</p></div> <div style="display: none;" aria-hidden="true"></div> </div> </div></div><div class="com-google-gerrit-client-change-Message_BinderImpl_GenCss_style-messageBox com-google-gerrit-client-change-Message_BinderImpl_GenCss_style-closed"><img class="com-google-gerrit-client-change-Message_BinderImpl_GenCss_style-avatar" style="display: none;" aria-hidden="true" src="https://review.openstack.org/accounts/trey.morris%40rackspace.com/avatar?s=26"> <div class="com-google-gerrit-client-change-Message_BinderImpl_GenCss_style-contents"> <div class="com-google-gerrit-client-change-Message_BinderImpl_GenCss_style-header"><div class="com-google-gerrit-client-change-Message_BinderImpl_GenCss_style-name">Trey Morris</div> <div class="com-google-gerrit-client-change-Message_BinderImpl_GenCss_style-summary">Patch Set 3: Looks good to me, but someone else must approve
+
+waits for unittest up</div> <div class="com-google-gerrit-client-change-Message_BinderImpl_GenCss_style-date">Mar 2, 2012</div> <button type="button" class="com-google-gerrit-client-change-Message_BinderImpl_GenCss_style-reply" title="Reply to this message"><div></div></button></div> <div style="overflow: auto"> <div aria-hidden="true" style="display: NONE" stylename="com-google-gerrit-client-change-Message_BinderImpl_GenCss_style-comment"><p>Patch Set 3: Looks good to me, but someone else must approve</p><p>waits for unittest up</p></div> <div style="display: none;" aria-hidden="true"></div> </div> </div></div><div class="com-google-gerrit-client-change-Message_BinderImpl_GenCss_style-messageBox"><img class="com-google-gerrit-client-change-Message_BinderImpl_GenCss_style-avatar" style="display: none;" aria-hidden="true" src="https://review.openstack.org/accounts/jason%40koelker.net/avatar?s=26"> <div class="com-google-gerrit-client-change-Message_BinderImpl_GenCss_style-contents"> <div class="com-google-gerrit-client-change-Message_BinderImpl_GenCss_style-header"><div class="com-google-gerrit-client-change-Message_BinderImpl_GenCss_style-name">Jason Klker</div> <div class="com-google-gerrit-client-change-Message_BinderImpl_GenCss_style-summary" style="display: none;" aria-hidden="true">Patch Set 3: (1 inline comment)</div> <div class="com-google-gerrit-client-change-Message_BinderImpl_GenCss_style-date">Mar 2, 2012</div> <button type="button" class="com-google-gerrit-client-change-Message_BinderImpl_GenCss_style-reply" title="Reply to this message"><div></div></button></div> <div style="overflow: auto"> <div style="" stylename="com-google-gerrit-client-change-Message_BinderImpl_GenCss_style-comment"><p>Patch Set 3: (1 inline comment)</p></div> <div style=""><div class="com-google-gerrit-client-change-FileComments_BinderImpl_GenCss_style-box"><a class="com-google-gerrit-client-change-FileComments_BinderImpl_GenCss_style-path" href="#/c/4743/3/nova/virt/firewall.py">nova/virt/firewall.py</a> <div class="com-google-gerrit-client-change-FileComments_BinderImpl_GenCss_style-comments"><div class="com-google-gerrit-client-change-LineComment_BinderImpl_GenCss_style-box"> <div class="com-google-gerrit-client-change-LineComment_BinderImpl_GenCss_style-location">Line <a class="gwt-InlineHyperlink" href="#/c/4743/3/nova/virt/firewall.py@331">331</a>:</div> <div class="com-google-gerrit-client-change-LineComment_BinderImpl_GenCss_style-message"><p>So I forgot we are on the other side of the RPC call. You'll need to hydrate this into a model instance with:</p><p>from nova.network import model as network_model
+nw_info = network_model.NetworkInfo.hydrate(nw_info)</p></div></div></div></div></div> </div> </div></div><div class="com-google-gerrit-client-change-Message_BinderImpl_GenCss_style-messageBox com-google-gerrit-client-change-Message_BinderImpl_GenCss_style-closed"><img class="com-google-gerrit-client-change-Message_BinderImpl_GenCss_style-avatar" style="display: none;" aria-hidden="true" src="https://review.openstack.org/accounts/jason%40koelker.net/avatar?s=26"> <div class="com-google-gerrit-client-change-Message_BinderImpl_GenCss_style-contents"> <div class="com-google-gerrit-client-change-Message_BinderImpl_GenCss_style-header"><div class="com-google-gerrit-client-change-Message_BinderImpl_GenCss_style-name">Jason Klker</div> <div class="com-google-gerrit-client-change-Message_BinderImpl_GenCss_style-summary">Patch Set 3: No score</div> <div class="com-google-gerrit-client-change-Message_BinderImpl_GenCss_style-date">Mar 2, 2012</div> <button type="button" class="com-google-gerrit-client-change-Message_BinderImpl_GenCss_style-reply" title="Reply to this message"><div></div></button></div> <div style="overflow: auto"> <div aria-hidden="true" style="display: NONE" stylename="com-google-gerrit-client-change-Message_BinderImpl_GenCss_style-comment"><p>Patch Set 3: No score</p></div> <div style="display: none;" aria-hidden="true"></div> </div> </div></div><div class="com-google-gerrit-client-change-Message_BinderImpl_GenCss_style-messageBox com-google-gerrit-client-change-Message_BinderImpl_GenCss_style-closed"><img class="com-google-gerrit-client-change-Message_BinderImpl_GenCss_style-avatar" style="display: none;" aria-hidden="true" src="https://review.openstack.org/accounts/vishvananda%40gmail.com/avatar?s=26"> <div class="com-google-gerrit-client-change-Message_BinderImpl_GenCss_style-contents"> <div class="com-google-gerrit-client-change-Message_BinderImpl_GenCss_style-header"><div class="com-google-gerrit-client-change-Message_BinderImpl_GenCss_style-name">Vish Ishaya</div> <div class="com-google-gerrit-client-change-Message_BinderImpl_GenCss_style-summary">Patch Set 3:
+
+Can you also do a short summary of the fix above the bug number in the commit message?</div> <div class="com-google-gerrit-client-change-Message_BinderImpl_GenCss_style-date">Mar 2, 2012</div> <button type="button" class="com-google-gerrit-client-change-Message_BinderImpl_GenCss_style-reply" title="Reply to this message"><div></div></button></div> <div style="overflow: auto"> <div aria-hidden="true" style="display: NONE" stylename="com-google-gerrit-client-change-Message_BinderImpl_GenCss_style-comment"><p>Patch Set 3:</p><p>Can you also do a short summary of the fix above the bug number in the commit message?</p></div> <div style="display: none;" aria-hidden="true"></div> </div> </div></div><div class="com-google-gerrit-client-change-Message_BinderImpl_GenCss_style-messageBox com-google-gerrit-client-change-Message_BinderImpl_GenCss_style-closed"><img class="com-google-gerrit-client-change-Message_BinderImpl_GenCss_style-avatar" style="display: none;" aria-hidden="true" src="https://review.openstack.org/accounts/ante.karamatic%40canonical.com/avatar?s=26"> <div class="com-google-gerrit-client-change-Message_BinderImpl_GenCss_style-contents"> <div class="com-google-gerrit-client-change-Message_BinderImpl_GenCss_style-header"><div class="com-google-gerrit-client-change-Message_BinderImpl_GenCss_style-name">Ante Karamatic</div> <div class="com-google-gerrit-client-change-Message_BinderImpl_GenCss_style-summary">Uploaded patch set 4.</div> <div class="com-google-gerrit-client-change-Message_BinderImpl_GenCss_style-date">Mar 5, 2012</div> <button type="button" class="com-google-gerrit-client-change-Message_BinderImpl_GenCss_style-reply" title="Reply to this message"><div></div></button></div> <div style="overflow: auto"> <div aria-hidden="true" style="display: NONE" stylename="com-google-gerrit-client-change-Message_BinderImpl_GenCss_style-comment"><p>Uploaded patch set 4.</p></div> <div style="display: none;" aria-hidden="true"></div> </div> </div></div><div class="com-google-gerrit-client-change-Message_BinderImpl_GenCss_style-messageBox com-google-gerrit-client-change-Message_BinderImpl_GenCss_style-closed"><img class="com-google-gerrit-client-change-Message_BinderImpl_GenCss_style-avatar" style="display: none;" aria-hidden="true" src="https://review.openstack.org/accounts/ante.karamatic%40canonical.com/avatar?s=26"> <div class="com-google-gerrit-client-change-Message_BinderImpl_GenCss_style-contents"> <div class="com-google-gerrit-client-change-Message_BinderImpl_GenCss_style-header"><div class="com-google-gerrit-client-change-Message_BinderImpl_GenCss_style-name">Ante Karamatic</div> <div class="com-google-gerrit-client-change-Message_BinderImpl_GenCss_style-summary">Uploaded patch set 5.</div> <div class="com-google-gerrit-client-change-Message_BinderImpl_GenCss_style-date">Mar 5, 2012</div> <button type="button" class="com-google-gerrit-client-change-Message_BinderImpl_GenCss_style-reply" title="Reply to this message"><div></div></button></div> <div style="overflow: auto"> <div aria-hidden="true" style="display: NONE" stylename="com-google-gerrit-client-change-Message_BinderImpl_GenCss_style-comment"><p>Uploaded patch set 5.</p></div> <div style="display: none;" aria-hidden="true"></div> </div> </div></div><div class="com-google-gerrit-client-change-Message_BinderImpl_GenCss_style-messageBox"><img class="com-google-gerrit-client-change-Message_BinderImpl_GenCss_style-avatar" style="display: none;" aria-hidden="true" src="https://review.openstack.org/accounts/cbehrens%40codestud.com/avatar?s=26"> <div class="com-google-gerrit-client-change-Message_BinderImpl_GenCss_style-contents"> <div class="com-google-gerrit-client-change-Message_BinderImpl_GenCss_style-header"><div class="com-google-gerrit-client-change-Message_BinderImpl_GenCss_style-name">Chris Behrens</div> <div class="com-google-gerrit-client-change-Message_BinderImpl_GenCss_style-summary" style="display: none;" aria-hidden="true">Patch Set 5: I would prefer that you didn't submit this
+
+(1 inline comment)
+
+possible issue inline.</div> <div class="com-google-gerrit-client-change-Message_BinderImpl_GenCss_style-date">Mar 5, 2012</div> <button type="button" class="com-google-gerrit-client-change-Message_BinderImpl_GenCss_style-reply" title="Reply to this message"><div></div></button></div> <div style="overflow: auto"> <div style="" stylename="com-google-gerrit-client-change-Message_BinderImpl_GenCss_style-comment"><p>Patch Set 5: I would prefer that you didn't submit this</p><p>(1 inline comment)</p><p>possible issue inline.</p></div> <div style=""><div class="com-google-gerrit-client-change-FileComments_BinderImpl_GenCss_style-box"><a class="com-google-gerrit-client-change-FileComments_BinderImpl_GenCss_style-path" href="#/c/4743/5/nova/virt/firewall.py">nova/virt/firewall.py</a> <div class="com-google-gerrit-client-change-FileComments_BinderImpl_GenCss_style-comments"><div class="com-google-gerrit-client-change-LineComment_BinderImpl_GenCss_style-box"> <div class="com-google-gerrit-client-change-LineComment_BinderImpl_GenCss_style-location">Line <a class="gwt-InlineHyperlink" href="#/c/4743/5/nova/virt/firewall.py@335">335</a>:</div> <div class="com-google-gerrit-client-change-LineComment_BinderImpl_GenCss_style-message"><p>shouldn't this also only look at IP addresses of the appropriate version?  Ie...  this needs to be:</p><p><span class="com-google-gwtexpui-safehtml-client-SafeHtmlCss-wikiPreFormat">ips = [ip['address']</span><br><span class="com-google-gwtexpui-safehtml-client-SafeHtmlCss-wikiPreFormat">        for ip in nw_info.fixed_ips()</span><br><span class="com-google-gwtexpui-safehtml-client-SafeHtmlCss-wikiPreFormat">                if ip['version'] == version]</span><br></p><p>?</p></div></div></div></div></div> </div> </div></div><div class="com-google-gerrit-client-change-Message_BinderImpl_GenCss_style-messageBox com-google-gerrit-client-change-Message_BinderImpl_GenCss_style-closed"><img class="com-google-gerrit-client-change-Message_BinderImpl_GenCss_style-avatar" style="display: none;" aria-hidden="true" src="https://review.openstack.org/accounts/ante.karamatic%40canonical.com/avatar?s=26"> <div class="com-google-gerrit-client-change-Message_BinderImpl_GenCss_style-contents"> <div class="com-google-gerrit-client-change-Message_BinderImpl_GenCss_style-header"><div class="com-google-gerrit-client-change-Message_BinderImpl_GenCss_style-name">Ante Karamatic</div> <div class="com-google-gerrit-client-change-Message_BinderImpl_GenCss_style-summary">Uploaded patch set 6.</div> <div class="com-google-gerrit-client-change-Message_BinderImpl_GenCss_style-date">Mar 6, 2012</div> <button type="button" class="com-google-gerrit-client-change-Message_BinderImpl_GenCss_style-reply" title="Reply to this message"><div></div></button></div> <div style="overflow: auto"> <div aria-hidden="true" style="display: NONE" stylename="com-google-gerrit-client-change-Message_BinderImpl_GenCss_style-comment"><p>Uploaded patch set 6.</p></div> <div style="display: none;" aria-hidden="true"></div> </div> </div></div><div class="com-google-gerrit-client-change-Message_BinderImpl_GenCss_style-messageBox"><img class="com-google-gerrit-client-change-Message_BinderImpl_GenCss_style-avatar" style="display: none;" aria-hidden="true" src="https://review.openstack.org/accounts/chuck.short%40canonical.com/avatar?s=26"> <div class="com-google-gerrit-client-change-Message_BinderImpl_GenCss_style-contents"> <div class="com-google-gerrit-client-change-Message_BinderImpl_GenCss_style-header"><div class="com-google-gerrit-client-change-Message_BinderImpl_GenCss_style-name">Chuck Short</div> <div class="com-google-gerrit-client-change-Message_BinderImpl_GenCss_style-summary" style="display: none;" aria-hidden="true">Patch Set 6: I would prefer that you didn't submit this
+
+(2 inline comments)</div> <div class="com-google-gerrit-client-change-Message_BinderImpl_GenCss_style-date">Mar 6, 2012</div> <button type="button" class="com-google-gerrit-client-change-Message_BinderImpl_GenCss_style-reply" title="Reply to this message"><div></div></button></div> <div style="overflow: auto"> <div style="" stylename="com-google-gerrit-client-change-Message_BinderImpl_GenCss_style-comment"><p>Patch Set 6: I would prefer that you didn't submit this</p><p>(2 inline comments)</p></div> <div style=""><div class="com-google-gerrit-client-change-FileComments_BinderImpl_GenCss_style-box"><a class="com-google-gerrit-client-change-FileComments_BinderImpl_GenCss_style-path" href="#/c/4743/6/nova/virt/firewall.py">nova/virt/firewall.py</a> <div class="com-google-gerrit-client-change-FileComments_BinderImpl_GenCss_style-comments"><div class="com-google-gerrit-client-change-LineComment_BinderImpl_GenCss_style-box"> <div class="com-google-gerrit-client-change-LineComment_BinderImpl_GenCss_style-location">Line <a class="gwt-InlineHyperlink" href="#/c/4743/6/nova/virt/firewall.py@333">333</a>:</div> <div class="com-google-gerrit-client-change-LineComment_BinderImpl_GenCss_style-message"><p>typo?</p></div></div><div class="com-google-gerrit-client-change-LineComment_BinderImpl_GenCss_style-box"> <div class="com-google-gerrit-client-change-LineComment_BinderImpl_GenCss_style-location">Line <a class="gwt-InlineHyperlink" href="#/c/4743/6/nova/virt/firewall.py@337">337</a>:</div> <div class="com-google-gerrit-client-change-LineComment_BinderImpl_GenCss_style-message"><p>typo?</p></div></div></div></div></div> </div> </div></div><div class="com-google-gerrit-client-change-Message_BinderImpl_GenCss_style-messageBox com-google-gerrit-client-change-Message_BinderImpl_GenCss_style-closed"><img class="com-google-gerrit-client-change-Message_BinderImpl_GenCss_style-avatar" style="display: none;" aria-hidden="true" src="https://review.openstack.org/accounts/chuck.short%40canonical.com/avatar?s=26"> <div class="com-google-gerrit-client-change-Message_BinderImpl_GenCss_style-contents"> <div class="com-google-gerrit-client-change-Message_BinderImpl_GenCss_style-header"><div class="com-google-gerrit-client-change-Message_BinderImpl_GenCss_style-name">Chuck Short</div> <div class="com-google-gerrit-client-change-Message_BinderImpl_GenCss_style-summary">Patch Set 6: No score
+
+ignore my previous comments</div> <div class="com-google-gerrit-client-change-Message_BinderImpl_GenCss_style-date">Mar 6, 2012</div> <button type="button" class="com-google-gerrit-client-change-Message_BinderImpl_GenCss_style-reply" title="Reply to this message"><div></div></button></div> <div style="overflow: auto"> <div aria-hidden="true" style="display: NONE" stylename="com-google-gerrit-client-change-Message_BinderImpl_GenCss_style-comment"><p>Patch Set 6: No score</p><p>ignore my previous comments</p></div> <div style="display: none;" aria-hidden="true"></div> </div> </div></div><div class="com-google-gerrit-client-change-Message_BinderImpl_GenCss_style-messageBox com-google-gerrit-client-change-Message_BinderImpl_GenCss_style-closed"><img class="com-google-gerrit-client-change-Message_BinderImpl_GenCss_style-avatar" style="display: none;" aria-hidden="true" src="https://review.openstack.org/accounts/joe.gordon0%40gmail.com/avatar?s=26"> <div class="com-google-gerrit-client-change-Message_BinderImpl_GenCss_style-contents"> <div class="com-google-gerrit-client-change-Message_BinderImpl_GenCss_style-header"><div class="com-google-gerrit-client-change-Message_BinderImpl_GenCss_style-name">Joe Gordon</div> <div class="com-google-gerrit-client-change-Message_BinderImpl_GenCss_style-summary">Patch Set 6:
+
+nova/virt/firewall.py:333:80: E501 line too long (80 characters)</div> <div class="com-google-gerrit-client-change-Message_BinderImpl_GenCss_style-date">Mar 6, 2012</div> <button type="button" class="com-google-gerrit-client-change-Message_BinderImpl_GenCss_style-reply" title="Reply to this message"><div></div></button></div> <div style="overflow: auto"> <div aria-hidden="true" style="display: NONE" stylename="com-google-gerrit-client-change-Message_BinderImpl_GenCss_style-comment"><p>Patch Set 6:</p><p>nova/virt/firewall.py:333:80: E501 line too long (80 characters)</p></div> <div style="display: none;" aria-hidden="true"></div> </div> </div></div><div class="com-google-gerrit-client-change-Message_BinderImpl_GenCss_style-messageBox"><img class="com-google-gerrit-client-change-Message_BinderImpl_GenCss_style-avatar" style="display: none;" aria-hidden="true" src="https://review.openstack.org/accounts/klmitch%40mit.edu/avatar?s=26"> <div class="com-google-gerrit-client-change-Message_BinderImpl_GenCss_style-contents"> <div class="com-google-gerrit-client-change-Message_BinderImpl_GenCss_style-header"><div class="com-google-gerrit-client-change-Message_BinderImpl_GenCss_style-name">Kevin L. Mitchell</div> <div class="com-google-gerrit-client-change-Message_BinderImpl_GenCss_style-summary" style="display: none;" aria-hidden="true">Patch Set 6: I would prefer that you didn't submit this
+
+(3 inline comments)
+
+Aside from the PEP8 error, this looks good.  I would like Jason or Trey to look again, though</div> <div class="com-google-gerrit-client-change-Message_BinderImpl_GenCss_style-date">Mar 6, 2012</div> <button type="button" class="com-google-gerrit-client-change-Message_BinderImpl_GenCss_style-reply" title="Reply to this message"><div></div></button></div> <div style="overflow: auto"> <div style="" stylename="com-google-gerrit-client-change-Message_BinderImpl_GenCss_style-comment"><p>Patch Set 6: I would prefer that you didn't submit this</p><p>(3 inline comments)</p><p>Aside from the PEP8 error, this looks good.  I would like Jason or Trey to look again, though</p></div> <div style=""><div class="com-google-gerrit-client-change-FileComments_BinderImpl_GenCss_style-box"><a class="com-google-gerrit-client-change-FileComments_BinderImpl_GenCss_style-path" href="#/c/4743/6/nova/virt/firewall.py">nova/virt/firewall.py</a> <div class="com-google-gerrit-client-change-FileComments_BinderImpl_GenCss_style-comments"><div class="com-google-gerrit-client-change-LineComment_BinderImpl_GenCss_style-box"> <div class="com-google-gerrit-client-change-LineComment_BinderImpl_GenCss_style-location">Line <a class="gwt-InlineHyperlink" href="#/c/4743/6/nova/virt/firewall.py@327">327</a>:</div> <div class="com-google-gerrit-client-change-LineComment_BinderImpl_GenCss_style-message"><p>For the record, I'd really prefer that this import be outside the function.  That said, since there's already an import here, I'm not going to -1 it</p></div></div><div class="com-google-gerrit-client-change-LineComment_BinderImpl_GenCss_style-box"> <div class="com-google-gerrit-client-change-LineComment_BinderImpl_GenCss_style-location">Line <a class="gwt-InlineHyperlink" href="#/c/4743/6/nova/virt/firewall.py@333">333</a>:</div> <div class="com-google-gerrit-client-change-LineComment_BinderImpl_GenCss_style-message"><p>What typo do you see here?</p></div></div><div class="com-google-gerrit-client-change-LineComment_BinderImpl_GenCss_style-box"> <div class="com-google-gerrit-client-change-LineComment_BinderImpl_GenCss_style-location">Line <a class="gwt-InlineHyperlink" href="#/c/4743/6/nova/virt/firewall.py@337">337</a>:</div> <div class="com-google-gerrit-client-change-LineComment_BinderImpl_GenCss_style-message"><p>Other than the odd line breaking and indentation, I don't see any typos here; this looks like a fairly standard list comprehension.  What typo do you see?</p></div></div></div></div></div> </div> </div></div><div class="com-google-gerrit-client-change-Message_BinderImpl_GenCss_style-messageBox com-google-gerrit-client-change-Message_BinderImpl_GenCss_style-closed"><img class="com-google-gerrit-client-change-Message_BinderImpl_GenCss_style-avatar" style="display: none;" aria-hidden="true" src="https://review.openstack.org/accounts/ante.karamatic%40canonical.com/avatar?s=26"> <div class="com-google-gerrit-client-change-Message_BinderImpl_GenCss_style-contents"> <div class="com-google-gerrit-client-change-Message_BinderImpl_GenCss_style-header"><div class="com-google-gerrit-client-change-Message_BinderImpl_GenCss_style-name">Ante Karamatic</div> <div class="com-google-gerrit-client-change-Message_BinderImpl_GenCss_style-summary">Uploaded patch set 7.</div> <div class="com-google-gerrit-client-change-Message_BinderImpl_GenCss_style-date">Mar 7, 2012</div> <button type="button" class="com-google-gerrit-client-change-Message_BinderImpl_GenCss_style-reply" title="Reply to this message"><div></div></button></div> <div style="overflow: auto"> <div aria-hidden="true" style="display: NONE" stylename="com-google-gerrit-client-change-Message_BinderImpl_GenCss_style-comment"><p>Uploaded patch set 7.</p></div> <div style="display: none;" aria-hidden="true"></div> </div> </div></div><div class="com-google-gerrit-client-change-Message_BinderImpl_GenCss_style-messageBox com-google-gerrit-client-change-Message_BinderImpl_GenCss_style-closed"><img class="com-google-gerrit-client-change-Message_BinderImpl_GenCss_style-avatar" style="display: none;" aria-hidden="true" src="https://review.openstack.org/accounts/ante.karamatic%40canonical.com/avatar?s=26"> <div class="com-google-gerrit-client-change-Message_BinderImpl_GenCss_style-contents"> <div class="com-google-gerrit-client-change-Message_BinderImpl_GenCss_style-header"><div class="com-google-gerrit-client-change-Message_BinderImpl_GenCss_style-name">Ante Karamatic</div> <div class="com-google-gerrit-client-change-Message_BinderImpl_GenCss_style-summary">Uploaded patch set 8.</div> <div class="com-google-gerrit-client-change-Message_BinderImpl_GenCss_style-date">Mar 7, 2012</div> <button type="button" class="com-google-gerrit-client-change-Message_BinderImpl_GenCss_style-reply" title="Reply to this message"><div></div></button></div> <div style="overflow: auto"> <div aria-hidden="true" style="display: NONE" stylename="com-google-gerrit-client-change-Message_BinderImpl_GenCss_style-comment"><p>Uploaded patch set 8.</p></div> <div style="display: none;" aria-hidden="true"></div> </div> </div></div><div class="com-google-gerrit-client-change-Message_BinderImpl_GenCss_style-messageBox"><img class="com-google-gerrit-client-change-Message_BinderImpl_GenCss_style-avatar" style="display: none;" aria-hidden="true" src="https://review.openstack.org/accounts/markmc%40redhat.com/avatar?s=26"> <div class="com-google-gerrit-client-change-Message_BinderImpl_GenCss_style-contents"> <div class="com-google-gerrit-client-change-Message_BinderImpl_GenCss_style-header"><div class="com-google-gerrit-client-change-Message_BinderImpl_GenCss_style-name">Mark McLoughlin</div> <div class="com-google-gerrit-client-change-Message_BinderImpl_GenCss_style-summary" style="display: none;" aria-hidden="true">Patch Set 8: I would prefer that you didn't submit this
+
+(1 inline comment)
+
+Looks like Jason lead you astray a little. See the inline comment.
+
+Also, the tests fail with these changes. Please run the unit tests before submitting a patch.
+
+I've pushed a fix for both of those here: https://github.com/markmc/nova/commits/source-security-group
+
+A question for Jason or Trey - what I don't understand is why we're doing an RPC call at all here. Can we not get this from the network info cache in the DB?
+
+I must say I find this info cache, legacy vs spectacular nw info, etc. stuff horrendously confusing :(</div> <div class="com-google-gerrit-client-change-Message_BinderImpl_GenCss_style-date">Mar 7, 2012</div> <button type="button" class="com-google-gerrit-client-change-Message_BinderImpl_GenCss_style-reply" title="Reply to this message"><div></div></button></div> <div style="overflow: auto"> <div style="" stylename="com-google-gerrit-client-change-Message_BinderImpl_GenCss_style-comment"><p>Patch Set 8: I would prefer that you didn't submit this</p><p>(1 inline comment)</p><p>Looks like Jason lead you astray a little. See the inline comment.</p><p>Also, the tests fail with these changes. Please run the unit tests before submitting a patch.</p><p>I've pushed a fix for both of those here: <a href="https://github.com/markmc/nova/commits/source-security-group" target="_blank" rel="nofollow">https://github.com/markmc/nova/commits/source-security-group</a></p><p>A question for Jason or Trey - what I don't understand is why we're doing an RPC call at all here. Can we not get this from the network info cache in the DB?</p><p>I must say I find this info cache, legacy vs spectacular nw info, etc. stuff horrendously confusing :(</p></div> <div style=""><div class="com-google-gerrit-client-change-FileComments_BinderImpl_GenCss_style-box"><a class="com-google-gerrit-client-change-FileComments_BinderImpl_GenCss_style-path" href="#/c/4743/8/nova/virt/firewall.py">nova/virt/firewall.py</a> <div class="com-google-gerrit-client-change-FileComments_BinderImpl_GenCss_style-comments"><div class="com-google-gerrit-client-change-LineComment_BinderImpl_GenCss_style-box"> <div class="com-google-gerrit-client-change-LineComment_BinderImpl_GenCss_style-location">Line <a class="gwt-InlineHyperlink" href="#/c/4743/8/nova/virt/firewall.py@335">335</a>:</div> <div class="com-google-gerrit-client-change-LineComment_BinderImpl_GenCss_style-message"><p>Looks like Jason got confused here. There's no need for the hydrate call because nova.network.api.API.get_instance_nw_info() already hydrates the RPC response:</p><p><span class="com-google-gwtexpui-safehtml-client-SafeHtmlCss-wikiPreFormat">        try:</span><br><span class="com-google-gwtexpui-safehtml-client-SafeHtmlCss-wikiPreFormat">            nw_info = rpc.call(context, FLAGS.network_topic,</span><br><span class="com-google-gwtexpui-safehtml-client-SafeHtmlCss-wikiPreFormat">                               {'method': 'get_instance_nw_info',</span><br><span class="com-google-gwtexpui-safehtml-client-SafeHtmlCss-wikiPreFormat">                                'args': args})</span><br><span class="com-google-gwtexpui-safehtml-client-SafeHtmlCss-wikiPreFormat">            return network_model.NetworkInfo.hydrate(nw_info)</span><br></p></div></div></div></div></div> </div> </div></div><div class="com-google-gerrit-client-change-Message_BinderImpl_GenCss_style-messageBox com-google-gerrit-client-change-Message_BinderImpl_GenCss_style-closed"><img class="com-google-gerrit-client-change-Message_BinderImpl_GenCss_style-avatar" style="display: none;" aria-hidden="true" src="https://review.openstack.org/accounts/jason%40koelker.net/avatar?s=26"> <div class="com-google-gerrit-client-change-Message_BinderImpl_GenCss_style-contents"> <div class="com-google-gerrit-client-change-Message_BinderImpl_GenCss_style-header"><div class="com-google-gerrit-client-change-Message_BinderImpl_GenCss_style-name">Jason Klker</div> <div class="com-google-gerrit-client-change-Message_BinderImpl_GenCss_style-summary">Patch Set 8:
+
+Ah, yea, it was failing the test, since the test stub or whatever
+wasn't returning the model.
+
+&gt; A question for Jason or Trey - what I don't understand is
+&gt; why we're doing an RPC call at all here. Can we not get 
+&gt; this from the network info cache in the DB?
+
+We could, the rpc stuff here predates the "cache" by
+a few weeks. Really this needs to be refactored out into
+the compute manager and out of virt. Virt should only ever
+use the nw_info passed into it.
+
+&gt; I must say I find this info cache, legacy vs spectacular
+&gt; nw info, etc. stuff horrendously confusing :(
+
+I agree, we're in the middle of a huge refactor of the 
+network bits that will have to continue into Folsom.
+(Minus the spectacular=True stuff that's just poorly named
+ params in the fakes)
+
+We had hoped to get libvirt/xen updated quickly to use the
+new network model stuff, but sadly timelines of other features
+got in the way.</div> <div class="com-google-gerrit-client-change-Message_BinderImpl_GenCss_style-date">Mar 7, 2012</div> <button type="button" class="com-google-gerrit-client-change-Message_BinderImpl_GenCss_style-reply" title="Reply to this message"><div></div></button></div> <div style="overflow: auto"> <div aria-hidden="true" style="display: NONE" stylename="com-google-gerrit-client-change-Message_BinderImpl_GenCss_style-comment"><p>Patch Set 8:</p><p>Ah, yea, it was failing the test, since the test stub or whatever
+wasn't returning the model.</p><blockquote class="com-google-gwtexpui-safehtml-client-SafeHtmlCss-wikiQuote">A question for Jason or Trey - what I don't understand is
+why we're doing an RPC call at all here. Can we not get 
+this from the network info cache in the DB?</blockquote><p>We could, the rpc stuff here predates the "cache" by
+a few weeks. Really this needs to be refactored out into
+the compute manager and out of virt. Virt should only ever
+use the nw_info passed into it.</p><blockquote class="com-google-gwtexpui-safehtml-client-SafeHtmlCss-wikiQuote">I must say I find this info cache, legacy vs spectacular
+nw info, etc. stuff horrendously confusing :(</blockquote><p><span class="com-google-gwtexpui-safehtml-client-SafeHtmlCss-wikiPreFormat">I agree, we're in the middle of a huge refactor of the </span><br><span class="com-google-gwtexpui-safehtml-client-SafeHtmlCss-wikiPreFormat">network bits that will have to continue into Folsom.</span><br><span class="com-google-gwtexpui-safehtml-client-SafeHtmlCss-wikiPreFormat">(Minus the spectacular=True stuff that's just poorly named</span><br><span class="com-google-gwtexpui-safehtml-client-SafeHtmlCss-wikiPreFormat"> params in the fakes)</span><br></p><p>We had hoped to get libvirt/xen updated quickly to use the
+new network model stuff, but sadly timelines of other features
+got in the way.</p></div> <div style="display: none;" aria-hidden="true"></div> </div> </div></div><div class="com-google-gerrit-client-change-Message_BinderImpl_GenCss_style-messageBox com-google-gerrit-client-change-Message_BinderImpl_GenCss_style-closed"><img class="com-google-gerrit-client-change-Message_BinderImpl_GenCss_style-avatar" style="display: none;" aria-hidden="true" src="https://review.openstack.org/accounts/ante.karamatic%40canonical.com/avatar?s=26"> <div class="com-google-gerrit-client-change-Message_BinderImpl_GenCss_style-contents"> <div class="com-google-gerrit-client-change-Message_BinderImpl_GenCss_style-header"><div class="com-google-gerrit-client-change-Message_BinderImpl_GenCss_style-name">Ante Karamatic</div> <div class="com-google-gerrit-client-change-Message_BinderImpl_GenCss_style-summary">Uploaded patch set 9.</div> <div class="com-google-gerrit-client-change-Message_BinderImpl_GenCss_style-date">Mar 9, 2012</div> <button type="button" class="com-google-gerrit-client-change-Message_BinderImpl_GenCss_style-reply" title="Reply to this message"><div></div></button></div> <div style="overflow: auto"> <div aria-hidden="true" style="display: NONE" stylename="com-google-gerrit-client-change-Message_BinderImpl_GenCss_style-comment"><p>Uploaded patch set 9.</p></div> <div style="display: none;" aria-hidden="true"></div> </div> </div></div><div class="com-google-gerrit-client-change-Message_BinderImpl_GenCss_style-messageBox com-google-gerrit-client-change-Message_BinderImpl_GenCss_style-closed"><img class="com-google-gerrit-client-change-Message_BinderImpl_GenCss_style-avatar" style="display: none;" aria-hidden="true" src="https://review.openstack.org/accounts/ante.karamatic%40canonical.com/avatar?s=26"> <div class="com-google-gerrit-client-change-Message_BinderImpl_GenCss_style-contents"> <div class="com-google-gerrit-client-change-Message_BinderImpl_GenCss_style-header"><div class="com-google-gerrit-client-change-Message_BinderImpl_GenCss_style-name">Ante Karamatic</div> <div class="com-google-gerrit-client-change-Message_BinderImpl_GenCss_style-summary">Patch Set 9:
+
+I no way I'm an expert on Nova internals, but as commented in bug, this is what it took to get it working. If this is going to be committed, test_libvirt.py also needs a change. Mark has all what's needed in his branch.</div> <div class="com-google-gerrit-client-change-Message_BinderImpl_GenCss_style-date">Mar 9, 2012</div> <button type="button" class="com-google-gerrit-client-change-Message_BinderImpl_GenCss_style-reply" title="Reply to this message"><div></div></button></div> <div style="overflow: auto"> <div aria-hidden="true" style="display: NONE" stylename="com-google-gerrit-client-change-Message_BinderImpl_GenCss_style-comment"><p>Patch Set 9:</p><p>I no way I'm an expert on Nova internals, but as commented in bug, this is what it took to get it working. If this is going to be committed, test_libvirt.py also needs a change. Mark has all what's needed in his branch.</p></div> <div style="display: none;" aria-hidden="true"></div> </div> </div></div><div class="com-google-gerrit-client-change-Message_BinderImpl_GenCss_style-messageBox com-google-gerrit-client-change-Message_BinderImpl_GenCss_style-closed"><img class="com-google-gerrit-client-change-Message_BinderImpl_GenCss_style-avatar" style="display: none;" aria-hidden="true" src="https://review.openstack.org/accounts/ante.karamatic%40canonical.com/avatar?s=26"> <div class="com-google-gerrit-client-change-Message_BinderImpl_GenCss_style-contents"> <div class="com-google-gerrit-client-change-Message_BinderImpl_GenCss_style-header"><div class="com-google-gerrit-client-change-Message_BinderImpl_GenCss_style-name">Ante Karamatic</div> <div class="com-google-gerrit-client-change-Message_BinderImpl_GenCss_style-summary">Uploaded patch set 10.</div> <div class="com-google-gerrit-client-change-Message_BinderImpl_GenCss_style-date">Mar 9, 2012</div> <button type="button" class="com-google-gerrit-client-change-Message_BinderImpl_GenCss_style-reply" title="Reply to this message"><div></div></button></div> <div style="overflow: auto"> <div aria-hidden="true" style="display: NONE" stylename="com-google-gerrit-client-change-Message_BinderImpl_GenCss_style-comment"><p>Uploaded patch set 10.</p></div> <div style="display: none;" aria-hidden="true"></div> </div> </div></div><div class="com-google-gerrit-client-change-Message_BinderImpl_GenCss_style-messageBox com-google-gerrit-client-change-Message_BinderImpl_GenCss_style-closed"><img class="com-google-gerrit-client-change-Message_BinderImpl_GenCss_style-avatar" style="display: none;" aria-hidden="true" src="https://review.openstack.org/accounts/jason%40koelker.net/avatar?s=26"> <div class="com-google-gerrit-client-change-Message_BinderImpl_GenCss_style-contents"> <div class="com-google-gerrit-client-change-Message_BinderImpl_GenCss_style-header"><div class="com-google-gerrit-client-change-Message_BinderImpl_GenCss_style-name">Jason Klker</div> <div class="com-google-gerrit-client-change-Message_BinderImpl_GenCss_style-summary">Patch Set 10:
+
+I tested with a cherry-pick of Mark's fix. Everything is bueno. If you want to cherry-pick it and submit it as a dependency of this commit that will work.</div> <div class="com-google-gerrit-client-change-Message_BinderImpl_GenCss_style-date">Mar 9, 2012</div> <button type="button" class="com-google-gerrit-client-change-Message_BinderImpl_GenCss_style-reply" title="Reply to this message"><div></div></button></div> <div style="overflow: auto"> <div aria-hidden="true" style="display: NONE" stylename="com-google-gerrit-client-change-Message_BinderImpl_GenCss_style-comment"><p>Patch Set 10:</p><p>I tested with a cherry-pick of Mark's fix. Everything is bueno. If you want to cherry-pick it and submit it as a dependency of this commit that will work.</p></div> <div style="display: none;" aria-hidden="true"></div> </div> </div></div><div class="com-google-gerrit-client-change-Message_BinderImpl_GenCss_style-messageBox com-google-gerrit-client-change-Message_BinderImpl_GenCss_style-closed" style="display: none;"><img class="com-google-gerrit-client-change-Message_BinderImpl_GenCss_style-avatar" style="display: none;" aria-hidden="true"> <div class="com-google-gerrit-client-change-Message_BinderImpl_GenCss_style-contents"> <div class="com-google-gerrit-client-change-Message_BinderImpl_GenCss_style-header"><div class="com-google-gerrit-client-change-Message_BinderImpl_GenCss_style-name">SmokeStack CI</div> <div class="com-google-gerrit-client-change-Message_BinderImpl_GenCss_style-summary">Patch Set 10:
+
+SmokeStack Results (patch set 10):
+	Unit Failed:Nova tests failed.  http://smokestack.openstack.org/?go=/jobs/15066
+	Libvirt (Fedora 16) Success: http://smokestack.openstack.org/?go=/jobs/15064
+	XenServer (Ubuntu 11.10) Success: http://smokestack.openstack.org/?go=/jobs/15065</div> <div class="com-google-gerrit-client-change-Message_BinderImpl_GenCss_style-date">Mar 9, 2012</div> <button type="button" class="com-google-gerrit-client-change-Message_BinderImpl_GenCss_style-reply" title="Reply to this message"><div></div></button></div> <div style="overflow: auto"> <div aria-hidden="true" style="display: NONE" stylename="com-google-gerrit-client-change-Message_BinderImpl_GenCss_style-comment"><p>Patch Set 10:</p><p><span class="com-google-gwtexpui-safehtml-client-SafeHtmlCss-wikiPreFormat">SmokeStack Results (patch set 10):</span><br><span class="com-google-gwtexpui-safehtml-client-SafeHtmlCss-wikiPreFormat">	Unit Failed:Nova tests failed.  <a href="http://smokestack.openstack.org/?go=/jobs/15066" target="_blank" rel="nofollow">http://smokestack.openstack.org/?go=/jobs/15066</a></span><br><span class="com-google-gwtexpui-safehtml-client-SafeHtmlCss-wikiPreFormat">	Libvirt (Fedora 16) Success: <a href="http://smokestack.openstack.org/?go=/jobs/15064" target="_blank" rel="nofollow">http://smokestack.openstack.org/?go=/jobs/15064</a></span><br><span class="com-google-gwtexpui-safehtml-client-SafeHtmlCss-wikiPreFormat">	XenServer (Ubuntu 11.10) Success: <a href="http://smokestack.openstack.org/?go=/jobs/15065" target="_blank" rel="nofollow">http://smokestack.openstack.org/?go=/jobs/15065</a></span><br></p></div> <div style="display: none;" aria-hidden="true"></div> </div> </div></div><div class="com-google-gerrit-client-change-Message_BinderImpl_GenCss_style-messageBox com-google-gerrit-client-change-Message_BinderImpl_GenCss_style-closed"><img class="com-google-gerrit-client-change-Message_BinderImpl_GenCss_style-avatar" style="display: none;" aria-hidden="true" src="https://review.openstack.org/accounts/jason%40koelker.net/avatar?s=26"> <div class="com-google-gerrit-client-change-Message_BinderImpl_GenCss_style-contents"> <div class="com-google-gerrit-client-change-Message_BinderImpl_GenCss_style-header"><div class="com-google-gerrit-client-change-Message_BinderImpl_GenCss_style-name">Jason Klker</div> <div class="com-google-gerrit-client-change-Message_BinderImpl_GenCss_style-summary">Patch Set 10:
+
+Oops, I spoke too soon. It looks like nova.tests.test_xenapi.XenAPIDom0IptablesFirewallTestCase needs to be fixed as well.</div> <div class="com-google-gerrit-client-change-Message_BinderImpl_GenCss_style-date">Mar 9, 2012</div> <button type="button" class="com-google-gerrit-client-change-Message_BinderImpl_GenCss_style-reply" title="Reply to this message"><div></div></button></div> <div style="overflow: auto"> <div aria-hidden="true" style="display: NONE" stylename="com-google-gerrit-client-change-Message_BinderImpl_GenCss_style-comment"><p>Patch Set 10:</p><p>Oops, I spoke too soon. It looks like nova.tests.test_xenapi.XenAPIDom0IptablesFirewallTestCase needs to be fixed as well.</p></div> <div style="display: none;" aria-hidden="true"></div> </div> </div></div><div class="com-google-gerrit-client-change-Message_BinderImpl_GenCss_style-messageBox com-google-gerrit-client-change-Message_BinderImpl_GenCss_style-closed"><img class="com-google-gerrit-client-change-Message_BinderImpl_GenCss_style-avatar" style="display: none;" aria-hidden="true" src="https://review.openstack.org/accounts/markmc%40redhat.com/avatar?s=26"> <div class="com-google-gerrit-client-change-Message_BinderImpl_GenCss_style-contents"> <div class="com-google-gerrit-client-change-Message_BinderImpl_GenCss_style-header"><div class="com-google-gerrit-client-change-Message_BinderImpl_GenCss_style-name">Mark McLoughlin</div> <div class="com-google-gerrit-client-change-Message_BinderImpl_GenCss_style-summary">Patch Set 10: I would prefer that you didn't submit this
+
+You'll need to merge my test_libvirt.py fixes into this change. They need to be in the same commit because Jenkins won't merge the change unless the unit tests pass</div> <div class="com-google-gerrit-client-change-Message_BinderImpl_GenCss_style-date">Mar 9, 2012</div> <button type="button" class="com-google-gerrit-client-change-Message_BinderImpl_GenCss_style-reply" title="Reply to this message"><div></div></button></div> <div style="overflow: auto"> <div aria-hidden="true" style="display: NONE" stylename="com-google-gerrit-client-change-Message_BinderImpl_GenCss_style-comment"><p>Patch Set 10: I would prefer that you didn't submit this</p><p>You'll need to merge my test_libvirt.py fixes into this change. They need to be in the same commit because Jenkins won't merge the change unless the unit tests pass</p></div> <div style="display: none;" aria-hidden="true"></div> </div> </div></div><div class="com-google-gerrit-client-change-Message_BinderImpl_GenCss_style-messageBox com-google-gerrit-client-change-Message_BinderImpl_GenCss_style-closed"><img class="com-google-gerrit-client-change-Message_BinderImpl_GenCss_style-avatar" style="display: none;" aria-hidden="true" src="https://review.openstack.org/accounts/ante.karamatic%40canonical.com/avatar?s=26"> <div class="com-google-gerrit-client-change-Message_BinderImpl_GenCss_style-contents"> <div class="com-google-gerrit-client-change-Message_BinderImpl_GenCss_style-header"><div class="com-google-gerrit-client-change-Message_BinderImpl_GenCss_style-name">Ante Karamatic</div> <div class="com-google-gerrit-client-change-Message_BinderImpl_GenCss_style-summary">Uploaded patch set 11.</div> <div class="com-google-gerrit-client-change-Message_BinderImpl_GenCss_style-date">Mar 9, 2012</div> <button type="button" class="com-google-gerrit-client-change-Message_BinderImpl_GenCss_style-reply" title="Reply to this message"><div></div></button></div> <div style="overflow: auto"> <div aria-hidden="true" style="display: NONE" stylename="com-google-gerrit-client-change-Message_BinderImpl_GenCss_style-comment"><p>Uploaded patch set 11.</p></div> <div style="display: none;" aria-hidden="true"></div> </div> </div></div><div class="com-google-gerrit-client-change-Message_BinderImpl_GenCss_style-messageBox com-google-gerrit-client-change-Message_BinderImpl_GenCss_style-closed"><img class="com-google-gerrit-client-change-Message_BinderImpl_GenCss_style-avatar" style="display: none;" aria-hidden="true" src="https://review.openstack.org/accounts/jason%40koelker.net/avatar?s=26"> <div class="com-google-gerrit-client-change-Message_BinderImpl_GenCss_style-contents"> <div class="com-google-gerrit-client-change-Message_BinderImpl_GenCss_style-header"><div class="com-google-gerrit-client-change-Message_BinderImpl_GenCss_style-name">Jason Klker</div> <div class="com-google-gerrit-client-change-Message_BinderImpl_GenCss_style-summary">Patch Set 11: Looks good to me, but someone else must approve
+
+Is Bueno, (for realz this time ;)</div> <div class="com-google-gerrit-client-change-Message_BinderImpl_GenCss_style-date">Mar 9, 2012</div> <button type="button" class="com-google-gerrit-client-change-Message_BinderImpl_GenCss_style-reply" title="Reply to this message"><div></div></button></div> <div style="overflow: auto"> <div aria-hidden="true" style="display: NONE" stylename="com-google-gerrit-client-change-Message_BinderImpl_GenCss_style-comment"><p>Patch Set 11: Looks good to me, but someone else must approve</p><p>Is Bueno, (for realz this time ;)</p></div> <div style="display: none;" aria-hidden="true"></div> </div> </div></div><div class="com-google-gerrit-client-change-Message_BinderImpl_GenCss_style-messageBox"><img class="com-google-gerrit-client-change-Message_BinderImpl_GenCss_style-avatar" style="display: none;" aria-hidden="true" src="https://review.openstack.org/accounts/klmitch%40mit.edu/avatar?s=26"> <div class="com-google-gerrit-client-change-Message_BinderImpl_GenCss_style-contents"> <div class="com-google-gerrit-client-change-Message_BinderImpl_GenCss_style-header"><div class="com-google-gerrit-client-change-Message_BinderImpl_GenCss_style-name">Kevin L. Mitchell</div> <div class="com-google-gerrit-client-change-Message_BinderImpl_GenCss_style-summary" style="display: none;" aria-hidden="true">Patch Set 11: Looks good to me (core reviewer)
+
+(1 inline comment)
+
+inline is a femtonit.</div> <div class="com-google-gerrit-client-change-Message_BinderImpl_GenCss_style-date">Mar 9, 2012</div> <button type="button" class="com-google-gerrit-client-change-Message_BinderImpl_GenCss_style-reply" title="Reply to this message"><div></div></button></div> <div style="overflow: auto"> <div style="" stylename="com-google-gerrit-client-change-Message_BinderImpl_GenCss_style-comment"><p>Patch Set 11: Looks good to me (core reviewer)</p><p>(1 inline comment)</p><p>inline is a femtonit.</p></div> <div style=""><div class="com-google-gerrit-client-change-FileComments_BinderImpl_GenCss_style-box"><a class="com-google-gerrit-client-change-FileComments_BinderImpl_GenCss_style-path" href="#/c/4743/11/nova/virt/firewall.py">nova/virt/firewall.py</a> <div class="com-google-gerrit-client-change-FileComments_BinderImpl_GenCss_style-comments"><div class="com-google-gerrit-client-change-LineComment_BinderImpl_GenCss_style-box"> <div class="com-google-gerrit-client-change-LineComment_BinderImpl_GenCss_style-location">Line <a class="gwt-InlineHyperlink" href="#/c/4743/11/nova/virt/firewall.py@334">334</a>:</div> <div class="com-google-gerrit-client-change-LineComment_BinderImpl_GenCss_style-message"><p>femtonit: I'd prefer if the 'for' were indented to line up with the 'if'; this indentation means that both line up with the first character after '[' in the line above.</p></div></div></div></div></div> </div> </div></div><div class="com-google-gerrit-client-change-Message_BinderImpl_GenCss_style-messageBox com-google-gerrit-client-change-Message_BinderImpl_GenCss_style-closed" style="display: none;"><img class="com-google-gerrit-client-change-Message_BinderImpl_GenCss_style-avatar" style="display: none;" aria-hidden="true"> <div class="com-google-gerrit-client-change-Message_BinderImpl_GenCss_style-contents"> <div class="com-google-gerrit-client-change-Message_BinderImpl_GenCss_style-header"><div class="com-google-gerrit-client-change-Message_BinderImpl_GenCss_style-name">SmokeStack CI</div> <div class="com-google-gerrit-client-change-Message_BinderImpl_GenCss_style-summary">Patch Set 11:
+
+SmokeStack Results (patch set 11):
+	Unit Success: http://smokestack.openstack.org/?go=/jobs/15108
+	Libvirt (Fedora 16) Success: http://smokestack.openstack.org/?go=/jobs/15106
+	XenServer (Ubuntu 11.10) Success: http://smokestack.openstack.org/?go=/jobs/15107</div> <div class="com-google-gerrit-client-change-Message_BinderImpl_GenCss_style-date">Mar 9, 2012</div> <button type="button" class="com-google-gerrit-client-change-Message_BinderImpl_GenCss_style-reply" title="Reply to this message"><div></div></button></div> <div style="overflow: auto"> <div aria-hidden="true" style="display: NONE" stylename="com-google-gerrit-client-change-Message_BinderImpl_GenCss_style-comment"><p>Patch Set 11:</p><p><span class="com-google-gwtexpui-safehtml-client-SafeHtmlCss-wikiPreFormat">SmokeStack Results (patch set 11):</span><br><span class="com-google-gwtexpui-safehtml-client-SafeHtmlCss-wikiPreFormat">	Unit Success: <a href="http://smokestack.openstack.org/?go=/jobs/15108" target="_blank" rel="nofollow">http://smokestack.openstack.org/?go=/jobs/15108</a></span><br><span class="com-google-gwtexpui-safehtml-client-SafeHtmlCss-wikiPreFormat">	Libvirt (Fedora 16) Success: <a href="http://smokestack.openstack.org/?go=/jobs/15106" target="_blank" rel="nofollow">http://smokestack.openstack.org/?go=/jobs/15106</a></span><br><span class="com-google-gwtexpui-safehtml-client-SafeHtmlCss-wikiPreFormat">	XenServer (Ubuntu 11.10) Success: <a href="http://smokestack.openstack.org/?go=/jobs/15107" target="_blank" rel="nofollow">http://smokestack.openstack.org/?go=/jobs/15107</a></span><br></p></div> <div style="display: none;" aria-hidden="true"></div> </div> </div></div><div class="com-google-gerrit-client-change-Message_BinderImpl_GenCss_style-messageBox com-google-gerrit-client-change-Message_BinderImpl_GenCss_style-closed"><img class="com-google-gerrit-client-change-Message_BinderImpl_GenCss_style-avatar" style="display: none;" aria-hidden="true" src="https://review.openstack.org/accounts/vishvananda%40gmail.com/avatar?s=26"> <div class="com-google-gerrit-client-change-Message_BinderImpl_GenCss_style-contents"> <div class="com-google-gerrit-client-change-Message_BinderImpl_GenCss_style-header"><div class="com-google-gerrit-client-change-Message_BinderImpl_GenCss_style-name">Vish Ishaya</div> <div class="com-google-gerrit-client-change-Message_BinderImpl_GenCss_style-summary">Patch Set 11: Looks good to me (core reviewer); Approved</div> <div class="com-google-gerrit-client-change-Message_BinderImpl_GenCss_style-date">Mar 9, 2012</div> <button type="button" class="com-google-gerrit-client-change-Message_BinderImpl_GenCss_style-reply" title="Reply to this message"><div></div></button></div> <div style="overflow: auto"> <div aria-hidden="true" style="display: NONE" stylename="com-google-gerrit-client-change-Message_BinderImpl_GenCss_style-comment"><p>Patch Set 11: Looks good to me (core reviewer); Approved</p></div> <div style="display: none;" aria-hidden="true"></div> </div> </div></div><div class="com-google-gerrit-client-change-Message_BinderImpl_GenCss_style-messageBox com-google-gerrit-client-change-Message_BinderImpl_GenCss_style-closed" style="display: none;"><img class="com-google-gerrit-client-change-Message_BinderImpl_GenCss_style-avatar" style="display: none;" aria-hidden="true"> <div class="com-google-gerrit-client-change-Message_BinderImpl_GenCss_style-contents"> <div class="com-google-gerrit-client-change-Message_BinderImpl_GenCss_style-header"><div class="com-google-gerrit-client-change-Message_BinderImpl_GenCss_style-name">Jenkins</div> <div class="com-google-gerrit-client-change-Message_BinderImpl_GenCss_style-summary">Patch Set 11: Verified
+
+Build Successful 
+ 
+https://jenkins.openstack.org/job/gate-integration-tests-devstack-vm/2379/ : SUCCESS 
+https://jenkins.openstack.org/job/gate-nova-merge/1827/ : SUCCESS 
+https://jenkins.openstack.org/job/gate-nova-unittests/1482/ : SUCCESS 
+https://jenkins.openstack.org/job/gate-nova-pep8/3208/ : SUCCESS</div> <div class="com-google-gerrit-client-change-Message_BinderImpl_GenCss_style-date">Mar 9, 2012</div> <button type="button" class="com-google-gerrit-client-change-Message_BinderImpl_GenCss_style-reply" title="Reply to this message"><div></div></button></div> <div style="overflow: auto"> <div aria-hidden="true" style="display: NONE" stylename="com-google-gerrit-client-change-Message_BinderImpl_GenCss_style-comment"><p>Patch Set 11: Verified</p><p><span class="com-google-gwtexpui-safehtml-client-SafeHtmlCss-wikiPreFormat">Build Successful </span><br><span class="com-google-gwtexpui-safehtml-client-SafeHtmlCss-wikiPreFormat"> </span><br><span class="com-google-gwtexpui-safehtml-client-SafeHtmlCss-wikiPreFormat"><a href="https://jenkins.openstack.org/job/gate-integration-tests-devstack-vm/2379/" target="_blank" rel="nofollow">https://jenkins.openstack.org/job/gate-integration-tests-devstack-vm/2379/</a> : SUCCESS </span><br><span class="com-google-gwtexpui-safehtml-client-SafeHtmlCss-wikiPreFormat"><a href="https://jenkins.openstack.org/job/gate-nova-merge/1827/" target="_blank" rel="nofollow">https://jenkins.openstack.org/job/gate-nova-merge/1827/</a> : SUCCESS </span><br><span class="com-google-gwtexpui-safehtml-client-SafeHtmlCss-wikiPreFormat"><a href="https://jenkins.openstack.org/job/gate-nova-unittests/1482/" target="_blank" rel="nofollow">https://jenkins.openstack.org/job/gate-nova-unittests/1482/</a> : SUCCESS </span><br><span class="com-google-gwtexpui-safehtml-client-SafeHtmlCss-wikiPreFormat"><a href="https://jenkins.openstack.org/job/gate-nova-pep8/3208/" target="_blank" rel="nofollow">https://jenkins.openstack.org/job/gate-nova-pep8/3208/</a> : SUCCESS</span><br></p></div> <div style="display: none;" aria-hidden="true"></div> </div> </div></div><div class="com-google-gerrit-client-change-Message_BinderImpl_GenCss_style-messageBox com-google-gerrit-client-change-Message_BinderImpl_GenCss_style-closed"><img class="com-google-gerrit-client-change-Message_BinderImpl_GenCss_style-avatar" style="display: none;" aria-hidden="true"> <div class="com-google-gerrit-client-change-Message_BinderImpl_GenCss_style-contents"> <div class="com-google-gerrit-client-change-Message_BinderImpl_GenCss_style-header"><div class="com-google-gerrit-client-change-Message_BinderImpl_GenCss_style-name">Jenkins</div> <div class="com-google-gerrit-client-change-Message_BinderImpl_GenCss_style-summary">Change has been successfully merged into the git repository.</div> <div class="com-google-gerrit-client-change-Message_BinderImpl_GenCss_style-date">Mar 9, 2012</div> <button type="button" class="com-google-gerrit-client-change-Message_BinderImpl_GenCss_style-reply" title="Reply to this message"><div></div></button></div> <div style="overflow: auto"> <div aria-hidden="true" style="display: NONE" stylename="com-google-gerrit-client-change-Message_BinderImpl_GenCss_style-comment"><p>Change has been successfully merged into the git repository.</p></div> <div style="display: none;" aria-hidden="true"></div> </div> </div></div></div></div></div></div></div></div></div><div style="clear: both"><div id="gerrit_footer"></div><div id="gerrit_btmmenu"><span class="gwt-InlineHTML">Powered by <a href="http://code.google.com/p/gerrit/" target="_blank">Gerrit Code Review</a> (2.11.4-22-ge0c0f29)</span><span class="gwt-InlineLabel"> | </span><a class="" href="http://docs.openstack.org/infra/system-config/project.html" target="_blank">Get Help</a><span class="gwt-InlineLabel"> | </span><span class="gwt-InlineLabel">Press '?' to view keyboard shortcuts</span></div></div><iframe id="__gwt_historyFrame" src="javascript:''" style="position:absolute;width:0;height:0;border:0" tabindex="-1"></iframe><script language="javascript" src="gerrit_ui/gerrit_ui.nocache.js?content=56037243b8d9765dbdd3aff2ab6dd074" type="text/javascript"></script><input id="toggleci" class="gwt-Button" value="Toggle CI" type="button"><iframe src="javascript:&quot;&quot;" id="gerrit_ui" style="position: absolute; width: 0px; height: 0px; border: medium none; left: -1000px; top: -1000px;" tabindex="-1"></iframe><span class="rpcStatus" style="display: none;" aria-hidden="true">Working ...</span><div style="display: none;" aria-hidden="true"></div><div style="display: none;" aria-hidden="true"></div></body></html>

@@ -1,0 +1,1390 @@
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"><title>status:merged | review.openstack Code Review</title><meta content="locale=en_US" name="gwt:property"><style id="gerrit_sitecss" type="text/css">
+body {color: #000 !important; background: url("static/openstack-page-bkg.jpg") no-repeat scroll 0 0 white !important; position: static}
+a,a:visited {color: #264D69 !important; text-decoration: none;}
+a:hover {color: #000 !important; text-decoration: underline}
+
+a.gwt-InlineHyperlink {background: none !important}
+
+#gerrit_header {display: block !important; position: relative; top: -60px; margin-bottom: -60px; width: 200px; padding-left: 17px}
+#gerrit_header h1 {font-family: 'PT Sans', sans-serif; font-weight: normal; letter-spacing: -1px}
+
+#gerrit_topmenu {background: none; position:relative; top: 0px; left: 200px; margin-right: 200px}
+
+#gerrit_topmenu tbody tr td table {border: 0}
+
+#gerrit_topmenu tbody tr td table.gwt-TabBar {color: #353535; border-bottom: 1px solid #C5E2EA;}
+#gerrit_topmenu .gwt-Button {padding: 3px 6px}
+.gwt-TabBarItem-selected {color: #CF2F19 !important; border-bottom: 3px solid #CF2F19;}
+.gwt-TabBarItem {color: #353535; border-right: 0 !important}
+.gwt-TabBar .gwt-TabBarItem, .gwt-TabBar .gwt-TabBarRest, .gwt-TabPanelBottom {background: 0 !important;}
+
+#gerrit_topmenu .gwt-TextBox {width: 250px}
+
+#change_infoTable {
+  border-collapse: collapse;
+}
+
+#change_infoTable th {
+  padding: 2px 4px 2px 6px;
+  background-color: #eef3f5;
+  font-style: italic;
+  text-align: left;
+}
+
+#change_infoTable td {
+  padding: 2px 4px 2px 6px;
+  border-bottom: 1px solid #eef3f5;
+  border-right: 1px solid #eef3f5;
+}
+
+#change_infoTable tr:last-child td {
+  border: none;
+}
+
+.com-google-gerrit-client-change-ChangeScreen_BinderImpl_GenCss_style-cs2 {
+  padding-left: 10px;
+  padding-right: 10px;
+}
+
+/* Section headers */
+.com-google-gerrit-client-change-ChangeScreen_BinderImpl_GenCss_style-cs2
+    .com-google-gerrit-client-change-ChangeScreen_BinderImpl_GenCss_style-headerLine,
+.com-google-gerrit-client-change-ChangeScreen_BinderImpl_GenCss_style-cs2
+    .com-google-gerrit-client-change-ChangeScreen_BinderImpl_GenCss_style-sectionHeader {
+  margin-top: 10px !important;
+  margin-bottom: 10px !important;
+}
+
+/* Commit message */
+.com-google-gerrit-client-change-ChangeScreen_BinderImpl_GenCss_style-cs2
+    .com-google-gerrit-client-change-CommitBox_BinderImpl_GenCss_style-text::first-line {
+  font-weight: bold !important;
+}
+
+/* Commit metadata */
+.com-google-gerrit-client-change-ChangeScreen_BinderImpl_GenCss_style-cs2
+    .com-google-gerrit-client-change-ChangeScreen_BinderImpl_GenCss_style-commitColumn
+    .com-google-gerrit-client-change-CommitBox_BinderImpl_GenCss_style-header th {
+  padding: 2px 4px 2px 6px;
+  background-color: #eef3f5;
+  font-style: italic;
+  text-align: left;
+}
+
+.com-google-gerrit-client-change-ChangeScreen_BinderImpl_GenCss_style-cs2
+    .com-google-gerrit-client-change-ChangeScreen_BinderImpl_GenCss_style-commitColumn
+    .com-google-gerrit-client-change-CommitBox_BinderImpl_GenCss_style-header td {
+  border-bottom: 1px solid #eef3f5;
+  padding: 2px 4px 2px 6px;
+}
+
+.com-google-gerrit-client-change-ChangeScreen_BinderImpl_GenCss_style-cs2
+    .com-google-gerrit-client-change-ChangeScreen_BinderImpl_GenCss_style-commitColumn
+    .com-google-gerrit-client-change-CommitBox_BinderImpl_GenCss_style-header td:last-child {
+  border-right: 1px solid #eef3f5;
+}
+
+/* increase the middle info column to fill empty space (for wide
+monitors), but ensure there is a sufficient lower bound to kick in
+horiz scroll bar. This will relieve the preasure on the hideci test
+results. */
+.com-google-gerrit-client-change-ChangeScreen_BinderImpl_GenCss_style-infoColumn {
+    width: 100% !important;
+    min-width: 400px;
+}
+
+/* Review history */
+.com-google-gerrit-client-change-ChangeScreen_BinderImpl_GenCss_style-cs2
+    .com-google-gerrit-client-change-Message_BinderImpl_GenCss_style-name {
+  font-weight: bold !important;
+}
+.com-google-gerrit-client-change-ChangeScreen_BinderImpl_GenCss_style-cs2
+    .com-google-gerrit-client-change-Message_BinderImpl_GenCss_style-messageBox {
+  width: inherit;
+  max-width: 1168px;
+}
+
+.comment_test_name {
+  display: inline-block;
+  *display: inline;
+  *zoom: 1;
+  width: auto !important;
+  width: 25em;
+  min-width: 20em;
+  padding-bottom: 2pt;
+}
+
+.comment_test_result {
+}
+
+.result_SUCCESS {
+    color: #007f00;
+}
+.result_FAILURE {
+    color: #cf2f19;
+}
+.result_UNSTABLE, .result_WARNING {
+    color: #e39f00;
+}
+.result_LOST {
+    color: #e39f00;
+}
+li.comment_test {list-style-type: none; }
+
+/* this is for support of 'Display Person Name In Review Category' */
+.cAPPROVAL {
+    max-width: 100px;
+    overflow: hidden;
+}
+/* fixes to make this like old gerrit */
+.changeTable td.dataCell {
+    height: 1em;
+}
+
+/* don't make the non voting stand out more than the voting */
+table.infoTable td.notVotable,
+.changeTable td.dataCell.labelNotApplicable {
+    background: inherit;
+}
+
+.test_result_table {
+  border-collapse: collapse;
+}
+
+.test_result_table tr {
+  border-left: 1px solid #eef3f5;
+  border-right: 1px solid #eef3f5;
+}
+
+.test_result_table td.header {
+  background-color: #eef3f5;
+}
+
+.test_result_table td {
+  padding: 2px 4px 2px 6px;
+  border: 1px solid #eef3f5;
+}
+
+.addMemberTextBox {
+    width: 20em;
+}
+
+/* css attribute selector to make -1s show up red in new screen */
+[title="Doesn't seem to work"],
+[title="This patch needs further work before it can be merged"] {
+    color: red;
+}
+
+</style><link href="favicon.ico" rel="shortcut icon" type="image/x-icon"><link rel="stylesheet" href="https://review.openstack.org/gerrit_ui/gwt/chrome/7CF1DE6EF2AABFEFAE4D469A16D60071.cache.css"><script src="https://review.openstack.org/gerrit_ui/0C40ED00DB8DEEA20F0CBEAB2290317F.cache.js"></script><style>/* @external gwt-Button; */
+/* @external gwt-DialogBox dialogMiddleCenter; */
+/* @external gwt-TabBar; */
+/* @external gwt-TabBarFirst; */
+/* @external gwt-TabBarItem; */
+/* @external gwt-TabBarItem-selected; */
+/* @external gwt-TabBarRest; */
+/* @external gwt-TabPanel; */
+/* @external gwt-TabPanelBottom; */
+/* CssEval */
+/* CssEval */
+/* CssEval */
+/* CssEval */
+body, .gwt-DialogBox .dialogMiddleCenter {
+  background : #ffffff;
+  color : #264d69;
+}
+.gwt-Button {
+  white-space : nowrap;
+}
+.gwt-TabBar .gwt-TabBarItem, .gwt-TabBar .gwt-TabBarRest, .gwt-TabPanelBottom {
+  background : transparent;
+}
+.gwt-TabBar {
+  border-bottom : 1px solid black;
+}
+.gwt-TabBar .gwt-TabBarFirst {
+  display : none;
+}
+.gwt-TabBar .gwt-TabBarItem {
+  color : #353535;
+  margin : 0;
+  background : #eef3f5;
+  padding-top : 0.5em;
+  padding-bottom : 1px;
+  padding-left : 1em;
+  padding-right : 1em;
+  border-bottom : 3px solid transparent;
+  border-right : 0;
+}
+.gwt-TabBar .gwt-TabBarItem-selected {
+  color : #900;
+  background : #d1e6ea;
+  border-bottom-color : #900;
+}
+.gwt-TabBar .gwt-TabBarRest {
+  background : #eef3f5;
+  padding-top : 0.5em;
+  padding-bottom : 1px;
+}
+.gwt-TabBar .gwt-TabPanelBottom {
+  background : #eef3f5;
+  border-top : 1px solid black;
+  border-left : none;
+  border-right : none;
+  border-bottom : none;
+  padding : 1px;
+}
+.gwt-TabPanel .gwt-TabPanelBottom {
+  border : none;
+}
+/* @external *; */
+/* CssDef */
+/* CssDef */
+/* CssDef */
+/* CssDef */
+/* CssEval */
+/* CssEval */
+/* CssEval */
+/* CssEval */
+/* CssEval */
+/* CssEval */
+/* CssEval */
+/* CssEval */
+.greenCheckClass {
+  height : 15px;
+  width : 15px;
+  overflow : hidden;
+  background : url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAA8AAAAPCAYAAAA71pVKAAAAh0lEQVR42mNgGDJgzu2Z/3uudvwnWWPUoVDSNb7/+e6/5Tbj/9XnysnTCLKVZKeCNGpuUPoPMoRkP3IsYfh/7u0Z/Bq99rig2AAKGJBGggEEMhmkEab43ue7YDbIyUQ5EWQASIPEKsH/IFcQ5VxsfgTh7BNppAXQ3ue74baDnE5WKiJLI6kAAN+fdJsknylQAAAAAElFTkSuQmCC") -0px -0px  no-repeat;
+}
+.gerritTopMenu {
+  font-size : 9pt;
+  padding-left : 5px;
+  padding-right : 5px;
+  background : transparent;
+}
+body, table td, select {
+  font-family : sans-serif;
+}
+.gerritBody {
+  font-size : small;
+  padding-left : 5px;
+  padding-right : 5px;
+}
+a, a:visited {
+  color : #0654ac;
+  text-decoration : none;
+}
+a:hover {
+  color : #0654ac;
+  text-decoration : underline;
+}
+#gerrit_btmmenu {
+  clear : both;
+  color : #a0adcc;
+  text-align : right;
+  padding-right : 10px;
+}
+.version a, .version a:visited, .version a:hover {
+  color : #2a5db0;
+}
+.gwt-Button {
+  color : #000;
+}
+.accountLinkPanel {
+  display : inline;
+}
+.accountLinkPanel img {
+  margin-right : 0.2em;
+  position : relative;
+  top : 2px;
+  height : 16px !important;
+  width : 16px;
+}
+.accountLinkPanel a {
+  position : relative;
+  top : -1px;
+}
+.inputFieldTypeHint {
+  color : grey;
+}
+.smallHeading {
+  margin-top : 5px;
+  font-weight : bold;
+}
+.link {
+  cursor : pointer;
+}
+.menuScreenMenuBar {
+  background : #ffffff;
+  padding-top : 0.5em;
+  padding-bottom : 10em;
+  padding-left : 0.5em;
+  padding-right : 0.5em;
+  border-right : 1px solid #000;
+  margin-right : 0.5em;
+}
+.menuScreenMenuBar .menuItem {
+  white-space : nowrap;
+  display : block;
+  border-right : none;
+  padding : 0.2em;
+}
+.menuScreenMenuBar .menuItem.activeRow, .menuItem.activeRow {
+  background : #d1e6ea;
+}
+.commentPanelHeader {
+  cursor : pointer;
+  width : 100%;
+}
+.commentPanelSummary {
+  color : #777;
+  white-space : nowrap;
+  overflow : hidden;
+}
+.commentPanelAuthorCell {
+  font-weight : bold;
+  white-space : nowrap;
+}
+.commentPanelSummaryCell, .topmenu, .topmenuTDglue {
+  width : 100%;
+}
+.commentPanelDateCell {
+  white-space : nowrap;
+}
+.commentPanelContent {
+  padding-bottom : 1px;
+}
+.commentPanelMessage {
+  font-size : small;
+  padding-left : 0.5em;
+  padding-right : 0.5em;
+}
+.commentPanelMessage p {
+  margin-top : 0;
+  margin-bottom : 0;
+  padding-top : 0.5em;
+  padding-bottom : 0.5em;
+  max-height : 100000px;
+}
+.commentPanelButtons {
+  margin-left : 0.5em;
+}
+.commentPanelButtons .gwt-Button {
+  margin-right : 2em;
+  font-size : 7pt;
+  padding : 1px;
+}
+.commentEditorPanel textarea {
+  margin-left : 0.5em;
+  font-size : small;
+  font-family : sans-serif;
+}
+.linkMenuBar {
+  font-size : 9pt;
+  display : inline;
+  white-space : nowrap;
+  padding-left : 6px;
+}
+.menuItem {
+  padding-left : 5px;
+  padding-right : 5px;
+}
+.linkMenuItemNotLast {
+  border-right : 1px solid #000;
+}
+.topmenuTDmenu {
+  vertical-align : top;
+}
+.topmenuMenuLeft {
+  width : 300px;
+  font-size : 9pt;
+  padding-top : 5px;
+  padding-left : 5px;
+  padding-right : 5px;
+  background : none;
+  position : relative;
+  top : 0;
+}
+.topmenuMenuLeft tbody tr td table {
+  border : 0;
+}
+.topmenuMenuLeft tbody tr td table.gwt-TabBar {
+  border-bottom : 1px solid #ddd;
+}
+.topmenuMenuLeft .gwt-TextBox {
+  width : 250px;
+}
+.topmenuMenuLeft .gwt-Button {
+  padding : 3px 6px;
+}
+.topmenuMenuLeft .gwt-TabBarFirst {
+  display : none;
+}
+.topmenuMenuLeft .gwt-TabBarItem {
+  margin : 0;
+  background : transparent;
+  padding-top : 0;
+  padding-bottom : 1px;
+  padding-left : 1em;
+  padding-right : 1em;
+}
+.topmenuMenuLeft .gwt-TabBarRest {
+  background : transparent;
+  padding-top : 0;
+}
+.topmenuMenuLeft .gwt-TabPanelBottom {
+  background : transparent;
+  border-top : none;
+  border-left : none;
+  border-right : none;
+  border-bottom : none;
+  padding : 1px;
+}
+.topmenuMenuLeft .menuItem {
+  padding-left : 1em;
+  padding-right : 1em;
+  border-right : none;
+}
+.topmenuMenuRight {
+  float : right;
+  text-align : right;
+}
+.menuBarUserName {
+  padding-left : 5px;
+  padding-right : 5px;
+  white-space : nowrap;
+}
+.menuBarUserNameAvatar {
+  vertical-align : middle;
+}
+.menuBarUserNameFocusPanel {
+  display : inline;
+}
+.menuBarUserNamePanel {
+  display : inline;
+  cursor : pointer;
+  font-weight : bold;
+}
+.userInfoPopup {
+  border : 1px solid #000;
+  background : #fff;
+  box-shadow : 3px 3px 5px #888;
+  z-index : 200;
+}
+.searchPanel {
+  white-space : nowrap;
+  display : inline;
+}
+.searchPanel .gwt-TextBox {
+  font-size : 9pt;
+}
+.searchPanel .gwt-Button {
+  font-size : 9pt;
+  margin-left : 2px;
+  padding : 3px 6px;
+}
+.suggestBoxPopup {
+  z-index : 200;
+}
+.rpcStatus {
+  position : fixed;
+  top : 6px;
+  left : 50%;
+  padding-top : 4px;
+  padding-bottom : 4px;
+  padding-left : 10px;
+  padding-right : 10px;
+  text-align : center;
+  font-weight : bold;
+  background : #fff1a8;
+  z-index : 200;
+}
+.errorDialog {
+  background : none;
+  border : none;
+  padding : 10px;
+  width : 600px;
+  color : #ffffff;
+  font-size : 15px;
+  font-family : verdana;
+  z-index : 200;
+}
+.errorDialogGlass {
+  opacity : 0.75;
+  z-index : 200;
+}
+.errorDialogTitle {
+  font-size : 30px;
+  font-weight : bold;
+  margin-bottom : 15px;
+}
+.errorDialogErrorType {
+  font-weight : bold;
+  white-space : nowrap;
+  margin-bottom : 15px;
+}
+.errorDialogButtons {
+  width : 100%;
+  margin-top : 15px;
+}
+.errorDialog a, .errorDialog a:visited, .errorDialog a:hover {
+  color : #fff;
+  font-weight : bold;
+  font-size : 15px;
+  font-family : verdana;
+}
+.loadingPluginsDialog {
+  background : #fff;
+  color : #000;
+  width : auto;
+}
+.screenHeader {
+  white-space : nowrap;
+  font-size : 16pt;
+  margin : 3px 0 8px;
+  text-overflow : ellipsis;
+  overflow : hidden;
+}
+.changeTable {
+  border-collapse : separate;
+  border-spacing : 0;
+}
+.changeTable tr:nth-child(even) {
+  background : #f5f5ff;
+}
+.changeTable tr:nth-child(odd) {
+  background : #ffffff;
+}
+.changeTable .iconCell {
+  width : 1px;
+  padding : 0;
+  vertical-align : middle;
+  border-bottom : 1px solid #eef3f5;
+}
+.changeTable .changeTypeCell {
+  width : 1px;
+  padding-left : 5px;
+  padding-right : 5px;
+  border-right : 1px solid #eef3f5;
+  border-bottom : 1px solid #eef3f5;
+  vertical-align : top;
+}
+.changeTable .commentCell {
+  text-align : right;
+  font-weight : bold;
+  white-space : nowrap;
+}
+.changeTable .commentCell span.drafts {
+  color : #f55;
+}
+.changeTable .patchCellReverseDiff {
+  color : red;
+}
+.changeTable .patchSizeCell {
+  text-align : right;
+  white-space : nowrap;
+}
+.changeTable td.noborder {
+  border : none;
+}
+.changeTable .filePathCell, .changeTable .diffLinkCell {
+  white-space : nowrap;
+}
+.changeTable .sourceFilePath {
+  font-style : italic;
+  font-size : 9pt;
+}
+.changeTable .leftMostCell {
+  border-left : 1px solid #eef3f5;
+}
+.changeTable .topMostCell {
+  border-top : 1px solid #eef3f5;
+}
+.changeTable .dataCell {
+  padding-left : 5px;
+  padding-right : 5px;
+  border-right : 1px solid #eef3f5;
+  border-bottom : 1px solid #eef3f5;
+  vertical-align : middle;
+  height : 20px;
+}
+.changeTable .dataCellHidden {
+  display : none;
+}
+.changeTable a.gwt-InlineHyperlink, .changeTable a.gwt-Anchor {
+  color : #222 !important;
+}
+.changeTable .changeSize {
+  height : 10px;
+  display : inline-block;
+  opacity : 0.6;
+}
+.accountDashboard.changeTable tr {
+  color : #444;
+}
+.accountDashboard.changeTable tr a {
+  color : #444;
+  text-decoration : none;
+}
+.accountDashboard.changeTable .needsReview, .accountDashboard.changeTable .needsReview a {
+  font-weight : bold;
+  color : #264d69;
+}
+.changeTable .activeRow, .accountDashboard.changeTable .activeRow, .accountDashboard.changeTable .activeRow a {
+  background : #d1e6ea !important;
+}
+.changeTable .cSIZE {
+  width : 70px;
+  text-align : right;
+}
+.changeTable .cSUBJECT div {
+  text-overflow : ellipsis;
+  overflow : hidden;
+  white-space : nowrap;
+}
+.changeTable .cOWNER, .changeTable .cSTATUS {
+  white-space : nowrap;
+}
+.changeTable .cLastUpdate {
+  white-space : nowrap;
+  text-align : right;
+  width : 1em;
+}
+.changeTable .groupName, .changeTable .dataCell.singleLine {
+  white-space : nowrap;
+}
+.changeTable .cAPPROVAL {
+  width : 0.5em;
+  text-align : center;
+}
+.changeTable .dataCell.negscore {
+  color : red;
+}
+.changeTable .dataCell.posscore {
+  color : #08a400;
+}
+.changeTable .dataCell.labelNotApplicable {
+  background : #f5f5f5;
+}
+.changeTable .iconHeader {
+  border-top : 1px solid #ffffff;
+  border-bottom : 1px solid #ffffff;
+  background-color : #eef3f5;
+}
+.changeTable .dataHeader {
+  border : 1px solid #ffffff;
+  padding : 2px 6px 1px;
+  background-color : #eef3f5;
+  font-style : italic;
+  white-space : nowrap;
+  color : #264d69;
+}
+.changeTable .dataHeaderHidden {
+  display : none;
+}
+.changeTable .sectionHeader {
+  border-top : 8px solid #ffffff;
+  padding : 2px 6px 1px;
+  background-color : #eef3f5;
+  white-space : nowrap;
+  font-weight : bold;
+  color : #264d69;
+}
+.changeTable .emptySection {
+  border-left : 1px solid #eef3f5;
+  border-right : 1px solid #eef3f5;
+  border-bottom : 1px solid #eef3f5;
+  font-style : italic;
+  padding-left : 25px;
+}
+.changeTablePrevNextLinks {
+  float : right;
+  padding-right : 5px;
+}
+.changeTablePrevNextLinks td {
+  width : 5em;
+  text-align : right;
+}
+.changeTablePrevNextLinks .gwt-Hyperlink {
+  font-size : 9pt;
+  color : #2a5db0;
+}
+.reviewedPanelBottom {
+  float : right;
+  font-size : small;
+}
+.linkPanel img {
+  padding-right : 3px;
+}
+.patchContentTable {
+  width : 100%;
+  border-collapse : separate;
+  border-spacing : 0;
+  background : #fff;
+  color : #000;
+}
+.patchContentTable td {
+  padding-top : 0;
+  padding-bottom : 0;
+  font-size : 9pt;
+  font-family : monospace;
+}
+.patchContentTable .iconCell {
+  width : 1px;
+  padding : 0;
+  vertical-align : middle;
+}
+.patchContentTable .diffText {
+  white-space : pre;
+  padding-left : 0.2em;
+  border-left : thin solid #b0bdcc;
+}
+.patchContentTable .diffTextFileHeader, .patchContentTable .diffTextNoLF {
+  color : grey;
+  font-weight : bold;
+}
+.patchContentTable .diffTextHunkHeader {
+  color : blue;
+}
+.patchContentTable .diffTextDELETE {
+  color : #a00000;
+}
+.patchContentTable .diffTextCONTEXT {
+  color : grey;
+}
+.patchContentTable .diffTextINSERT {
+  color : #006000;
+}
+.patchContentTable tr.commentHolder {
+  background : #e5ecf9;
+}
+.patchContentTable tr.commentHolder .iconCell {
+  background : #fff;
+}
+.patchContentTable tr.commentHolder .iconCellOfFileCommentRow {
+  background : #eef3f5;
+}
+.patchContentTable td.commentHolder {
+  padding-left : 0;
+  padding-right : 0;
+  border-top : 1px solid #000;
+  border-right : 1px solid #000;
+}
+.patchContentTable td.commentHolderLeftmost {
+  border-left : 1px solid #000;
+}
+.patchContentTable td.commentHolder.commentPanelLast {
+  border-bottom : 1px solid #000;
+}
+.patchContentTable .commentPanel, .patchContentTable .commentPanel td {
+  font-family : sans-serif;
+}
+.patchContentTable .commentPanelMessage {
+  padding-left : 1px;
+  padding-right : 1px;
+  white-space : normal;
+}
+.patchContentTable .commentPanelButtons, .patchContentTable .commentPanel textarea {
+  margin-left : 1px;
+}
+.lineNumber {
+  padding-left : 0.2em;
+  white-space : pre;
+  width : 1.5em;
+  text-align : center;
+  padding-right : 0.2em;
+  background : #fff;
+  border-bottom : 1px solid #fff;
+}
+.lineNumber.rightBorder {
+  border-right : thin solid #b0bdcc;
+}
+.lineNumber a {
+  color : #888;
+  text-decoration : none;
+}
+.patchContentTable td.fileColumnHeader {
+  background : #eef3f5;
+  font-family : sans-serif;
+  font-weight : bold;
+  text-align : center;
+}
+.patchContentTable td.fileColumnHeader.unifiedTableHeader {
+  text-align : left;
+}
+.lineNumber.fileColumnHeader {
+  border-bottom : 1px solid #eef3f5;
+}
+.fileLine {
+  padding-left : 0;
+  padding-right : 0;
+  white-space : pre;
+  border-left : thin solid #b0bdcc;
+}
+.fileLineDELETE, .fileLineDELETE .wdc {
+  background : #fee;
+  border-bottom : 1px solid #fee;
+}
+.fileLineINSERT, .fileLineINSERT .wdc {
+  background : #dfd;
+  border-bottom : 1px solid #dfd;
+}
+.patchContentTable .wdd {
+  border-bottom : 1px solid #faa;
+}
+.patchContentTable .wdi {
+  border-bottom : 1px solid #9f9;
+}
+.patchContentTable td.cellsNextToFileComment {
+  background : #eef3f5;
+  border-top : #eef3f5;
+  border-bottom : #eef3f5;
+}
+.patchContentTable .activeRow .iconCell, .patchContentTable .activeRow .lineNumber {
+  background : #d1e6ea;
+  border-bottom : 1px solid blue;
+}
+.patchContentTable .activeRow .fileLine, .patchContentTable .activeRow .diffText, .patchContentTable .activeRow td.commentHolder, .patchContentTable .activeRow .wdc, .patchContentTable .activeRow .wdd, .patchContentTable .activeRow .wdi, .patchContentTable .activeRow .iconCellOfFileCommentRow, .patchContentTable .activeRow td.commentHolder.commentPanelLast {
+  border-bottom : 1px solid blue;
+}
+.patchContentTable .fileCommentBorder .iconCellOfFileCommentRow, .patchContentTable .fileCommentBorder .lineNumber, .patchContentTable .fileCommentBorder .diffText {
+  height : 20px;
+  background : #eef3f5;
+  border-bottom : 1px solid #eef3f5;
+}
+.changeScreenStarIcon {
+  margin-right : 5px;
+}
+.changeScreenDescription, .changeScreenDescription textarea {
+  white-space : pre;
+  font-family : monospace;
+  font-size : 9pt;
+}
+.changeScreenDescription p {
+  margin-top : 0;
+  padding-top : 0.5em;
+}
+.avatarInfoPanel {
+  margin-right : 10px;
+}
+.avatarInfoPanel td {
+  text-align : center;
+}
+.infoBlock {
+  border-collapse : collapse;
+  border-spacing : 0;
+}
+.infoBlock td {
+  padding : 2px 4px 2px 6px;
+  border-right : 1px solid #eef3f5;
+  border-bottom : 1px solid #eef3f5;
+  text-align : left;
+  white-space : nowrap;
+}
+.infoBlock td td {
+  padding-left : 0;
+  border-right : 0;
+}
+.infoBlock td.topmost {
+  border-top : 1px solid #eef3f5;
+}
+.infoBlock td.header {
+  background-color : #eef3f5;
+  font-style : italic;
+  text-align : right;
+}
+.infoBlock td.noborder {
+  border-right : none;
+}
+.infoBlock td.bottomheader {
+  border-bottom : 1px solid #eef3f5;
+}
+.patchSetActions {
+  margin-bottom : 10px;
+}
+.patchSetActions .gwt-Button {
+  margin-right : 30px;
+  font-size : 8pt;
+}
+.downloadBox {
+  min-width : 580px;
+  margin : 5px;
+  margin-right : 15px;
+}
+.downloadBoxTable {
+  border-spacing : 0;
+  width : 100%;
+}
+.downloadBoxTableCommandColumn {
+  text-align : left;
+  font-weight : normal;
+  white-space : nowrap;
+  max-height : 18px;
+  width : 80px;
+  padding-right : 5px;
+}
+.downloadBoxSpacer {
+  margin-left : 5px;
+  margin-right : 5px;
+}
+.downloadBoxScheme, .downloadBoxCopyLabel div {
+  float : right;
+}
+.downloadBoxCopyLabel {
+  font-size : smaller;
+  font-family : monospace;
+}
+.downloadBoxCopyLabel span {
+  width : 500px;
+  white-space : nowrap;
+  display : inline-block;
+  overflow : hidden;
+  text-overflow : ellipsis;
+}
+.downloadBoxCopyLabel .gwt-TextBox {
+  padding : 0;
+  margin : 0;
+  border : 0;
+  max-height : 18px;
+  width : 500px;
+}
+.downloadLinkHeader {
+  background : #eef3f5;
+  white-space : nowrap;
+  border-bottom : 1px solid #000;
+}
+.downloadLinkHeaderGap {
+  margin-left : 5em;
+}
+.downloadLinkList {
+  display : inline;
+  white-space : nowrap;
+}
+.downloadLink {
+  color : #000;
+  text-decoration : none;
+  white-space : nowrap;
+  background : #eef3f5;
+  border-right : 1px solid #000;
+  padding-left : 0.5em;
+  padding-right : 0.5em;
+}
+a:hover.downloadLink {
+  color : #000;
+}
+.downloadLink_Active {
+  background : #d1e6ea;
+}
+.downloadLinkCopyLabel {
+  white-space : pre;
+  font-family : monospace;
+  font-size : 12px;
+  margin-left : 0.5em;
+  margin-right : 0.5em;
+}
+.downloadLinkCopyLabel .gwt-TextBox {
+  width : 30em;
+}
+.unifiedTable {
+  width : 100%;
+  border : 1px solid #b0bdcc;
+  display : table;
+}
+.sideBySideScreenLinkTable {
+  width : 100%;
+}
+.sideBySideScreenLinkTable td {
+  width : 33%;
+}
+.patchNoDifference {
+  margin-top : 1em;
+  margin-bottom : 2em;
+  margin-left : 1em;
+  margin-right : 5em;
+  font-weight : bold;
+  font-size : medium;
+  font-family : sans-serif;
+}
+.patchHistoryTable {
+  width : auto;
+  margin-bottom : 10px;
+}
+.patchHistoryTable .dataCell, .usernameField {
+  white-space : nowrap;
+}
+.patchHistoryTablePatchSetHeader {
+  text-align : right;
+}
+.accountUsername, .accountPassword {
+  font-family : monospace;
+  font-size : small;
+}
+.sshKeyPanelEncodedKey {
+  white-space : nowrap;
+  text-overflow : ellipsis;
+  overflow : hidden;
+  font-family : monospace;
+  font-size : small;
+}
+.sshKeyPanelInvalid, .identityUntrustedExternalId {
+  white-space : nowrap;
+  color : red;
+  font-weight : bold;
+}
+.accountInfoBlock {
+  margin-bottom : 10px;
+}
+.accountInfoBlock .gwt-Button {
+  margin-left : 10px;
+}
+.accountContactPrivacyDetails {
+  margin-left : 10px;
+  margin-top : 5px;
+  margin-bottom : 5px;
+  width : 40em;
+}
+.accountContactOnFile {
+  margin-left : 10px;
+  margin-top : 5px;
+  margin-bottom : 5px;
+  font-weight : bold;
+}
+.addWatchPanel {
+  margin-top : 10px;
+  padding : 5px 5px 5px 5px;
+}
+.watchedProjectFilter {
+  margin-left : 1em;
+  color : grey;
+}
+.addBranch, .addSshKeyPanel {
+  margin-top : 10px;
+  background-color : #eef3f5;
+  padding : 5px 5px 5px 5px;
+}
+.addSshKeyPanel ol {
+  margin-top : 0;
+  margin-bottom : 5px;
+}
+.addSshKeyPanel td {
+  width : 100%;
+}
+.createProjectPanel {
+  margin-bottom : 10px;
+  background-color : #eef3f5;
+  padding : 5px 5px 5px 5px;
+}
+.sshHostKeyPanel {
+  margin-top : 10px;
+  border : 1px solid #eef3f5;
+  padding : 5px 5px 5px 5px;
+}
+.sshHostKeyPanelHeading {
+  white-space : nowrap;
+  margin-top : 5px;
+  margin-left : 1em;
+}
+.sshHostKeyPanelFingerprintData {
+  margin-left : 2em;
+  white-space : nowrap;
+  font-family : monospace;
+  font-size : small;
+}
+.sshHostKeyPanelKnownHostEntry {
+  margin-left : 2em;
+  white-space : nowrap;
+  font-family : monospace;
+  font-size : small;
+  width : 80em;
+}
+.contributorAgreementButton {
+  font-weight : bold;
+}
+.contributorAgreementShortDescription {
+  margin-left : 20px;
+  margin-right : 20px;
+  margin-bottom : 10px;
+  padding : 5px 5px 5px 5px;
+  border : 1px solid #b0bdcc;
+}
+.contributorAgreementAlreadySubmitted {
+  margin-left : 20px;
+  margin-right : 20px;
+  padding : 5px 5px 5px 5px;
+  color : red;
+}
+.contributorAgreementLegal {
+  margin-left : 20px;
+  margin-right : 20px;
+  padding : 5px 5px 5px 5px;
+  border : 1px solid #b0bdcc;
+}
+.registerScreenSection {
+  margin-top : 2em;
+}
+.registerScreenExplain {
+  margin-left : 10px;
+  margin-top : 5px;
+  margin-bottom : 5px;
+  width : 45em;
+}
+.registerScreenNextLinks {
+  margin-top : 2em;
+}
+.registerScreenNextLinks .gwt-InlineHyperlink {
+  margin-left : 2em;
+  white-space : nowrap;
+}
+.registerScreenSection .changeTable, .registerScreenSection .sshHostKeyPanel .sshHostKeyPanelKnownHostEntry {
+  width : 45em;
+}
+.registerScreenSection .addSshKeyPanel {
+  background : none;
+}
+.registerScreenSection .sshHostKeyPanel {
+  border : none;
+}
+.projectActions {
+  margin-bottom : 10px;
+}
+.commentedActionDialog .gwt-DisclosurePanel .header td {
+  font-weight : bold;
+  white-space : nowrap;
+}
+.commentedActionDialog .smallHeading {
+  font-size : small;
+  font-weight : bold;
+  white-space : nowrap;
+}
+.commentedActionDialog .commentedActionMessage {
+  margin-left : 10px;
+  background : #eef3f5;
+  padding : 5px 5px 5px 5px;
+}
+.commentedActionDialog .commentedActionMessage textarea {
+  font-size : small;
+}
+.commentedActionDialog .gwt-Hyperlink {
+  white-space : nowrap;
+  font-size : small;
+}
+.commentedActionDialog .rebaseContentPanel {
+  margin-left : 10px;
+  background : #eef3f5;
+  padding : 5px 5px 5px 5px;
+  width : 300px;
+}
+.commentedActionDialog .rebaseContentPanel .rebaseSuggestBox {
+  font-size : small;
+  width : 100%;
+}
+.patchBrowserPopup {
+  opacity : 0.9;
+}
+.patchBrowserPopupBody {
+  background : #ffffff;
+  margin : 4px;
+  opacity : 0.9;
+}
+.groupUUIDPanel {
+  margin-bottom : 10px;
+}
+.groupDescriptionPanel, .groupNamePanel {
+  margin-bottom : 3px;
+}
+.groupNameTextBox {
+  margin-bottom : 2px;
+}
+.groupOptionsPanel {
+  margin-bottom : 5px;
+}
+.groupOwnerPanel {
+  margin-bottom : 3px;
+}
+.groupOwnerTextBox, .groupMembersTable, .groupIncludesTable {
+  margin-bottom : 2px;
+}
+.addMemberTextBox {
+  margin-right : 2px;
+  margin-bottom : 2px;
+}
+.specialBranchIconCell {
+  background : #ececec;
+  border-bottom : 1px solid #fff;
+  border-top : 1px solid #fff;
+}
+.specialBranchDataCell {
+  background : #ececec;
+  border : 1px solid #fff;
+  font-style : italic;
+  padding : 2px 6px 1px;
+}
+.editHeadButton {
+  float : right;
+  cursor : pointer;
+}
+.branchTablePrevNextLinks {
+  position : relative;
+}
+.branchTablePrevNextLinks td {
+  float : left;
+  width : 5em;
+  text-align : left;
+  padding-right : 10px;
+}
+.branchTablePrevNextLinks .gwt-Hyperlink {
+  font-size : 9pt;
+  color : #2a5db0;
+}
+.projectFilterPanel {
+  margin-bottom : 10px;
+}
+.projectFilterPanel input {
+  width : 200px;
+}
+.projectFilterLabel {
+  margin-right : 5px;
+}
+.projectNameColumn {
+  min-width : 300px;
+}
+.maxObjectSizeLimitEffectiveLabel, .pluginProjectConfigInheritedValue {
+  padding-top : 5px;
+  padding-left : 5px;
+}
+.stringListPanelButtons {
+  margin-left : 0.5em;
+}
+.stringListPanelButtons .gwt-Button {
+  margin-right : 2em;
+  font-size : 7pt;
+  padding : 1px;
+}
+/* @external popupContent; */
+.com-google-gwtexpui-globalkey-client-KeyCss-helpPopup {
+  background : #000 none repeat scroll 0 50%;
+  color : #fff;
+  font-family : arial, sans-serif;
+  font-weight : bold;
+  overflow : hidden;
+  text-align : left;
+  text-shadow : 1px 1px 7px #000;
+  width : 92%;
+  z-index : 1002;
+  opacity : 0.85;
+  border-radius : 10px;
+  -moz-border-radius : 10px;
+}
+.com-google-gwtexpui-globalkey-client-KeyCss-helpPopup .popupContent {
+  margin : 10px;
+}
+.com-google-gwtexpui-globalkey-client-KeyCss-helpPopup hr, .com-google-gwtexpui-globalkey-client-KeyCss-helpHeader, .com-google-gwtexpui-globalkey-client-KeyCss-helpHeaderGlue {
+  width : 100%;
+}
+.com-google-gwtexpui-globalkey-client-KeyCss-helpHeader td {
+  white-space : nowrap;
+  color : #fff;
+}
+.com-google-gwtexpui-globalkey-client-KeyCss-helpHeader a, .com-google-gwtexpui-globalkey-client-KeyCss-helpHeader a:visited, .com-google-gwtexpui-globalkey-client-KeyCss-helpHeader a:hover {
+  color : #dd0;
+}
+.com-google-gwtexpui-globalkey-client-KeyCss-helpTable {
+  width : 90%;
+}
+.com-google-gwtexpui-globalkey-client-KeyCss-helpTable td {
+  vertical-align : top;
+  white-space : nowrap;
+}
+.com-google-gwtexpui-globalkey-client-KeyCss-helpTableGlue {
+  width : 25px;
+}
+.com-google-gwtexpui-globalkey-client-KeyCss-helpGroup {
+  color : #dd0;
+  text-align : left;
+}
+.com-google-gwtexpui-globalkey-client-KeyCss-helpKeyStroke {
+  text-align : right;
+}
+.com-google-gwtexpui-globalkey-client-KeyCss-helpSeparator {
+  width : 0.5em;
+  text-align : center;
+  font-weight : bold;
+}
+.com-google-gwtexpui-globalkey-client-KeyCss-helpKey {
+  color : #dd0;
+}
+</style></head><body><div id="gerrit_topmenu" class="gerritTopMenu"><table class="topmenu"><colgroup><col><col><col></colgroup><tbody><tr><td class="topmenuTDmenu"><table class="topmenuMenuLeft" cellspacing="0" cellpadding="0"><tbody><tr><td style="vertical-align: top;" align="left"><table class="gwt-TabBar" role="tablist" style="width: 100%;" cellspacing="0" cellpadding="0"><tbody><tr><td style="vertical-align: bottom;" class="gwt-TabBarFirst-wrapper" align="left" height="100%"><div class="gwt-TabBarFirst" style="white-space: normal; height: 100%;">&nbsp;</div></td><td style="vertical-align: bottom;" class="gwt-TabBarItem-wrapper gwt-TabBarItem-wrapper-selected" align="left"><div tabindex="0" class="gwt-TabBarItem gwt-TabBarItem-selected" role="tab"><input tabindex="-1" role="presentation" style="opacity: 0; height: 1px; width: 1px; z-index: -1; overflow: hidden; position: absolute;" type="text"><div class="gwt-Label" style="white-space: nowrap;">All</div></div></td><td style="vertical-align: bottom;" class="gwt-TabBarItem-wrapper" align="left"><div tabindex="0" class="gwt-TabBarItem" role="tab"><input tabindex="-1" role="presentation" style="opacity: 0; height: 1px; width: 1px; z-index: -1; overflow: hidden; position: absolute;" type="text"><div class="gwt-Label" style="white-space: nowrap;">Projects</div></div></td><td style="vertical-align: bottom;" class="gwt-TabBarItem-wrapper" align="left"><div tabindex="0" class="gwt-TabBarItem" role="tab"><input tabindex="-1" role="presentation" style="opacity: 0; height: 1px; width: 1px; z-index: -1; overflow: hidden; position: absolute;" type="text"><div class="gwt-Label" style="white-space: nowrap;">Documentation</div></div></td><td style="vertical-align: bottom;" class="gwt-TabBarRest-wrapper" align="left" width="100%"><div class="gwt-TabBarRest" style="white-space: normal; height: 100%;">&nbsp;</div></td></tr></tbody></table></td></tr><tr><td style="vertical-align: top;" align="left" height="100%"><div class="gwt-TabPanelBottom" role="tabpanel"><div style="width: 100%; height: 100%; padding: 0px; margin: 0px;"><div class="linkMenuBar" role="menubar" style="width: 100%; height: 100%;"><a class="menuItem linkMenuItemNotLast" href="#/q/status:open" role="menuitem">Open</a><a class="menuItem linkMenuItemNotLast" href="#/q/status:merged" role="menuitem">Merged</a><a class="menuItem" href="#/q/status:abandoned" role="menuitem">Abandoned</a></div></div><div style="width: 100%; height: 100%; padding: 0px; margin: 0px; display: none;" aria-hidden="true"><div class="linkMenuBar" role="menubar" style="width: 100%; height: 100%; display: none;" aria-hidden="true"><a class="menuItem linkMenuItemNotLast" href="#/admin/projects/" role="menuitem">List</a><a class="menuItem linkMenuItemNotLast" href="#" role="menuitem" style="display: none;" aria-hidden="true">General</a><a class="menuItem linkMenuItemNotLast" href="#" role="menuitem" style="display: none;" aria-hidden="true">Branches</a><a class="menuItem linkMenuItemNotLast" href="#" role="menuitem" style="display: none;" aria-hidden="true">Access</a><a class="menuItem" href="#" role="menuitem" style="display: none;" aria-hidden="true">Dashboards</a></div></div><div style="width: 100%; height: 100%; padding: 0px; margin: 0px; display: none;" aria-hidden="true"><div class="linkMenuBar" role="menubar" style="width: 100%; height: 100%; display: none;" aria-hidden="true"><a class="menuItem linkMenuItemNotLast" href="https://review.openstack.org/Documentation/index.html" role="menuitem" target="_blank">Table of Contents</a><a class="menuItem linkMenuItemNotLast" href="https://review.openstack.org/Documentation/user-search.html" role="menuitem" target="_blank">Searching</a><a class="menuItem linkMenuItemNotLast" href="https://review.openstack.org/Documentation/user-upload.html" role="menuitem" target="_blank">Uploading</a><a class="menuItem linkMenuItemNotLast" href="https://review.openstack.org/Documentation/access-control.html" role="menuitem" target="_blank">Access Controls</a><a class="menuItem linkMenuItemNotLast" href="https://review.openstack.org/Documentation/rest-api.html" role="menuitem" target="_blank">REST API</a><a class="menuItem" href="https://review.openstack.org/Documentation/intro-project-owner.html" role="menuitem" target="_blank">Project Owner Guide</a></div></div></div></td></tr></tbody></table></td><td class="topmenuTDglue"><div></div></td><td class="topmenuTDmenu"><div class="topmenuMenuRight"><div class="searchPanel"><input class="gwt-TextBox" size="70" type="text"><button type="button" class="gwt-Button">Search</button></div><div class="linkMenuBar" role="menubar"><a class="menuItem" href="javascript:;" role="menuitem">Sign In</a></div></div></td></tr></tbody></table></div><div id="gerrit_header"><div><script src="static/jquery.js?e=b4e23db1c3a89fdc3329a80d666e4425" type="text/javascript"></script><script src="static/jquery-visibility.js?e=bec8913e6237a19118d302450dfd1018" type="text/javascript"></script><script src="static/hideci.js?e=3820a6091f0996731e3f0dd72527aa14" type="text/javascript"></script><a href="/"><h1 style="color: #CF2F19"><img src="static/title.png?e=d8e0442e7fabdf96d570b41918974ab2" style="vertical-align:middle;"></h1></a></div></div><div id="gerrit_body" class="gerritBody"><div><div style=""><div class="screen"><table class="screenHeader"><colgroup><col><col><col><col></colgroup><tbody><tr><td>&nbsp;</td><td><div class="screenHeader"><span class="gwt-InlineLabel">Search for status:merged</span></div></td><td>&nbsp;</td><td align="right" width="100%">&nbsp;</td></tr></tbody></table><div><table class="changeTable" style="width: 100%;"><colgroup><col></colgroup><tbody><tr><td class="iconHeader"></td><td class="iconHeader"></td><td class="dataHeader dataHeaderHidden">ID</td><td class="dataHeader">Subject</td><td class="dataHeader">Status</td><td class="dataHeader">Owner</td><td class="dataHeader">Project</td><td class="dataHeader">Branch</td><td class="dataHeader">Updated</td><td class="dataHeader">Size</td><td title="Code-Review" class="dataHeader">CR</td><td title="Verified" class="dataHeader">V</td><td title="Workflow" class="dataHeader">W</td></tr><tr class="activeRow"><td class="iconCell leftMostCell"><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAwAAAAJCAYAAAAGuM1UAAAAJElEQVR42mNgwAT/GUgE/0nV9J9UTf9J1fSfVE0U2UC7UMIJAG5zGOglYYULAAAAAElFTkSuQmCC" class="gwt-Image" width="12" height="9"></td><td class="iconCell"></td><td class="dataCell dataCellHidden"><a class="gwt-InlineHyperlink" href="https://review.openstack.org/443283">443283</a></td><td class="dataCell cSUBJECT"><a class="gwt-InlineHyperlink" href="https://review.openstack.org/443283">Replace obsolete vanity openstack.org URLs</a></td><td class="dataCell cSTATUS">Merged</td><td class="dataCell cOWNER"><div class="accountLinkPanel"><img class="gwt-Image" style="height: 26px; display: none;" aria-hidden="true" src="https://review.openstack.org/accounts/jaegerandi%40gmail.com/avatar?s=26"><a class="gwt-InlineHyperlink" href="#/q/owner:jaegerandi%2540gmail.com+status:merged" title="Andreas Jaeger <jaegerandi@gmail.com>">Andreas Jaeger</a></div></td><td class="dataCell"><a class="gwt-InlineHyperlink" href="#/projects/openstack/cookbook-openstack-block-storage,dashboards/default">openstack/cookbook-openstack-block-storage</a></td><td class="dataCell"><a class="gwt-InlineHyperlink" href="#/q/status:merged+project:openstack/cookbook-openstack-block-storage+branch:master+topic:openstack-urls">master (openstack-urls)</a></td><td class="dataCell cLastUpdate">Mar 9</td><td class="dataCell cSIZE" title="+1, -1"><div class="changeSize" style="width: 2px; background-color: rgb(0, 255, 0);"></div></td><td class="dataCell cAPPROVAL singleLine" title="Code-Review 
+by Christoph Albers"><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAA8AAAAPCAYAAAA71pVKAAAAh0lEQVR42mNgGDJgzu2Z/3uudvwnWWPUoVDSNb7/+e6/5Tbj/9XnysnTCLKVZKeCNGpuUPoPMoRkP3IsYfh/7u0Z/Bq99rig2AAKGJBGggEEMhmkEab43ue7YDbIyUQ5EWQASIPEKsH/IFcQ5VxsfgTh7BNppAXQ3ue74baDnE5WKiJLI6kAAN+fdJsknylQAAAAAElFTkSuQmCC" class="gwt-Image" width="15" height="15"></td><td class="dataCell cAPPROVAL singleLine" title="Verified 
+by Jenkins"><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAA8AAAAPCAYAAAA71pVKAAAAh0lEQVR42mNgGDJgzu2Z/3uudvwnWWPUoVDSNb7/+e6/5Tbj/9XnysnTCLKVZKeCNGpuUPoPMoRkP3IsYfh/7u0Z/Bq99rig2AAKGJBGggEEMhmkEab43ue7YDbIyUQ5EWQASIPEKsH/IFcQ5VxsfgTh7BNppAXQ3ue74baDnE5WKiJLI6kAAN+fdJsknylQAAAAAElFTkSuQmCC" class="gwt-Image" width="15" height="15"></td><td class="dataCell cAPPROVAL singleLine" title="Workflow 
+by Christoph Albers"><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAA8AAAAPCAYAAAA71pVKAAAAh0lEQVR42mNgGDJgzu2Z/3uudvwnWWPUoVDSNb7/+e6/5Tbj/9XnysnTCLKVZKeCNGpuUPoPMoRkP3IsYfh/7u0Z/Bq99rig2AAKGJBGggEEMhmkEab43ue7YDbIyUQ5EWQASIPEKsH/IFcQ5VxsfgTh7BNppAXQ3ue74baDnE5WKiJLI6kAAN+fdJsknylQAAAAAElFTkSuQmCC" class="gwt-Image" width="15" height="15"></td></tr><tr><td class="iconCell leftMostCell"></td><td class="iconCell"></td><td class="dataCell dataCellHidden"><a class="gwt-InlineHyperlink" href="https://review.openstack.org/184653">184653</a></td><td class="dataCell cSUBJECT"><a class="gwt-InlineHyperlink" href="https://review.openstack.org/184653">Propose Redfish support into Ironic</a></td><td class="dataCell cSTATUS">Merged</td><td class="dataCell cOWNER"><div class="accountLinkPanel"><img class="gwt-Image" style="height: 26px; display: none;" aria-hidden="true" src="https://review.openstack.org/accounts/bruno.cornec%40hpe.com/avatar?s=26"><a class="gwt-InlineHyperlink" href="#/q/owner:bruno.cornec%2540hpe.com+status:merged" title="Bruno Cornec <bruno.cornec@hpe.com>">Bruno Cornec</a></div></td><td class="dataCell"><a class="gwt-InlineHyperlink" href="#/projects/openstack/ironic-specs,dashboards/default">openstack/ironic-specs</a></td><td class="dataCell"><a class="gwt-InlineHyperlink" href="#/q/status:merged+project:openstack/ironic-specs+branch:master+topic:bug/1526477">master (bug/1526477)</a></td><td class="dataCell cLastUpdate">Mar 9</td><td class="dataCell cSIZE" title="+181, -0"><div class="changeSize" style="width: 25px; background-color: rgb(184, 255, 0);"></div></td><td class="dataCell cAPPROVAL singleLine" title="Code-Review 
+by Julia Kreger"><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAA8AAAAPCAYAAAA71pVKAAAAh0lEQVR42mNgGDJgzu2Z/3uudvwnWWPUoVDSNb7/+e6/5Tbj/9XnysnTCLKVZKeCNGpuUPoPMoRkP3IsYfh/7u0Z/Bq99rig2AAKGJBGggEEMhmkEab43ue7YDbIyUQ5EWQASIPEKsH/IFcQ5VxsfgTh7BNppAXQ3ue74baDnE5WKiJLI6kAAN+fdJsknylQAAAAAElFTkSuQmCC" class="gwt-Image" width="15" height="15"></td><td class="dataCell cAPPROVAL singleLine" title="Verified 
+by Jenkins"><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAA8AAAAPCAYAAAA71pVKAAAAh0lEQVR42mNgGDJgzu2Z/3uudvwnWWPUoVDSNb7/+e6/5Tbj/9XnysnTCLKVZKeCNGpuUPoPMoRkP3IsYfh/7u0Z/Bq99rig2AAKGJBGggEEMhmkEab43ue7YDbIyUQ5EWQASIPEKsH/IFcQ5VxsfgTh7BNppAXQ3ue74baDnE5WKiJLI6kAAN+fdJsknylQAAAAAElFTkSuQmCC" class="gwt-Image" width="15" height="15"></td><td class="dataCell cAPPROVAL singleLine" title="Workflow 
+by Julia Kreger"><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAA8AAAAPCAYAAAA71pVKAAAAh0lEQVR42mNgGDJgzu2Z/3uudvwnWWPUoVDSNb7/+e6/5Tbj/9XnysnTCLKVZKeCNGpuUPoPMoRkP3IsYfh/7u0Z/Bq99rig2AAKGJBGggEEMhmkEab43ue7YDbIyUQ5EWQASIPEKsH/IFcQ5VxsfgTh7BNppAXQ3ue74baDnE5WKiJLI6kAAN+fdJsknylQAAAAAElFTkSuQmCC" class="gwt-Image" width="15" height="15"></td></tr><tr><td class="iconCell leftMostCell"></td><td class="iconCell"></td><td class="dataCell dataCellHidden"><a class="gwt-InlineHyperlink" href="https://review.openstack.org/443457">443457</a></td><td class="dataCell cSUBJECT"><a class="gwt-InlineHyperlink" href="https://review.openstack.org/443457">Refactor driver.py testcase</a></td><td class="dataCell cSTATUS">Merged</td><td class="dataCell cOWNER"><div class="accountLinkPanel"><img class="gwt-Image" style="height: 26px; display: none;" aria-hidden="true" src="https://review.openstack.org/accounts/pranjank%40in.ibm.com/avatar?s=26"><a class="gwt-InlineHyperlink" href="#/q/owner:pranjank%2540in.ibm.com+status:merged" title="Prabhat Ranjan <pranjank@in.ibm.com>">Prabhat Ranjan</a></div></td><td class="dataCell"><a class="gwt-InlineHyperlink" href="#/projects/openstack/nova-dpm,dashboards/default">openstack/nova-dpm</a></td><td class="dataCell"><a class="gwt-InlineHyperlink" href="#/q/status:merged+project:openstack/nova-dpm+branch:master+topic:refactor_driver_unit_testcase">master (refactor_driver_unit_testcase)</a></td><td class="dataCell cLastUpdate">Mar 9</td><td class="dataCell cSIZE" title="+5, -826"><div class="changeSize" style="width: 70px; background-color: rgb(255, 0, 0);"></div></td><td class="dataCell cAPPROVAL singleLine" title="Code-Review 
+by preethi"><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAA8AAAAPCAYAAAA71pVKAAAAh0lEQVR42mNgGDJgzu2Z/3uudvwnWWPUoVDSNb7/+e6/5Tbj/9XnysnTCLKVZKeCNGpuUPoPMoRkP3IsYfh/7u0Z/Bq99rig2AAKGJBGggEEMhmkEab43ue7YDbIyUQ5EWQASIPEKsH/IFcQ5VxsfgTh7BNppAXQ3ue74baDnE5WKiJLI6kAAN+fdJsknylQAAAAAElFTkSuQmCC" class="gwt-Image" width="15" height="15"></td><td class="dataCell cAPPROVAL singleLine" title="Verified 
+by Jenkins"><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAA8AAAAPCAYAAAA71pVKAAAAh0lEQVR42mNgGDJgzu2Z/3uudvwnWWPUoVDSNb7/+e6/5Tbj/9XnysnTCLKVZKeCNGpuUPoPMoRkP3IsYfh/7u0Z/Bq99rig2AAKGJBGggEEMhmkEab43ue7YDbIyUQ5EWQASIPEKsH/IFcQ5VxsfgTh7BNppAXQ3ue74baDnE5WKiJLI6kAAN+fdJsknylQAAAAAElFTkSuQmCC" class="gwt-Image" width="15" height="15"></td><td class="dataCell cAPPROVAL singleLine" title="Workflow 
+by preethi"><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAA8AAAAPCAYAAAA71pVKAAAAh0lEQVR42mNgGDJgzu2Z/3uudvwnWWPUoVDSNb7/+e6/5Tbj/9XnysnTCLKVZKeCNGpuUPoPMoRkP3IsYfh/7u0Z/Bq99rig2AAKGJBGggEEMhmkEab43ue7YDbIyUQ5EWQASIPEKsH/IFcQ5VxsfgTh7BNppAXQ3ue74baDnE5WKiJLI6kAAN+fdJsknylQAAAAAElFTkSuQmCC" class="gwt-Image" width="15" height="15"></td></tr><tr><td class="iconCell leftMostCell"></td><td class="iconCell"></td><td class="dataCell dataCellHidden"><a class="gwt-InlineHyperlink" href="https://review.openstack.org/443286">443286</a></td><td class="dataCell cSUBJECT"><a class="gwt-InlineHyperlink" href="https://review.openstack.org/443286">Replace obsolete vanity openstack.org URLs</a></td><td class="dataCell cSTATUS">Merged</td><td class="dataCell cOWNER"><div class="accountLinkPanel"><img class="gwt-Image" style="height: 26px; display: none;" aria-hidden="true" src="https://review.openstack.org/accounts/jaegerandi%40gmail.com/avatar?s=26"><a class="gwt-InlineHyperlink" href="#/q/owner:jaegerandi%2540gmail.com+status:merged" title="Andreas Jaeger <jaegerandi@gmail.com>">Andreas Jaeger</a></div></td><td class="dataCell"><a class="gwt-InlineHyperlink" href="#/projects/openstack/cookbook-openstack-identity,dashboards/default">openstack/cookbook-openstack-identity</a></td><td class="dataCell"><a class="gwt-InlineHyperlink" href="#/q/status:merged+project:openstack/cookbook-openstack-identity+branch:master+topic:openstack-urls">master (openstack-urls)</a></td><td class="dataCell cLastUpdate">Mar 9</td><td class="dataCell cSIZE" title="+1, -1"><div class="changeSize" style="width: 2px; background-color: rgb(0, 255, 0);"></div></td><td class="dataCell cAPPROVAL singleLine" title="Code-Review 
+by Christoph Albers"><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAA8AAAAPCAYAAAA71pVKAAAAh0lEQVR42mNgGDJgzu2Z/3uudvwnWWPUoVDSNb7/+e6/5Tbj/9XnysnTCLKVZKeCNGpuUPoPMoRkP3IsYfh/7u0Z/Bq99rig2AAKGJBGggEEMhmkEab43ue7YDbIyUQ5EWQASIPEKsH/IFcQ5VxsfgTh7BNppAXQ3ue74baDnE5WKiJLI6kAAN+fdJsknylQAAAAAElFTkSuQmCC" class="gwt-Image" width="15" height="15"></td><td class="dataCell cAPPROVAL singleLine" title="Verified 
+by Jenkins"><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAA8AAAAPCAYAAAA71pVKAAAAh0lEQVR42mNgGDJgzu2Z/3uudvwnWWPUoVDSNb7/+e6/5Tbj/9XnysnTCLKVZKeCNGpuUPoPMoRkP3IsYfh/7u0Z/Bq99rig2AAKGJBGggEEMhmkEab43ue7YDbIyUQ5EWQASIPEKsH/IFcQ5VxsfgTh7BNppAXQ3ue74baDnE5WKiJLI6kAAN+fdJsknylQAAAAAElFTkSuQmCC" class="gwt-Image" width="15" height="15"></td><td class="dataCell cAPPROVAL singleLine" title="Workflow 
+by Christoph Albers"><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAA8AAAAPCAYAAAA71pVKAAAAh0lEQVR42mNgGDJgzu2Z/3uudvwnWWPUoVDSNb7/+e6/5Tbj/9XnysnTCLKVZKeCNGpuUPoPMoRkP3IsYfh/7u0Z/Bq99rig2AAKGJBGggEEMhmkEab43ue7YDbIyUQ5EWQASIPEKsH/IFcQ5VxsfgTh7BNppAXQ3ue74baDnE5WKiJLI6kAAN+fdJsknylQAAAAAElFTkSuQmCC" class="gwt-Image" width="15" height="15"></td></tr><tr><td class="iconCell leftMostCell"></td><td class="iconCell"></td><td class="dataCell dataCellHidden"><a class="gwt-InlineHyperlink" href="https://review.openstack.org/443391">443391</a></td><td class="dataCell cSUBJECT"><a class="gwt-InlineHyperlink" href="https://review.openstack.org/443391">minor typo fixes</a></td><td class="dataCell cSTATUS">Merged</td><td class="dataCell cOWNER"><div class="accountLinkPanel"><img class="gwt-Image" style="height: 26px; display: none;" aria-hidden="true" src="https://review.openstack.org/accounts/ekcs.openstack%40gmail.com/avatar?s=26"><a class="gwt-InlineHyperlink" href="#/q/owner:ekcs.openstack%2540gmail.com+status:merged" title="Eric Kao <ekcs.openstack@gmail.com>">Eric Kao</a></div></td><td class="dataCell"><a class="gwt-InlineHyperlink" href="#/projects/openstack/congress,dashboards/default">openstack/congress</a></td><td class="dataCell"><a class="gwt-InlineHyperlink" href="#/q/status:merged+project:openstack/congress+branch:master+topic:typos">master (typos)</a></td><td class="dataCell cLastUpdate">Mar 9</td><td class="dataCell cSIZE" title="+2, -2"><div class="changeSize" style="width: 2px; background-color: rgb(0, 255, 0);"></div></td><td class="dataCell cAPPROVAL singleLine" title="Code-Review 
+by Anusha Ramineni"><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAA8AAAAPCAYAAAA71pVKAAAAh0lEQVR42mNgGDJgzu2Z/3uudvwnWWPUoVDSNb7/+e6/5Tbj/9XnysnTCLKVZKeCNGpuUPoPMoRkP3IsYfh/7u0Z/Bq99rig2AAKGJBGggEEMhmkEab43ue7YDbIyUQ5EWQASIPEKsH/IFcQ5VxsfgTh7BNppAXQ3ue74baDnE5WKiJLI6kAAN+fdJsknylQAAAAAElFTkSuQmCC" class="gwt-Image" width="15" height="15"></td><td class="dataCell cAPPROVAL singleLine" title="Verified 
+by Jenkins"><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAA8AAAAPCAYAAAA71pVKAAAAh0lEQVR42mNgGDJgzu2Z/3uudvwnWWPUoVDSNb7/+e6/5Tbj/9XnysnTCLKVZKeCNGpuUPoPMoRkP3IsYfh/7u0Z/Bq99rig2AAKGJBGggEEMhmkEab43ue7YDbIyUQ5EWQASIPEKsH/IFcQ5VxsfgTh7BNppAXQ3ue74baDnE5WKiJLI6kAAN+fdJsknylQAAAAAElFTkSuQmCC" class="gwt-Image" width="15" height="15"></td><td class="dataCell cAPPROVAL singleLine" title="Workflow 
+by Anusha Ramineni"><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAA8AAAAPCAYAAAA71pVKAAAAh0lEQVR42mNgGDJgzu2Z/3uudvwnWWPUoVDSNb7/+e6/5Tbj/9XnysnTCLKVZKeCNGpuUPoPMoRkP3IsYfh/7u0Z/Bq99rig2AAKGJBGggEEMhmkEab43ue7YDbIyUQ5EWQASIPEKsH/IFcQ5VxsfgTh7BNppAXQ3ue74baDnE5WKiJLI6kAAN+fdJsknylQAAAAAElFTkSuQmCC" class="gwt-Image" width="15" height="15"></td></tr><tr><td class="iconCell leftMostCell"></td><td class="iconCell"></td><td class="dataCell dataCellHidden"><a class="gwt-InlineHyperlink" href="https://review.openstack.org/439071">439071</a></td><td class="dataCell cSUBJECT"><a class="gwt-InlineHyperlink" href="https://review.openstack.org/439071">validate-simple: Use custom THT templates</a></td><td class="dataCell cSTATUS">Merged</td><td class="dataCell cOWNER"><div class="accountLinkPanel"><img class="gwt-Image" style="height: 26px; display: none;" aria-hidden="true" src="https://review.openstack.org/accounts/adarazs%40redhat.com/avatar?s=26"><a class="gwt-InlineHyperlink" href="#/q/owner:adarazs%2540redhat.com+status:merged" title="Attila Darazs <adarazs@redhat.com>">Attila Darazs</a></div></td><td class="dataCell"><a class="gwt-InlineHyperlink" href="#/projects/openstack/tripleo-quickstart-extras,dashboards/default">openstack/tripleo-quickstart-extras</a></td><td class="dataCell"><a class="gwt-InlineHyperlink" href="#/q/status:merged+project:openstack/tripleo-quickstart-extras+branch:master+topic:oooq-t-phase1">master (oooq-t-phase1)</a></td><td class="dataCell cLastUpdate">Mar 9</td><td class="dataCell cSIZE" title="+114, -92"><div class="changeSize" style="width: 28px; background-color: rgb(210, 255, 0);"></div></td><td class="dataCell cAPPROVAL singleLine" title="Code-Review 
+by Sagi Shnaidman"><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAA8AAAAPCAYAAAA71pVKAAAAh0lEQVR42mNgGDJgzu2Z/3uudvwnWWPUoVDSNb7/+e6/5Tbj/9XnysnTCLKVZKeCNGpuUPoPMoRkP3IsYfh/7u0Z/Bq99rig2AAKGJBGggEEMhmkEab43ue7YDbIyUQ5EWQASIPEKsH/IFcQ5VxsfgTh7BNppAXQ3ue74baDnE5WKiJLI6kAAN+fdJsknylQAAAAAElFTkSuQmCC" class="gwt-Image" width="15" height="15"></td><td class="dataCell cAPPROVAL singleLine" title="Verified 
+by Jenkins"><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAA8AAAAPCAYAAAA71pVKAAAAh0lEQVR42mNgGDJgzu2Z/3uudvwnWWPUoVDSNb7/+e6/5Tbj/9XnysnTCLKVZKeCNGpuUPoPMoRkP3IsYfh/7u0Z/Bq99rig2AAKGJBGggEEMhmkEab43ue7YDbIyUQ5EWQASIPEKsH/IFcQ5VxsfgTh7BNppAXQ3ue74baDnE5WKiJLI6kAAN+fdJsknylQAAAAAElFTkSuQmCC" class="gwt-Image" width="15" height="15"></td><td class="dataCell cAPPROVAL singleLine" title="Workflow 
+by Attila Darazs"><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAA8AAAAPCAYAAAA71pVKAAAAh0lEQVR42mNgGDJgzu2Z/3uudvwnWWPUoVDSNb7/+e6/5Tbj/9XnysnTCLKVZKeCNGpuUPoPMoRkP3IsYfh/7u0Z/Bq99rig2AAKGJBGggEEMhmkEab43ue7YDbIyUQ5EWQASIPEKsH/IFcQ5VxsfgTh7BNppAXQ3ue74baDnE5WKiJLI6kAAN+fdJsknylQAAAAAElFTkSuQmCC" class="gwt-Image" width="15" height="15"></td></tr><tr><td class="iconCell leftMostCell"></td><td class="iconCell"></td><td class="dataCell dataCellHidden"><a class="gwt-InlineHyperlink" href="https://review.openstack.org/443482">443482</a></td><td class="dataCell cSUBJECT"><a class="gwt-InlineHyperlink" href="https://review.openstack.org/443482">Disable ceilometer in cli_selected_nodes_deploy_huge test</a></td><td class="dataCell cSTATUS">Merged</td><td class="dataCell cOWNER"><div class="accountLinkPanel"><img class="gwt-Image" style="height: 26px; display: none;" aria-hidden="true" src="https://review.openstack.org/accounts/ibumarskov%40mirantis.com/avatar?s=26"><a class="gwt-InlineHyperlink" href="#/q/owner:ibumarskov%2540mirantis.com+status:merged" title="Ilya Bumarskov <ibumarskov@mirantis.com>">Ilya Bumarskov</a></div></td><td class="dataCell"><a class="gwt-InlineHyperlink" href="#/projects/openstack/fuel-qa,dashboards/default">openstack/fuel-qa</a></td><td class="dataCell"><a class="gwt-InlineHyperlink" href="#/q/status:merged+project:openstack/fuel-qa+branch:master+topic:bug/1669700">master (bug/1669700)</a></td><td class="dataCell cLastUpdate">Mar 9</td><td class="dataCell cSIZE" title="+24, -59"><div class="changeSize" style="width: 11px; background-color: rgb(82, 255, 0);"></div></td><td class="dataCell cAPPROVAL singleLine" title="Code-Review 
+by Alexey Stepanov"><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAA8AAAAPCAYAAAA71pVKAAAAh0lEQVR42mNgGDJgzu2Z/3uudvwnWWPUoVDSNb7/+e6/5Tbj/9XnysnTCLKVZKeCNGpuUPoPMoRkP3IsYfh/7u0Z/Bq99rig2AAKGJBGggEEMhmkEab43ue7YDbIyUQ5EWQASIPEKsH/IFcQ5VxsfgTh7BNppAXQ3ue74baDnE5WKiJLI6kAAN+fdJsknylQAAAAAElFTkSuQmCC" class="gwt-Image" width="15" height="15"></td><td class="dataCell cAPPROVAL singleLine" title="Verified 
+by Jenkins"><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAA8AAAAPCAYAAAA71pVKAAAAh0lEQVR42mNgGDJgzu2Z/3uudvwnWWPUoVDSNb7/+e6/5Tbj/9XnysnTCLKVZKeCNGpuUPoPMoRkP3IsYfh/7u0Z/Bq99rig2AAKGJBGggEEMhmkEab43ue7YDbIyUQ5EWQASIPEKsH/IFcQ5VxsfgTh7BNppAXQ3ue74baDnE5WKiJLI6kAAN+fdJsknylQAAAAAElFTkSuQmCC" class="gwt-Image" width="15" height="15"></td><td class="dataCell cAPPROVAL singleLine" title="Workflow 
+by Alexey Stepanov"><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAA8AAAAPCAYAAAA71pVKAAAAh0lEQVR42mNgGDJgzu2Z/3uudvwnWWPUoVDSNb7/+e6/5Tbj/9XnysnTCLKVZKeCNGpuUPoPMoRkP3IsYfh/7u0Z/Bq99rig2AAKGJBGggEEMhmkEab43ue7YDbIyUQ5EWQASIPEKsH/IFcQ5VxsfgTh7BNppAXQ3ue74baDnE5WKiJLI6kAAN+fdJsknylQAAAAAElFTkSuQmCC" class="gwt-Image" width="15" height="15"></td></tr><tr><td class="iconCell leftMostCell"></td><td class="iconCell"></td><td class="dataCell dataCellHidden"><a class="gwt-InlineHyperlink" href="https://review.openstack.org/443481">443481</a></td><td class="dataCell cSUBJECT"><a class="gwt-InlineHyperlink" href="https://review.openstack.org/443481">Disable ceilometer in cli_selected_nodes_deploy_huge test</a></td><td class="dataCell cSTATUS">Merged</td><td class="dataCell cOWNER"><div class="accountLinkPanel"><img class="gwt-Image" style="height: 26px; display: none;" aria-hidden="true" src="https://review.openstack.org/accounts/ibumarskov%40mirantis.com/avatar?s=26"><a class="gwt-InlineHyperlink" href="#/q/owner:ibumarskov%2540mirantis.com+status:merged" title="Ilya Bumarskov <ibumarskov@mirantis.com>">Ilya Bumarskov</a></div></td><td class="dataCell"><a class="gwt-InlineHyperlink" href="#/projects/openstack/fuel-qa,dashboards/default">openstack/fuel-qa</a></td><td class="dataCell"><a class="gwt-InlineHyperlink" href="#/q/status:merged+project:openstack/fuel-qa+branch:stable/ocata+topic:bug/1669700">stable/ocata (bug/1669700)</a></td><td class="dataCell cLastUpdate">Mar 9</td><td class="dataCell cSIZE" title="+24, -59"><div class="changeSize" style="width: 11px; background-color: rgb(82, 255, 0);"></div></td><td class="dataCell cAPPROVAL singleLine" title="Code-Review 
+by Alexey Stepanov"><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAA8AAAAPCAYAAAA71pVKAAAAh0lEQVR42mNgGDJgzu2Z/3uudvwnWWPUoVDSNb7/+e6/5Tbj/9XnysnTCLKVZKeCNGpuUPoPMoRkP3IsYfh/7u0Z/Bq99rig2AAKGJBGggEEMhmkEab43ue7YDbIyUQ5EWQASIPEKsH/IFcQ5VxsfgTh7BNppAXQ3ue74baDnE5WKiJLI6kAAN+fdJsknylQAAAAAElFTkSuQmCC" class="gwt-Image" width="15" height="15"></td><td class="dataCell cAPPROVAL singleLine" title="Verified 
+by Jenkins"><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAA8AAAAPCAYAAAA71pVKAAAAh0lEQVR42mNgGDJgzu2Z/3uudvwnWWPUoVDSNb7/+e6/5Tbj/9XnysnTCLKVZKeCNGpuUPoPMoRkP3IsYfh/7u0Z/Bq99rig2AAKGJBGggEEMhmkEab43ue7YDbIyUQ5EWQASIPEKsH/IFcQ5VxsfgTh7BNppAXQ3ue74baDnE5WKiJLI6kAAN+fdJsknylQAAAAAElFTkSuQmCC" class="gwt-Image" width="15" height="15"></td><td class="dataCell cAPPROVAL singleLine" title="Workflow 
+by Alexey Stepanov"><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAA8AAAAPCAYAAAA71pVKAAAAh0lEQVR42mNgGDJgzu2Z/3uudvwnWWPUoVDSNb7/+e6/5Tbj/9XnysnTCLKVZKeCNGpuUPoPMoRkP3IsYfh/7u0Z/Bq99rig2AAKGJBGggEEMhmkEab43ue7YDbIyUQ5EWQASIPEKsH/IFcQ5VxsfgTh7BNppAXQ3ue74baDnE5WKiJLI6kAAN+fdJsknylQAAAAAElFTkSuQmCC" class="gwt-Image" width="15" height="15"></td></tr><tr><td class="iconCell leftMostCell"></td><td class="iconCell"></td><td class="dataCell dataCellHidden"><a class="gwt-InlineHyperlink" href="https://review.openstack.org/439503">439503</a></td><td class="dataCell cSUBJECT"><a class="gwt-InlineHyperlink" href="https://review.openstack.org/439503">Create repos configs for stable branches tripleoci</a></td><td class="dataCell cSTATUS">Merged</td><td class="dataCell cOWNER"><div class="accountLinkPanel"><img class="gwt-Image" style="height: 26px; display: none;" aria-hidden="true" src="https://review.openstack.org/accounts/sshnaidm%40redhat.com/avatar?s=26"><a class="gwt-InlineHyperlink" href="#/q/owner:sshnaidm%2540redhat.com+status:merged" title="Sagi Shnaidman <sshnaidm@redhat.com>">Sagi Shnaidman</a></div></td><td class="dataCell"><a class="gwt-InlineHyperlink" href="#/projects/openstack/tripleo-quickstart,dashboards/default">openstack/tripleo-quickstart</a></td><td class="dataCell"><a class="gwt-InlineHyperlink" href="#/q/status:merged+project:openstack/tripleo-quickstart+branch:master+topic:repos">master (repos)</a></td><td class="dataCell cLastUpdate">Mar 9</td><td class="dataCell cSIZE" title="+191, -6"><div class="changeSize" style="width: 27px; background-color: rgb(200, 255, 0);"></div></td><td class="dataCell cAPPROVAL singleLine" title="Code-Review 
+by Attila Darazs"><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAA8AAAAPCAYAAAA71pVKAAAAh0lEQVR42mNgGDJgzu2Z/3uudvwnWWPUoVDSNb7/+e6/5Tbj/9XnysnTCLKVZKeCNGpuUPoPMoRkP3IsYfh/7u0Z/Bq99rig2AAKGJBGggEEMhmkEab43ue7YDbIyUQ5EWQASIPEKsH/IFcQ5VxsfgTh7BNppAXQ3ue74baDnE5WKiJLI6kAAN+fdJsknylQAAAAAElFTkSuQmCC" class="gwt-Image" width="15" height="15"></td><td class="dataCell cAPPROVAL singleLine" title="Verified 
+by Jenkins"><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAA8AAAAPCAYAAAA71pVKAAAAh0lEQVR42mNgGDJgzu2Z/3uudvwnWWPUoVDSNb7/+e6/5Tbj/9XnysnTCLKVZKeCNGpuUPoPMoRkP3IsYfh/7u0Z/Bq99rig2AAKGJBGggEEMhmkEab43ue7YDbIyUQ5EWQASIPEKsH/IFcQ5VxsfgTh7BNppAXQ3ue74baDnE5WKiJLI6kAAN+fdJsknylQAAAAAElFTkSuQmCC" class="gwt-Image" width="15" height="15"></td><td class="dataCell cAPPROVAL singleLine" title="Workflow 
+by Attila Darazs"><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAA8AAAAPCAYAAAA71pVKAAAAh0lEQVR42mNgGDJgzu2Z/3uudvwnWWPUoVDSNb7/+e6/5Tbj/9XnysnTCLKVZKeCNGpuUPoPMoRkP3IsYfh/7u0Z/Bq99rig2AAKGJBGggEEMhmkEab43ue7YDbIyUQ5EWQASIPEKsH/IFcQ5VxsfgTh7BNppAXQ3ue74baDnE5WKiJLI6kAAN+fdJsknylQAAAAAElFTkSuQmCC" class="gwt-Image" width="15" height="15"></td></tr><tr><td class="iconCell leftMostCell"></td><td class="iconCell"></td><td class="dataCell dataCellHidden"><a class="gwt-InlineHyperlink" href="https://review.openstack.org/443471">443471</a></td><td class="dataCell cSUBJECT"><a class="gwt-InlineHyperlink" href="https://review.openstack.org/443471">Enable public network for all nodes for cli tests</a></td><td class="dataCell cSTATUS">Merged</td><td class="dataCell cOWNER"><div class="accountLinkPanel"><img class="gwt-Image" style="height: 26px; display: none;" aria-hidden="true" src="https://review.openstack.org/accounts/ibumarskov%40mirantis.com/avatar?s=26"><a class="gwt-InlineHyperlink" href="#/q/owner:ibumarskov%2540mirantis.com+status:merged" title="Ilya Bumarskov <ibumarskov@mirantis.com>">Ilya Bumarskov</a></div></td><td class="dataCell"><a class="gwt-InlineHyperlink" href="#/projects/openstack/fuel-qa,dashboards/default">openstack/fuel-qa</a></td><td class="dataCell"><a class="gwt-InlineHyperlink" href="#/q/status:merged+project:openstack/fuel-qa+branch:master+topic:bug/1664212">master (bug/1664212)</a></td><td class="dataCell cLastUpdate">Mar 9</td><td class="dataCell cSIZE" title="+10, -0"><div class="changeSize" style="width: 2px; background-color: rgb(10, 255, 0);"></div></td><td class="dataCell cAPPROVAL singleLine" title="Code-Review 
+by Alexey Stepanov"><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAA8AAAAPCAYAAAA71pVKAAAAh0lEQVR42mNgGDJgzu2Z/3uudvwnWWPUoVDSNb7/+e6/5Tbj/9XnysnTCLKVZKeCNGpuUPoPMoRkP3IsYfh/7u0Z/Bq99rig2AAKGJBGggEEMhmkEab43ue7YDbIyUQ5EWQASIPEKsH/IFcQ5VxsfgTh7BNppAXQ3ue74baDnE5WKiJLI6kAAN+fdJsknylQAAAAAElFTkSuQmCC" class="gwt-Image" width="15" height="15"></td><td class="dataCell cAPPROVAL singleLine" title="Verified 
+by Jenkins"><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAA8AAAAPCAYAAAA71pVKAAAAh0lEQVR42mNgGDJgzu2Z/3uudvwnWWPUoVDSNb7/+e6/5Tbj/9XnysnTCLKVZKeCNGpuUPoPMoRkP3IsYfh/7u0Z/Bq99rig2AAKGJBGggEEMhmkEab43ue7YDbIyUQ5EWQASIPEKsH/IFcQ5VxsfgTh7BNppAXQ3ue74baDnE5WKiJLI6kAAN+fdJsknylQAAAAAElFTkSuQmCC" class="gwt-Image" width="15" height="15"></td><td class="dataCell cAPPROVAL singleLine" title="Workflow 
+by Alexey Stepanov"><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAA8AAAAPCAYAAAA71pVKAAAAh0lEQVR42mNgGDJgzu2Z/3uudvwnWWPUoVDSNb7/+e6/5Tbj/9XnysnTCLKVZKeCNGpuUPoPMoRkP3IsYfh/7u0Z/Bq99rig2AAKGJBGggEEMhmkEab43ue7YDbIyUQ5EWQASIPEKsH/IFcQ5VxsfgTh7BNppAXQ3ue74baDnE5WKiJLI6kAAN+fdJsknylQAAAAAElFTkSuQmCC" class="gwt-Image" width="15" height="15"></td></tr><tr><td class="iconCell leftMostCell"></td><td class="iconCell"></td><td class="dataCell dataCellHidden"><a class="gwt-InlineHyperlink" href="https://review.openstack.org/443473">443473</a></td><td class="dataCell cSUBJECT"><a class="gwt-InlineHyperlink" href="https://review.openstack.org/443473">Enable public network for all nodes for cli tests</a></td><td class="dataCell cSTATUS">Merged</td><td class="dataCell cOWNER"><div class="accountLinkPanel"><img class="gwt-Image" style="height: 26px; display: none;" aria-hidden="true" src="https://review.openstack.org/accounts/ibumarskov%40mirantis.com/avatar?s=26"><a class="gwt-InlineHyperlink" href="#/q/owner:ibumarskov%2540mirantis.com+status:merged" title="Ilya Bumarskov <ibumarskov@mirantis.com>">Ilya Bumarskov</a></div></td><td class="dataCell"><a class="gwt-InlineHyperlink" href="#/projects/openstack/fuel-qa,dashboards/default">openstack/fuel-qa</a></td><td class="dataCell"><a class="gwt-InlineHyperlink" href="#/q/status:merged+project:openstack/fuel-qa+branch:stable/ocata+topic:bug/1664212">stable/ocata (bug/1664212)</a></td><td class="dataCell cLastUpdate">Mar 9</td><td class="dataCell cSIZE" title="+10, -0"><div class="changeSize" style="width: 2px; background-color: rgb(10, 255, 0);"></div></td><td class="dataCell cAPPROVAL singleLine" title="Code-Review 
+by Alexey Stepanov"><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAA8AAAAPCAYAAAA71pVKAAAAh0lEQVR42mNgGDJgzu2Z/3uudvwnWWPUoVDSNb7/+e6/5Tbj/9XnysnTCLKVZKeCNGpuUPoPMoRkP3IsYfh/7u0Z/Bq99rig2AAKGJBGggEEMhmkEab43ue7YDbIyUQ5EWQASIPEKsH/IFcQ5VxsfgTh7BNppAXQ3ue74baDnE5WKiJLI6kAAN+fdJsknylQAAAAAElFTkSuQmCC" class="gwt-Image" width="15" height="15"></td><td class="dataCell cAPPROVAL singleLine" title="Verified 
+by Jenkins"><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAA8AAAAPCAYAAAA71pVKAAAAh0lEQVR42mNgGDJgzu2Z/3uudvwnWWPUoVDSNb7/+e6/5Tbj/9XnysnTCLKVZKeCNGpuUPoPMoRkP3IsYfh/7u0Z/Bq99rig2AAKGJBGggEEMhmkEab43ue7YDbIyUQ5EWQASIPEKsH/IFcQ5VxsfgTh7BNppAXQ3ue74baDnE5WKiJLI6kAAN+fdJsknylQAAAAAElFTkSuQmCC" class="gwt-Image" width="15" height="15"></td><td class="dataCell cAPPROVAL singleLine" title="Workflow 
+by Alexey Stepanov"><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAA8AAAAPCAYAAAA71pVKAAAAh0lEQVR42mNgGDJgzu2Z/3uudvwnWWPUoVDSNb7/+e6/5Tbj/9XnysnTCLKVZKeCNGpuUPoPMoRkP3IsYfh/7u0Z/Bq99rig2AAKGJBGggEEMhmkEab43ue7YDbIyUQ5EWQASIPEKsH/IFcQ5VxsfgTh7BNppAXQ3ue74baDnE5WKiJLI6kAAN+fdJsknylQAAAAAElFTkSuQmCC" class="gwt-Image" width="15" height="15"></td></tr><tr><td class="iconCell leftMostCell"></td><td class="iconCell"></td><td class="dataCell dataCellHidden"><a class="gwt-InlineHyperlink" href="https://review.openstack.org/443435">443435</a></td><td class="dataCell cSUBJECT"><a class="gwt-InlineHyperlink" href="https://review.openstack.org/443435">Using fixtures.MockPatch instead of mockpatch.Patch</a></td><td class="dataCell cSTATUS">Merged</td><td class="dataCell cOWNER"><div class="accountLinkPanel"><img class="gwt-Image" style="height: 26px; display: none;" aria-hidden="true" src="https://review.openstack.org/accounts/ge.cong%40zte.com.cn/avatar?s=26"><a class="gwt-InlineHyperlink" href="#/q/owner:ge.cong%2540zte.com.cn+status:merged" title="gecong <ge.cong@zte.com.cn>">gecong</a></div></td><td class="dataCell"><a class="gwt-InlineHyperlink" href="#/projects/openstack/python-senlinclient,dashboards/default">openstack/python-senlinclient</a></td><td class="dataCell"><a class="gwt-InlineHyperlink" href="#/q/status:merged+project:openstack/python-senlinclient+branch:master+topic:mockpatch">master (mockpatch)</a></td><td class="dataCell cLastUpdate">Mar 9</td><td class="dataCell cSIZE" title="+2, -2"><div class="changeSize" style="width: 2px; background-color: rgb(0, 255, 0);"></div></td><td class="dataCell cAPPROVAL singleLine" title="Code-Review 
+by Qiming Teng"><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAA8AAAAPCAYAAAA71pVKAAAAh0lEQVR42mNgGDJgzu2Z/3uudvwnWWPUoVDSNb7/+e6/5Tbj/9XnysnTCLKVZKeCNGpuUPoPMoRkP3IsYfh/7u0Z/Bq99rig2AAKGJBGggEEMhmkEab43ue7YDbIyUQ5EWQASIPEKsH/IFcQ5VxsfgTh7BNppAXQ3ue74baDnE5WKiJLI6kAAN+fdJsknylQAAAAAElFTkSuQmCC" class="gwt-Image" width="15" height="15"></td><td class="dataCell cAPPROVAL singleLine" title="Verified 
+by Jenkins"><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAA8AAAAPCAYAAAA71pVKAAAAh0lEQVR42mNgGDJgzu2Z/3uudvwnWWPUoVDSNb7/+e6/5Tbj/9XnysnTCLKVZKeCNGpuUPoPMoRkP3IsYfh/7u0Z/Bq99rig2AAKGJBGggEEMhmkEab43ue7YDbIyUQ5EWQASIPEKsH/IFcQ5VxsfgTh7BNppAXQ3ue74baDnE5WKiJLI6kAAN+fdJsknylQAAAAAElFTkSuQmCC" class="gwt-Image" width="15" height="15"></td><td class="dataCell cAPPROVAL singleLine" title="Workflow 
+by Qiming Teng"><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAA8AAAAPCAYAAAA71pVKAAAAh0lEQVR42mNgGDJgzu2Z/3uudvwnWWPUoVDSNb7/+e6/5Tbj/9XnysnTCLKVZKeCNGpuUPoPMoRkP3IsYfh/7u0Z/Bq99rig2AAKGJBGggEEMhmkEab43ue7YDbIyUQ5EWQASIPEKsH/IFcQ5VxsfgTh7BNppAXQ3ue74baDnE5WKiJLI6kAAN+fdJsknylQAAAAAElFTkSuQmCC" class="gwt-Image" width="15" height="15"></td></tr><tr><td class="iconCell leftMostCell"></td><td class="iconCell"></td><td class="dataCell dataCellHidden"><a class="gwt-InlineHyperlink" href="https://review.openstack.org/443427">443427</a></td><td class="dataCell cSUBJECT"><a class="gwt-InlineHyperlink" href="https://review.openstack.org/443427">Update higgins with zun</a></td><td class="dataCell cSTATUS">Merged</td><td class="dataCell cOWNER"><div class="accountLinkPanel"><img class="gwt-Image" style="height: 26px; display: none;" aria-hidden="true" src="https://review.openstack.org/accounts/bhavani.r%40nectechnologies.in/avatar?s=26"><a class="gwt-InlineHyperlink" href="#/q/owner:bhavani.r%2540nectechnologies.in+status:merged" title="bhavani <bhavani.r@nectechnologies.in>">bhavani</a></div></td><td class="dataCell"><a class="gwt-InlineHyperlink" href="#/projects/openstack/zun-ui,dashboards/default">openstack/zun-ui</a></td><td class="dataCell"><a class="gwt-InlineHyperlink" href="#/q/status:merged+project:openstack/zun-ui+branch:master+topic:higgins">master (higgins)</a></td><td class="dataCell cLastUpdate">Mar 9</td><td class="dataCell cSIZE" title="+7, -7"><div class="changeSize" style="width: 2px; background-color: rgb(10, 255, 0);"></div></td><td class="dataCell cAPPROVAL singleLine" title="Code-Review 
+by Shu Muto"><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAA8AAAAPCAYAAAA71pVKAAAAh0lEQVR42mNgGDJgzu2Z/3uudvwnWWPUoVDSNb7/+e6/5Tbj/9XnysnTCLKVZKeCNGpuUPoPMoRkP3IsYfh/7u0Z/Bq99rig2AAKGJBGggEEMhmkEab43ue7YDbIyUQ5EWQASIPEKsH/IFcQ5VxsfgTh7BNppAXQ3ue74baDnE5WKiJLI6kAAN+fdJsknylQAAAAAElFTkSuQmCC" class="gwt-Image" width="15" height="15"></td><td class="dataCell cAPPROVAL singleLine" title="Verified 
+by Jenkins"><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAA8AAAAPCAYAAAA71pVKAAAAh0lEQVR42mNgGDJgzu2Z/3uudvwnWWPUoVDSNb7/+e6/5Tbj/9XnysnTCLKVZKeCNGpuUPoPMoRkP3IsYfh/7u0Z/Bq99rig2AAKGJBGggEEMhmkEab43ue7YDbIyUQ5EWQASIPEKsH/IFcQ5VxsfgTh7BNppAXQ3ue74baDnE5WKiJLI6kAAN+fdJsknylQAAAAAElFTkSuQmCC" class="gwt-Image" width="15" height="15"></td><td class="dataCell cAPPROVAL singleLine" title="Workflow 
+by Motohiro/Yuanying Otsuka"><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAA8AAAAPCAYAAAA71pVKAAAAh0lEQVR42mNgGDJgzu2Z/3uudvwnWWPUoVDSNb7/+e6/5Tbj/9XnysnTCLKVZKeCNGpuUPoPMoRkP3IsYfh/7u0Z/Bq99rig2AAKGJBGggEEMhmkEab43ue7YDbIyUQ5EWQASIPEKsH/IFcQ5VxsfgTh7BNppAXQ3ue74baDnE5WKiJLI6kAAN+fdJsknylQAAAAAElFTkSuQmCC" class="gwt-Image" width="15" height="15"></td></tr><tr><td class="iconCell leftMostCell"></td><td class="iconCell"></td><td class="dataCell dataCellHidden"><a class="gwt-InlineHyperlink" href="https://review.openstack.org/443119">443119</a></td><td class="dataCell cSUBJECT"><a class="gwt-InlineHyperlink" href="https://review.openstack.org/443119">[magnum] Fix experimental ironic jobs</a></td><td class="dataCell cSTATUS">Merged</td><td class="dataCell cOWNER"><div class="accountLinkPanel"><img class="gwt-Image" style="height: 26px; display: none;" aria-hidden="true" src="https://review.openstack.org/accounts/strigazi%40gmail.com/avatar?s=26"><a class="gwt-InlineHyperlink" href="#/q/owner:strigazi%2540gmail.com+status:merged" title="Spyros Trigazis <strigazi@gmail.com>">Spyros Trigazis</a></div></td><td class="dataCell"><a class="gwt-InlineHyperlink" href="#/projects/openstack-infra/project-config,dashboards/default">openstack-infra/project-config</a></td><td class="dataCell"><a class="gwt-InlineHyperlink" href="#/q/status:merged+project:openstack-infra/project-config+branch:master+topic:fix-experimental-ironic-jobs">master (fix-experimental-ironic-jobs)</a></td><td class="dataCell cLastUpdate">Mar 9</td><td class="dataCell cSIZE" title="+4, -5"><div class="changeSize" style="width: 2px; background-color: rgb(5, 255, 0);"></div></td><td class="dataCell cAPPROVAL singleLine" title="Code-Review 
+by Andreas Jaeger"><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAA8AAAAPCAYAAAA71pVKAAAAh0lEQVR42mNgGDJgzu2Z/3uudvwnWWPUoVDSNb7/+e6/5Tbj/9XnysnTCLKVZKeCNGpuUPoPMoRkP3IsYfh/7u0Z/Bq99rig2AAKGJBGggEEMhmkEab43ue7YDbIyUQ5EWQASIPEKsH/IFcQ5VxsfgTh7BNppAXQ3ue74baDnE5WKiJLI6kAAN+fdJsknylQAAAAAElFTkSuQmCC" class="gwt-Image" width="15" height="15"></td><td class="dataCell cAPPROVAL singleLine" title="Verified 
+by Jenkins"><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAA8AAAAPCAYAAAA71pVKAAAAh0lEQVR42mNgGDJgzu2Z/3uudvwnWWPUoVDSNb7/+e6/5Tbj/9XnysnTCLKVZKeCNGpuUPoPMoRkP3IsYfh/7u0Z/Bq99rig2AAKGJBGggEEMhmkEab43ue7YDbIyUQ5EWQASIPEKsH/IFcQ5VxsfgTh7BNppAXQ3ue74baDnE5WKiJLI6kAAN+fdJsknylQAAAAAElFTkSuQmCC" class="gwt-Image" width="15" height="15"></td><td class="dataCell cAPPROVAL singleLine" title="Workflow 
+by Ricardo Carrillo Cruz"><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAA8AAAAPCAYAAAA71pVKAAAAh0lEQVR42mNgGDJgzu2Z/3uudvwnWWPUoVDSNb7/+e6/5Tbj/9XnysnTCLKVZKeCNGpuUPoPMoRkP3IsYfh/7u0Z/Bq99rig2AAKGJBGggEEMhmkEab43ue7YDbIyUQ5EWQASIPEKsH/IFcQ5VxsfgTh7BNppAXQ3ue74baDnE5WKiJLI6kAAN+fdJsknylQAAAAAElFTkSuQmCC" class="gwt-Image" width="15" height="15"></td></tr><tr><td class="iconCell leftMostCell"></td><td class="iconCell"></td><td class="dataCell dataCellHidden"><a class="gwt-InlineHyperlink" href="https://review.openstack.org/442329">442329</a></td><td class="dataCell cSUBJECT"><a class="gwt-InlineHyperlink" href="https://review.openstack.org/442329">Update logrotation tests</a></td><td class="dataCell cSTATUS">Merged</td><td class="dataCell cOWNER"><div class="accountLinkPanel"><img class="gwt-Image" style="height: 26px; display: none;" aria-hidden="true" src="https://review.openstack.org/accounts/dbelyaninov%40mirantis.com/avatar?s=26"><a class="gwt-InlineHyperlink" href="#/q/owner:dbelyaninov%2540mirantis.com+status:merged" title="Dmitry Belyaninov <dbelyaninov@mirantis.com>">Dmitry Belyaninov</a></div></td><td class="dataCell"><a class="gwt-InlineHyperlink" href="#/projects/openstack/fuel-qa,dashboards/default">openstack/fuel-qa</a></td><td class="dataCell"><a class="gwt-InlineHyperlink" href="#/q/status:merged+project:openstack/fuel-qa+branch:master+topic:bug/1669740">master (bug/1669740)</a></td><td class="dataCell cLastUpdate">Mar 9</td><td class="dataCell cSIZE" title="+16, -1"><div class="changeSize" style="width: 2px; background-color: rgb(15, 255, 0);"></div></td><td class="dataCell cAPPROVAL singleLine" title="Code-Review 
+by Nastya Urlapova"><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAA8AAAAPCAYAAAA71pVKAAAAh0lEQVR42mNgGDJgzu2Z/3uudvwnWWPUoVDSNb7/+e6/5Tbj/9XnysnTCLKVZKeCNGpuUPoPMoRkP3IsYfh/7u0Z/Bq99rig2AAKGJBGggEEMhmkEab43ue7YDbIyUQ5EWQASIPEKsH/IFcQ5VxsfgTh7BNppAXQ3ue74baDnE5WKiJLI6kAAN+fdJsknylQAAAAAElFTkSuQmCC" class="gwt-Image" width="15" height="15"></td><td class="dataCell cAPPROVAL singleLine" title="Verified 
+by Jenkins"><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAA8AAAAPCAYAAAA71pVKAAAAh0lEQVR42mNgGDJgzu2Z/3uudvwnWWPUoVDSNb7/+e6/5Tbj/9XnysnTCLKVZKeCNGpuUPoPMoRkP3IsYfh/7u0Z/Bq99rig2AAKGJBGggEEMhmkEab43ue7YDbIyUQ5EWQASIPEKsH/IFcQ5VxsfgTh7BNppAXQ3ue74baDnE5WKiJLI6kAAN+fdJsknylQAAAAAElFTkSuQmCC" class="gwt-Image" width="15" height="15"></td><td class="dataCell cAPPROVAL singleLine" title="Workflow 
+by Nastya Urlapova"><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAA8AAAAPCAYAAAA71pVKAAAAh0lEQVR42mNgGDJgzu2Z/3uudvwnWWPUoVDSNb7/+e6/5Tbj/9XnysnTCLKVZKeCNGpuUPoPMoRkP3IsYfh/7u0Z/Bq99rig2AAKGJBGggEEMhmkEab43ue7YDbIyUQ5EWQASIPEKsH/IFcQ5VxsfgTh7BNppAXQ3ue74baDnE5WKiJLI6kAAN+fdJsknylQAAAAAElFTkSuQmCC" class="gwt-Image" width="15" height="15"></td></tr><tr><td class="iconCell leftMostCell"></td><td class="iconCell"></td><td class="dataCell dataCellHidden"><a class="gwt-InlineHyperlink" href="https://review.openstack.org/443514">443514</a></td><td class="dataCell cSUBJECT"><a class="gwt-InlineHyperlink" href="https://review.openstack.org/443514">fix of a bug for getting a node by its name in the rest api</a></td><td class="dataCell cSTATUS">Merged</td><td class="dataCell cOWNER"><div class="accountLinkPanel"><img class="gwt-Image" style="height: 26px; display: none;" aria-hidden="true" src="https://review.openstack.org/accounts/fverboso%40unime.it/avatar?s=26"><a class="gwt-InlineHyperlink" href="#/q/owner:fverboso%2540unime.it+status:merged" title="Fabio Verboso <fverboso@unime.it>">Fabio Verboso</a></div></td><td class="dataCell"><a class="gwt-InlineHyperlink" href="#/projects/openstack/iotronic,dashboards/default">openstack/iotronic</a></td><td class="dataCell"><a class="gwt-InlineHyperlink" href="#/q/status:merged+project:openstack/iotronic+branch:master+topic:fix_name">master (fix_name)</a></td><td class="dataCell cLastUpdate">Mar 9</td><td class="dataCell cSIZE" title="+59, -35"><div class="changeSize" style="width: 12px; background-color: rgb(92, 255, 0);"></div></td><td class="dataCell cAPPROVAL singleLine" title="Code-Review 
+by Fabio Verboso"><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAA8AAAAPCAYAAAA71pVKAAAAh0lEQVR42mNgGDJgzu2Z/3uudvwnWWPUoVDSNb7/+e6/5Tbj/9XnysnTCLKVZKeCNGpuUPoPMoRkP3IsYfh/7u0Z/Bq99rig2AAKGJBGggEEMhmkEab43ue7YDbIyUQ5EWQASIPEKsH/IFcQ5VxsfgTh7BNppAXQ3ue74baDnE5WKiJLI6kAAN+fdJsknylQAAAAAElFTkSuQmCC" class="gwt-Image" width="15" height="15"></td><td class="dataCell cAPPROVAL singleLine" title="Verified 
+by Jenkins"><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAA8AAAAPCAYAAAA71pVKAAAAh0lEQVR42mNgGDJgzu2Z/3uudvwnWWPUoVDSNb7/+e6/5Tbj/9XnysnTCLKVZKeCNGpuUPoPMoRkP3IsYfh/7u0Z/Bq99rig2AAKGJBGggEEMhmkEab43ue7YDbIyUQ5EWQASIPEKsH/IFcQ5VxsfgTh7BNppAXQ3ue74baDnE5WKiJLI6kAAN+fdJsknylQAAAAAElFTkSuQmCC" class="gwt-Image" width="15" height="15"></td><td class="dataCell cAPPROVAL singleLine" title="Workflow 
+by Fabio Verboso"><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAA8AAAAPCAYAAAA71pVKAAAAh0lEQVR42mNgGDJgzu2Z/3uudvwnWWPUoVDSNb7/+e6/5Tbj/9XnysnTCLKVZKeCNGpuUPoPMoRkP3IsYfh/7u0Z/Bq99rig2AAKGJBGggEEMhmkEab43ue7YDbIyUQ5EWQASIPEKsH/IFcQ5VxsfgTh7BNppAXQ3ue74baDnE5WKiJLI6kAAN+fdJsknylQAAAAAElFTkSuQmCC" class="gwt-Image" width="15" height="15"></td></tr><tr><td class="iconCell leftMostCell"></td><td class="iconCell"></td><td class="dataCell dataCellHidden"><a class="gwt-InlineHyperlink" href="https://review.openstack.org/443390">443390</a></td><td class="dataCell cSUBJECT"><a class="gwt-InlineHyperlink" href="https://review.openstack.org/443390">Useing fixtures.MockPatch instead of mockpatch.Patch</a></td><td class="dataCell cSTATUS">Merged</td><td class="dataCell cOWNER"><div class="accountLinkPanel"><img class="gwt-Image" style="height: 26px; display: none;" aria-hidden="true" src="https://review.openstack.org/accounts/ge.cong%40zte.com.cn/avatar?s=26"><a class="gwt-InlineHyperlink" href="#/q/owner:ge.cong%2540zte.com.cn+status:merged" title="gecong <ge.cong@zte.com.cn>">gecong</a></div></td><td class="dataCell"><a class="gwt-InlineHyperlink" href="#/projects/openstack/aodh,dashboards/default">openstack/aodh</a></td><td class="dataCell"><a class="gwt-InlineHyperlink" href="#/q/status:merged+project:openstack/aodh+branch:master+topic:mockpatch">master (mockpatch)</a></td><td class="dataCell cLastUpdate">Mar 9</td><td class="dataCell cSIZE" title="+21, -21"><div class="changeSize" style="width: 5px; background-color: rgb(41, 255, 0);"></div></td><td class="dataCell cAPPROVAL singleLine" title="Code-Review 
+by Julien Danjou"><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAA8AAAAPCAYAAAA71pVKAAAAh0lEQVR42mNgGDJgzu2Z/3uudvwnWWPUoVDSNb7/+e6/5Tbj/9XnysnTCLKVZKeCNGpuUPoPMoRkP3IsYfh/7u0Z/Bq99rig2AAKGJBGggEEMhmkEab43ue7YDbIyUQ5EWQASIPEKsH/IFcQ5VxsfgTh7BNppAXQ3ue74baDnE5WKiJLI6kAAN+fdJsknylQAAAAAElFTkSuQmCC" class="gwt-Image" width="15" height="15"></td><td class="dataCell cAPPROVAL singleLine" title="Verified 
+by Jenkins"><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAA8AAAAPCAYAAAA71pVKAAAAh0lEQVR42mNgGDJgzu2Z/3uudvwnWWPUoVDSNb7/+e6/5Tbj/9XnysnTCLKVZKeCNGpuUPoPMoRkP3IsYfh/7u0Z/Bq99rig2AAKGJBGggEEMhmkEab43ue7YDbIyUQ5EWQASIPEKsH/IFcQ5VxsfgTh7BNppAXQ3ue74baDnE5WKiJLI6kAAN+fdJsknylQAAAAAElFTkSuQmCC" class="gwt-Image" width="15" height="15"></td><td class="dataCell cAPPROVAL singleLine" title="Workflow 
+by Julien Danjou"><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAA8AAAAPCAYAAAA71pVKAAAAh0lEQVR42mNgGDJgzu2Z/3uudvwnWWPUoVDSNb7/+e6/5Tbj/9XnysnTCLKVZKeCNGpuUPoPMoRkP3IsYfh/7u0Z/Bq99rig2AAKGJBGggEEMhmkEab43ue7YDbIyUQ5EWQASIPEKsH/IFcQ5VxsfgTh7BNppAXQ3ue74baDnE5WKiJLI6kAAN+fdJsknylQAAAAAElFTkSuQmCC" class="gwt-Image" width="15" height="15"></td></tr><tr><td class="iconCell leftMostCell"></td><td class="iconCell"></td><td class="dataCell dataCellHidden"><a class="gwt-InlineHyperlink" href="https://review.openstack.org/426678">426678</a></td><td class="dataCell cSUBJECT"><a class="gwt-InlineHyperlink" href="https://review.openstack.org/426678">Add DVR support</a></td><td class="dataCell cSTATUS">Merged</td><td class="dataCell cOWNER"><div class="accountLinkPanel"><img class="gwt-Image" style="height: 26px; display: none;" aria-hidden="true" src="https://review.openstack.org/accounts/obondarev%40mirantis.com/avatar?s=26"><a class="gwt-InlineHyperlink" href="#/q/owner:obondarev%2540mirantis.com+status:merged" title="Oleg Bondarev <obondarev@mirantis.com>">Oleg Bondarev</a></div></td><td class="dataCell"><a class="gwt-InlineHyperlink" href="#/projects/openstack/fuel-ccp-neutron,dashboards/default">openstack/fuel-ccp-neutron</a></td><td class="dataCell"><a class="gwt-InlineHyperlink" href="#/q/status:merged+project:openstack/fuel-ccp-neutron+branch:master+topic:dvr_support">master (dvr_support)</a></td><td class="dataCell cLastUpdate">Mar 9</td><td class="dataCell cSIZE" title="+54, -2"><div class="changeSize" style="width: 7px; background-color: rgb(56, 255, 0);"></div></td><td class="dataCell cAPPROVAL singleLine" title="Code-Review 
+by Andrey Pavlov"><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAA8AAAAPCAYAAAA71pVKAAAAh0lEQVR42mNgGDJgzu2Z/3uudvwnWWPUoVDSNb7/+e6/5Tbj/9XnysnTCLKVZKeCNGpuUPoPMoRkP3IsYfh/7u0Z/Bq99rig2AAKGJBGggEEMhmkEab43ue7YDbIyUQ5EWQASIPEKsH/IFcQ5VxsfgTh7BNppAXQ3ue74baDnE5WKiJLI6kAAN+fdJsknylQAAAAAElFTkSuQmCC" class="gwt-Image" width="15" height="15"></td><td class="dataCell cAPPROVAL singleLine" title="Verified 
+by Jenkins"><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAA8AAAAPCAYAAAA71pVKAAAAh0lEQVR42mNgGDJgzu2Z/3uudvwnWWPUoVDSNb7/+e6/5Tbj/9XnysnTCLKVZKeCNGpuUPoPMoRkP3IsYfh/7u0Z/Bq99rig2AAKGJBGggEEMhmkEab43ue7YDbIyUQ5EWQASIPEKsH/IFcQ5VxsfgTh7BNppAXQ3ue74baDnE5WKiJLI6kAAN+fdJsknylQAAAAAElFTkSuQmCC" class="gwt-Image" width="15" height="15"></td><td class="dataCell cAPPROVAL singleLine" title="Workflow 
+by Andrey Pavlov"><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAA8AAAAPCAYAAAA71pVKAAAAh0lEQVR42mNgGDJgzu2Z/3uudvwnWWPUoVDSNb7/+e6/5Tbj/9XnysnTCLKVZKeCNGpuUPoPMoRkP3IsYfh/7u0Z/Bq99rig2AAKGJBGggEEMhmkEab43ue7YDbIyUQ5EWQASIPEKsH/IFcQ5VxsfgTh7BNppAXQ3ue74baDnE5WKiJLI6kAAN+fdJsknylQAAAAAElFTkSuQmCC" class="gwt-Image" width="15" height="15"></td></tr><tr><td class="iconCell leftMostCell"></td><td class="iconCell"></td><td class="dataCell dataCellHidden"><a class="gwt-InlineHyperlink" href="https://review.openstack.org/443386">443386</a></td><td class="dataCell cSUBJECT"><a class="gwt-InlineHyperlink" href="https://review.openstack.org/443386">Using fixtures.MockPatch instead of mockpatch.Patch</a></td><td class="dataCell cSTATUS">Merged</td><td class="dataCell cOWNER"><div class="accountLinkPanel"><img class="gwt-Image" style="height: 26px; display: none;" aria-hidden="true" src="https://review.openstack.org/accounts/ge.cong%40zte.com.cn/avatar?s=26"><a class="gwt-InlineHyperlink" href="#/q/owner:ge.cong%2540zte.com.cn+status:merged" title="gecong <ge.cong@zte.com.cn>">gecong</a></div></td><td class="dataCell"><a class="gwt-InlineHyperlink" href="#/projects/openstack/gnocchi,dashboards/default">openstack/gnocchi</a></td><td class="dataCell"><a class="gwt-InlineHyperlink" href="#/q/status:merged+project:openstack/gnocchi+branch:master+topic:mockpatch">master (mockpatch)</a></td><td class="dataCell cLastUpdate">Mar 9</td><td class="dataCell cSIZE" title="+1, -2"><div class="changeSize" style="width: 2px; background-color: rgb(0, 255, 0);"></div></td><td class="dataCell cAPPROVAL singleLine" title="Code-Review 
+by Julien Danjou"><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAA8AAAAPCAYAAAA71pVKAAAAh0lEQVR42mNgGDJgzu2Z/3uudvwnWWPUoVDSNb7/+e6/5Tbj/9XnysnTCLKVZKeCNGpuUPoPMoRkP3IsYfh/7u0Z/Bq99rig2AAKGJBGggEEMhmkEab43ue7YDbIyUQ5EWQASIPEKsH/IFcQ5VxsfgTh7BNppAXQ3ue74baDnE5WKiJLI6kAAN+fdJsknylQAAAAAElFTkSuQmCC" class="gwt-Image" width="15" height="15"></td><td class="dataCell cAPPROVAL singleLine" title="Verified 
+by Jenkins"><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAA8AAAAPCAYAAAA71pVKAAAAh0lEQVR42mNgGDJgzu2Z/3uudvwnWWPUoVDSNb7/+e6/5Tbj/9XnysnTCLKVZKeCNGpuUPoPMoRkP3IsYfh/7u0Z/Bq99rig2AAKGJBGggEEMhmkEab43ue7YDbIyUQ5EWQASIPEKsH/IFcQ5VxsfgTh7BNppAXQ3ue74baDnE5WKiJLI6kAAN+fdJsknylQAAAAAElFTkSuQmCC" class="gwt-Image" width="15" height="15"></td><td class="dataCell cAPPROVAL singleLine" title="Workflow 
+by Julien Danjou"><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAA8AAAAPCAYAAAA71pVKAAAAh0lEQVR42mNgGDJgzu2Z/3uudvwnWWPUoVDSNb7/+e6/5Tbj/9XnysnTCLKVZKeCNGpuUPoPMoRkP3IsYfh/7u0Z/Bq99rig2AAKGJBGggEEMhmkEab43ue7YDbIyUQ5EWQASIPEKsH/IFcQ5VxsfgTh7BNppAXQ3ue74baDnE5WKiJLI6kAAN+fdJsknylQAAAAAElFTkSuQmCC" class="gwt-Image" width="15" height="15"></td></tr><tr><td class="iconCell leftMostCell"></td><td class="iconCell"></td><td class="dataCell dataCellHidden"><a class="gwt-InlineHyperlink" href="https://review.openstack.org/441762">441762</a></td><td class="dataCell cSUBJECT"><a class="gwt-InlineHyperlink" href="https://review.openstack.org/441762">Fix/refactor UI tests after migration from 9.x</a></td><td class="dataCell cSTATUS">Merged</td><td class="dataCell cOWNER"><div class="accountLinkPanel"><img class="gwt-Image" style="height: 26px; display: none;" aria-hidden="true" src="https://review.openstack.org/accounts/ekhomyakova%40mirantis.com/avatar?s=26"><a class="gwt-InlineHyperlink" href="#/q/owner:ekhomyakova%2540mirantis.com+status:merged" title="Ekaterina Khomyakova <ekhomyakova@mirantis.com>">Ekaterina Khomyakova</a></div></td><td class="dataCell"><a class="gwt-InlineHyperlink" href="#/projects/openstack/fuel-ui,dashboards/default">openstack/fuel-ui</a></td><td class="dataCell"><a class="gwt-InlineHyperlink" href="#/q/status:merged+project:openstack/fuel-ui+branch:stable/newton+topic:Ie4d8a9bb8c6fc9a941477aa69b18fec3fa636265">stable/newton (Ie4d8a9bb8c6fc9a941477aa69b18fec3fa636265)</a></td><td class="dataCell cLastUpdate">Mar 9</td><td class="dataCell cSIZE" title="+448, -277"><div class="changeSize" style="width: 70px; background-color: rgb(255, 0, 0);"></div></td><td class="dataCell cAPPROVAL singleLine" title="Code-Review 
+by Julia Aranovich"><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAA8AAAAPCAYAAAA71pVKAAAAh0lEQVR42mNgGDJgzu2Z/3uudvwnWWPUoVDSNb7/+e6/5Tbj/9XnysnTCLKVZKeCNGpuUPoPMoRkP3IsYfh/7u0Z/Bq99rig2AAKGJBGggEEMhmkEab43ue7YDbIyUQ5EWQASIPEKsH/IFcQ5VxsfgTh7BNppAXQ3ue74baDnE5WKiJLI6kAAN+fdJsknylQAAAAAElFTkSuQmCC" class="gwt-Image" width="15" height="15"></td><td class="dataCell cAPPROVAL singleLine" title="Verified 
+by Jenkins"><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAA8AAAAPCAYAAAA71pVKAAAAh0lEQVR42mNgGDJgzu2Z/3uudvwnWWPUoVDSNb7/+e6/5Tbj/9XnysnTCLKVZKeCNGpuUPoPMoRkP3IsYfh/7u0Z/Bq99rig2AAKGJBGggEEMhmkEab43ue7YDbIyUQ5EWQASIPEKsH/IFcQ5VxsfgTh7BNppAXQ3ue74baDnE5WKiJLI6kAAN+fdJsknylQAAAAAElFTkSuQmCC" class="gwt-Image" width="15" height="15"></td><td class="dataCell cAPPROVAL singleLine" title="Workflow 
+by Julia Aranovich"><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAA8AAAAPCAYAAAA71pVKAAAAh0lEQVR42mNgGDJgzu2Z/3uudvwnWWPUoVDSNb7/+e6/5Tbj/9XnysnTCLKVZKeCNGpuUPoPMoRkP3IsYfh/7u0Z/Bq99rig2AAKGJBGggEEMhmkEab43ue7YDbIyUQ5EWQASIPEKsH/IFcQ5VxsfgTh7BNppAXQ3ue74baDnE5WKiJLI6kAAN+fdJsknylQAAAAAElFTkSuQmCC" class="gwt-Image" width="15" height="15"></td></tr><tr><td class="iconCell leftMostCell"></td><td class="iconCell"></td><td class="dataCell dataCellHidden"><a class="gwt-InlineHyperlink" href="https://review.openstack.org/442968">442968</a></td><td class="dataCell cSUBJECT"><a class="gwt-InlineHyperlink" href="https://review.openstack.org/442968">Python 3.5 is added</a></td><td class="dataCell cSTATUS">Merged</td><td class="dataCell cOWNER"><div class="accountLinkPanel"><img class="gwt-Image" style="height: 26px; display: none;" aria-hidden="true" src="https://review.openstack.org/accounts/kavitha.r%40nectechnologies.in/avatar?s=26"><a class="gwt-InlineHyperlink" href="#/q/owner:kavitha.r%2540nectechnologies.in+status:merged" title="kavitha h r <kavitha.r@nectechnologies.in>">kavitha h r</a></div></td><td class="dataCell"><a class="gwt-InlineHyperlink" href="#/projects/openstack/oslo.i18n,dashboards/default">openstack/oslo.i18n</a></td><td class="dataCell"><a class="gwt-InlineHyperlink" href="#/q/status:merged+project:openstack/oslo.i18n+branch:master+topic:pythonVersion">master (pythonVersion)</a></td><td class="dataCell cLastUpdate">Mar 9</td><td class="dataCell cSIZE" title="+2, -2"><div class="changeSize" style="width: 2px; background-color: rgb(0, 255, 0);"></div></td><td class="dataCell cAPPROVAL singleLine" title="Code-Review 
+by ChangBo Guo(gcb)"><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAA8AAAAPCAYAAAA71pVKAAAAh0lEQVR42mNgGDJgzu2Z/3uudvwnWWPUoVDSNb7/+e6/5Tbj/9XnysnTCLKVZKeCNGpuUPoPMoRkP3IsYfh/7u0Z/Bq99rig2AAKGJBGggEEMhmkEab43ue7YDbIyUQ5EWQASIPEKsH/IFcQ5VxsfgTh7BNppAXQ3ue74baDnE5WKiJLI6kAAN+fdJsknylQAAAAAElFTkSuQmCC" class="gwt-Image" width="15" height="15"></td><td class="dataCell cAPPROVAL singleLine" title="Verified 
+by Jenkins"><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAA8AAAAPCAYAAAA71pVKAAAAh0lEQVR42mNgGDJgzu2Z/3uudvwnWWPUoVDSNb7/+e6/5Tbj/9XnysnTCLKVZKeCNGpuUPoPMoRkP3IsYfh/7u0Z/Bq99rig2AAKGJBGggEEMhmkEab43ue7YDbIyUQ5EWQASIPEKsH/IFcQ5VxsfgTh7BNppAXQ3ue74baDnE5WKiJLI6kAAN+fdJsknylQAAAAAElFTkSuQmCC" class="gwt-Image" width="15" height="15"></td><td class="dataCell cAPPROVAL singleLine" title="Workflow 
+by ChangBo Guo(gcb)"><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAA8AAAAPCAYAAAA71pVKAAAAh0lEQVR42mNgGDJgzu2Z/3uudvwnWWPUoVDSNb7/+e6/5Tbj/9XnysnTCLKVZKeCNGpuUPoPMoRkP3IsYfh/7u0Z/Bq99rig2AAKGJBGggEEMhmkEab43ue7YDbIyUQ5EWQASIPEKsH/IFcQ5VxsfgTh7BNppAXQ3ue74baDnE5WKiJLI6kAAN+fdJsknylQAAAAAElFTkSuQmCC" class="gwt-Image" width="15" height="15"></td></tr><tr><td class="iconCell leftMostCell"></td><td class="iconCell"></td><td class="dataCell dataCellHidden"><a class="gwt-InlineHyperlink" href="https://review.openstack.org/433600">433600</a></td><td class="dataCell cSUBJECT"><a class="gwt-InlineHyperlink" href="https://review.openstack.org/433600">Improve failover of SSH connections</a></td><td class="dataCell cSTATUS">Merged</td><td class="dataCell cOWNER"><div class="accountLinkPanel"><img class="gwt-Image" style="height: 26px; display: none;" aria-hidden="true" src="https://review.openstack.org/accounts/snovikov%40mirantis.com/avatar?s=26"><a class="gwt-InlineHyperlink" href="#/q/owner:snovikov%2540mirantis.com+status:merged" title="Sergey Novikov <snovikov@mirantis.com>">Sergey Novikov</a></div></td><td class="dataCell"><a class="gwt-InlineHyperlink" href="#/projects/openstack/fuel-qa,dashboards/default">openstack/fuel-qa</a></td><td class="dataCell"><a class="gwt-InlineHyperlink" href="#/q/status:merged+project:openstack/fuel-qa+branch:stable/newton+topic:bug/1659747">stable/newton (bug/1659747)</a></td><td class="dataCell cLastUpdate">Mar 9</td><td class="dataCell cSIZE" title="+110, -76"><div class="changeSize" style="width: 25px; background-color: rgb(189, 255, 0);"></div></td><td class="dataCell cAPPROVAL singleLine" title="Code-Review 
+by Vladimir Khlyunev"><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAA8AAAAPCAYAAAA71pVKAAAAh0lEQVR42mNgGDJgzu2Z/3uudvwnWWPUoVDSNb7/+e6/5Tbj/9XnysnTCLKVZKeCNGpuUPoPMoRkP3IsYfh/7u0Z/Bq99rig2AAKGJBGggEEMhmkEab43ue7YDbIyUQ5EWQASIPEKsH/IFcQ5VxsfgTh7BNppAXQ3ue74baDnE5WKiJLI6kAAN+fdJsknylQAAAAAElFTkSuQmCC" class="gwt-Image" width="15" height="15"></td><td class="dataCell cAPPROVAL singleLine" title="Verified 
+by Jenkins"><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAA8AAAAPCAYAAAA71pVKAAAAh0lEQVR42mNgGDJgzu2Z/3uudvwnWWPUoVDSNb7/+e6/5Tbj/9XnysnTCLKVZKeCNGpuUPoPMoRkP3IsYfh/7u0Z/Bq99rig2AAKGJBGggEEMhmkEab43ue7YDbIyUQ5EWQASIPEKsH/IFcQ5VxsfgTh7BNppAXQ3ue74baDnE5WKiJLI6kAAN+fdJsknylQAAAAAElFTkSuQmCC" class="gwt-Image" width="15" height="15"></td><td class="dataCell cAPPROVAL singleLine" title="Workflow 
+by Nastya Urlapova"><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAA8AAAAPCAYAAAA71pVKAAAAh0lEQVR42mNgGDJgzu2Z/3uudvwnWWPUoVDSNb7/+e6/5Tbj/9XnysnTCLKVZKeCNGpuUPoPMoRkP3IsYfh/7u0Z/Bq99rig2AAKGJBGggEEMhmkEab43ue7YDbIyUQ5EWQASIPEKsH/IFcQ5VxsfgTh7BNppAXQ3ue74baDnE5WKiJLI6kAAN+fdJsknylQAAAAAElFTkSuQmCC" class="gwt-Image" width="15" height="15"></td></tr><tr><td class="iconCell leftMostCell"></td><td class="iconCell"></td><td class="dataCell dataCellHidden"><a class="gwt-InlineHyperlink" href="https://review.openstack.org/424318">424318</a></td><td class="dataCell cSUBJECT"><a class="gwt-InlineHyperlink" href="https://review.openstack.org/424318">Use constraints when install virtualenv</a></td><td class="dataCell cSTATUS">Merged</td><td class="dataCell cOWNER"><div class="accountLinkPanel"><img class="gwt-Image" style="height: 26px; display: none;" aria-hidden="true" src="https://review.openstack.org/accounts/yorik.sar%40gmail.com/avatar?s=26"><a class="gwt-InlineHyperlink" href="#/q/owner:yorik.sar%2540gmail.com+status:merged" title="Yuriy Taraday <yorik.sar@gmail.com>">Yuriy Taraday</a></div></td><td class="dataCell"><a class="gwt-InlineHyperlink" href="#/projects/openstack/fuel-ccp-openstack-base,dashboards/default">openstack/fuel-ccp-openstack-base</a></td><td class="dataCell"><a class="gwt-InlineHyperlink" href="#/q/status:merged+project:openstack/fuel-ccp-openstack-base+branch:master+topic:ccp-setuptools-fix">master (ccp-setuptools-fix)</a></td><td class="dataCell cLastUpdate">Mar 9</td><td class="dataCell cSIZE" title="+3, -3"><div class="changeSize" style="width: 2px; background-color: rgb(5, 255, 0);"></div></td><td class="dataCell cAPPROVAL singleLine" title="Code-Review 
+by Sergey Reshetnyak"><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAA8AAAAPCAYAAAA71pVKAAAAh0lEQVR42mNgGDJgzu2Z/3uudvwnWWPUoVDSNb7/+e6/5Tbj/9XnysnTCLKVZKeCNGpuUPoPMoRkP3IsYfh/7u0Z/Bq99rig2AAKGJBGggEEMhmkEab43ue7YDbIyUQ5EWQASIPEKsH/IFcQ5VxsfgTh7BNppAXQ3ue74baDnE5WKiJLI6kAAN+fdJsknylQAAAAAElFTkSuQmCC" class="gwt-Image" width="15" height="15"></td><td class="dataCell cAPPROVAL singleLine" title="Verified 
+by Jenkins"><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAA8AAAAPCAYAAAA71pVKAAAAh0lEQVR42mNgGDJgzu2Z/3uudvwnWWPUoVDSNb7/+e6/5Tbj/9XnysnTCLKVZKeCNGpuUPoPMoRkP3IsYfh/7u0Z/Bq99rig2AAKGJBGggEEMhmkEab43ue7YDbIyUQ5EWQASIPEKsH/IFcQ5VxsfgTh7BNppAXQ3ue74baDnE5WKiJLI6kAAN+fdJsknylQAAAAAElFTkSuQmCC" class="gwt-Image" width="15" height="15"></td><td class="dataCell cAPPROVAL singleLine" title="Workflow 
+by Andrey Pavlov"><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAA8AAAAPCAYAAAA71pVKAAAAh0lEQVR42mNgGDJgzu2Z/3uudvwnWWPUoVDSNb7/+e6/5Tbj/9XnysnTCLKVZKeCNGpuUPoPMoRkP3IsYfh/7u0Z/Bq99rig2AAKGJBGggEEMhmkEab43ue7YDbIyUQ5EWQASIPEKsH/IFcQ5VxsfgTh7BNppAXQ3ue74baDnE5WKiJLI6kAAN+fdJsknylQAAAAAElFTkSuQmCC" class="gwt-Image" width="15" height="15"></td></tr><tr><td class="iconCell leftMostCell"></td><td class="iconCell"></td><td class="dataCell dataCellHidden"><a class="gwt-InlineHyperlink" href="https://review.openstack.org/443447">443447</a></td><td class="dataCell cSUBJECT"><a class="gwt-InlineHyperlink" href="https://review.openstack.org/443447">Ensure the revert can work by fix the typo in codes.</a></td><td class="dataCell cSTATUS">Merged</td><td class="dataCell cOWNER"><div class="accountLinkPanel"><img class="gwt-Image" style="height: 26px; display: none;" aria-hidden="true" src="https://review.openstack.org/accounts/luoyan_cn%40outlook.com/avatar?s=26"><a class="gwt-InlineHyperlink" href="#/q/owner:luoyan_cn%2540outlook.com+status:merged" title="zhangjl <luoyan_cn@outlook.com>">zhangjl</a></div></td><td class="dataCell"><a class="gwt-InlineHyperlink" href="#/projects/openstack/mogan,dashboards/default">openstack/mogan</a></td><td class="dataCell"><a class="gwt-InlineHyperlink" href="#/q/status:merged+project:openstack/mogan+branch:master+topic:bug/1671359">master (bug/1671359)</a></td><td class="dataCell cLastUpdate">Mar 9</td><td class="dataCell cSIZE" title="+1, -1"><div class="changeSize" style="width: 2px; background-color: rgb(0, 255, 0);"></div></td><td class="dataCell cAPPROVAL singleLine" title="Code-Review 
+by Zhenguo Niu"><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAA8AAAAPCAYAAAA71pVKAAAAh0lEQVR42mNgGDJgzu2Z/3uudvwnWWPUoVDSNb7/+e6/5Tbj/9XnysnTCLKVZKeCNGpuUPoPMoRkP3IsYfh/7u0Z/Bq99rig2AAKGJBGggEEMhmkEab43ue7YDbIyUQ5EWQASIPEKsH/IFcQ5VxsfgTh7BNppAXQ3ue74baDnE5WKiJLI6kAAN+fdJsknylQAAAAAElFTkSuQmCC" class="gwt-Image" width="15" height="15"></td><td class="dataCell cAPPROVAL singleLine" title="Verified 
+by Jenkins"><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAA8AAAAPCAYAAAA71pVKAAAAh0lEQVR42mNgGDJgzu2Z/3uudvwnWWPUoVDSNb7/+e6/5Tbj/9XnysnTCLKVZKeCNGpuUPoPMoRkP3IsYfh/7u0Z/Bq99rig2AAKGJBGggEEMhmkEab43ue7YDbIyUQ5EWQASIPEKsH/IFcQ5VxsfgTh7BNppAXQ3ue74baDnE5WKiJLI6kAAN+fdJsknylQAAAAAElFTkSuQmCC" class="gwt-Image" width="15" height="15"></td><td class="dataCell cAPPROVAL singleLine" title="Workflow 
+by Zhenguo Niu"><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAA8AAAAPCAYAAAA71pVKAAAAh0lEQVR42mNgGDJgzu2Z/3uudvwnWWPUoVDSNb7/+e6/5Tbj/9XnysnTCLKVZKeCNGpuUPoPMoRkP3IsYfh/7u0Z/Bq99rig2AAKGJBGggEEMhmkEab43ue7YDbIyUQ5EWQASIPEKsH/IFcQ5VxsfgTh7BNppAXQ3ue74baDnE5WKiJLI6kAAN+fdJsknylQAAAAAElFTkSuQmCC" class="gwt-Image" width="15" height="15"></td></tr><tr><td class="iconCell leftMostCell"></td><td class="iconCell"></td><td class="dataCell dataCellHidden"><a class="gwt-InlineHyperlink" href="https://review.openstack.org/442611">442611</a></td><td class="dataCell cSUBJECT"><a class="gwt-InlineHyperlink" href="https://review.openstack.org/442611">Remove nova.conf truncate/refresh workaround</a></td><td class="dataCell cSTATUS">Merged</td><td class="dataCell cOWNER"><div class="accountLinkPanel"><img class="gwt-Image" style="height: 26px; display: none;" aria-hidden="true" src="https://review.openstack.org/accounts/diana.joan.clarke%40gmail.com/avatar?s=26"><a class="gwt-InlineHyperlink" href="#/q/owner:diana.joan.clarke%2540gmail.com+status:merged" title="Diana Clarke <diana.joan.clarke@gmail.com>">Diana Clarke</a></div></td><td class="dataCell"><a class="gwt-InlineHyperlink" href="#/projects/openstack/tripleo-puppet-elements,dashboards/default">openstack/tripleo-puppet-elements</a></td><td class="dataCell"><a class="gwt-InlineHyperlink" href="#/q/status:merged+project:openstack/tripleo-puppet-elements+branch:master+topic:bug/1568820">master (bug/1568820)</a></td><td class="dataCell cLastUpdate">Mar 9</td><td class="dataCell cSIZE" title="+8, -24"><div class="changeSize" style="width: 4px; background-color: rgb(31, 255, 0);"></div></td><td class="dataCell cAPPROVAL singleLine" title="Code-Review 
+by Ben Nemec"><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAA8AAAAPCAYAAAA71pVKAAAAh0lEQVR42mNgGDJgzu2Z/3uudvwnWWPUoVDSNb7/+e6/5Tbj/9XnysnTCLKVZKeCNGpuUPoPMoRkP3IsYfh/7u0Z/Bq99rig2AAKGJBGggEEMhmkEab43ue7YDbIyUQ5EWQASIPEKsH/IFcQ5VxsfgTh7BNppAXQ3ue74baDnE5WKiJLI6kAAN+fdJsknylQAAAAAElFTkSuQmCC" class="gwt-Image" width="15" height="15"></td><td class="dataCell cAPPROVAL singleLine" title="Verified 
+by Jenkins"><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAA8AAAAPCAYAAAA71pVKAAAAh0lEQVR42mNgGDJgzu2Z/3uudvwnWWPUoVDSNb7/+e6/5Tbj/9XnysnTCLKVZKeCNGpuUPoPMoRkP3IsYfh/7u0Z/Bq99rig2AAKGJBGggEEMhmkEab43ue7YDbIyUQ5EWQASIPEKsH/IFcQ5VxsfgTh7BNppAXQ3ue74baDnE5WKiJLI6kAAN+fdJsknylQAAAAAElFTkSuQmCC" class="gwt-Image" width="15" height="15"></td><td class="dataCell cAPPROVAL singleLine" title="Workflow 
+by Ben Nemec"><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAA8AAAAPCAYAAAA71pVKAAAAh0lEQVR42mNgGDJgzu2Z/3uudvwnWWPUoVDSNb7/+e6/5Tbj/9XnysnTCLKVZKeCNGpuUPoPMoRkP3IsYfh/7u0Z/Bq99rig2AAKGJBGggEEMhmkEab43ue7YDbIyUQ5EWQASIPEKsH/IFcQ5VxsfgTh7BNppAXQ3ue74baDnE5WKiJLI6kAAN+fdJsknylQAAAAAElFTkSuQmCC" class="gwt-Image" width="15" height="15"></td></tr></tbody></table><table class="changeTablePrevNextLinks" cellspacing="0" cellpadding="0"><tbody><tr><td style="vertical-align: top;" align="left"><div class="gwt-Hyperlink" style=""><a href="#/q/status:merged,775">Prev</a></div></td><td style="vertical-align: top;" align="left"><div class="gwt-Hyperlink" style=""><a href="#/q/status:merged,825">Next</a></div></td></tr></tbody></table></div></div></div></div></div><div style="clear: both"><div id="gerrit_footer"></div><div id="gerrit_btmmenu"><span class="gwt-InlineHTML">Powered by <a href="http://code.google.com/p/gerrit/" target="_blank">Gerrit Code Review</a> (2.11.4-22-ge0c0f29)</span><span class="gwt-InlineLabel"> | </span><a class="" href="http://docs.openstack.org/infra/system-config/project.html" target="_blank">Get Help</a><span class="gwt-InlineLabel"> | </span><span class="gwt-InlineLabel">Press '?' to view keyboard shortcuts</span></div></div><iframe id="__gwt_historyFrame" src="javascript:''" style="position:absolute;width:0;height:0;border:0" tabindex="-1"></iframe><script language="javascript" src="gerrit_ui/gerrit_ui.nocache.js?content=56037243b8d9765dbdd3aff2ab6dd074" type="text/javascript"></script><input id="toggleci" class="gwt-Button" value="Toggle CI" style="display: none;" type="button"><iframe src="javascript:&quot;&quot;" id="gerrit_ui" style="position: absolute; width: 0px; height: 0px; border: medium none; left: -1000px; top: -1000px;" tabindex="-1"></iframe><span class="rpcStatus" style="display: none;" aria-hidden="true">Working ...</span></body></html>

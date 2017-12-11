@@ -1,0 +1,619 @@
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en-US" lang="en-US">
+<!-- git web interface version 1.9.1, (C) 2005-2006, Kay Sievers <kay.sievers@vrfy.org>, Christian Gierke -->
+<!-- git core binaries version 1.9.1 -->
+<head>
+<meta http-equiv="content-type" content="application/xhtml+xml; charset=utf-8" />
+<meta name="generator" content="gitweb/1.9.1 git/1.9.1" />
+<meta name="robots" content="index, nofollow" />
+<title>review.openstack Code Review - openstack/nova.git/commitdiff</title>
+<link rel="stylesheet" type="text/css" href="gitweb-default.css" />
+<link rel="stylesheet" type="text/css" href="gitweb-site.css" />
+<link rel="alternate" title="openstack/nova.git - log - RSS feed" href="/gitweb?p=openstack/nova.git;a=rss" type="application/rss+xml" />
+<link rel="alternate" title="openstack/nova.git - log - RSS feed (no merges)" href="/gitweb?p=openstack/nova.git;a=rss;opt=--no-merges" type="application/rss+xml" />
+<link rel="alternate" title="openstack/nova.git - log - Atom feed" href="/gitweb?p=openstack/nova.git;a=atom" type="application/atom+xml" />
+<link rel="alternate" title="openstack/nova.git - log - Atom feed (no merges)" href="/gitweb?p=openstack/nova.git;a=atom;opt=--no-merges" type="application/atom+xml" />
+<link rel="shortcut icon" href="favicon.ico" type="image/png" />
+</head>
+<body>
+<div>
+  <script type="text/javascript" src="static/jquery.js"></script>
+  <script type="text/javascript" src="static/jquery-visibility.js"></script>
+  <script type="text/javascript" src="static/hideci.js"></script>
+  <a href="/"><h1 style="color: #CF2F19"><img src="static/title.png" style="vertical-align:middle;" /></h1></a>
+</div>
+<div class="page_header">
+<a href="http://git-scm.com/" title="git homepage"><img class="logo" src="gitweb-logo.png" alt="git" width="72" height="27" /></a><a href="/">Code Review</a> / <a href="/gitweb?a=project_list;pf=openstack">openstack</a> / <a href="/gitweb?p=openstack/nova.git;a=summary">nova.git</a> / commitdiff
+</div>
+<form method="get" action="/gitweb" enctype="application/x-www-form-urlencoded"><div class="search">
+<input value="openstack/nova.git" name="p" type="hidden" />
+<input name="a" value="search" type="hidden" />
+<input value="01e6f7575a3c75bd73e297f3d9d003292e0a0e1e" name="h" type="hidden" />
+<select name="st">
+<option selected="selected" value="commit">commit</option>
+<option value="grep">grep</option>
+<option value="author">author</option>
+<option value="committer">committer</option>
+<option value="pickaxe">pickaxe</option>
+</select> <a href="/gitweb?p=openstack/nova.git;a=search_help" title="search help">?</a> search:
+<input name="s" type="text" />
+<span title="Extended regular expression"><label><input name="sr" value="1" type="checkbox" />re</label></span></div>
+</form>
+<div class="page_nav">
+<a href="/gitweb?p=openstack/nova.git;a=summary">summary</a> | <a href="/gitweb?p=openstack/nova.git;a=shortlog;h=01e6f7575a3c75bd73e297f3d9d003292e0a0e1e">shortlog</a> | <a href="/gitweb?p=openstack/nova.git;a=log;h=01e6f7575a3c75bd73e297f3d9d003292e0a0e1e">log</a> | <a href="/gitweb?p=openstack/nova.git;a=commit;h=01e6f7575a3c75bd73e297f3d9d003292e0a0e1e">commit</a> | commitdiff | <a href="/#/q/01e6f7575a3c75bd73e297f3d9d003292e0a0e1e">review</a> | <a href="/gitweb?p=openstack/nova.git;a=tree;h=c58ed5953dd78538fa6b392ab7263366d6521b21;hb=01e6f7575a3c75bd73e297f3d9d003292e0a0e1e">tree</a><br />
+<a href="/gitweb?p=openstack/nova.git;a=commitdiff_plain;h=01e6f7575a3c75bd73e297f3d9d003292e0a0e1e">raw</a> | <a href="/gitweb?p=openstack/nova.git;a=patch;h=01e6f7575a3c75bd73e297f3d9d003292e0a0e1e">patch</a> | inline | <a href="/gitweb?p=openstack/nova.git;a=commitdiff;h=01e6f7575a3c75bd73e297f3d9d003292e0a0e1e;ds=sidebyside">side by side</a> (parent: <a href="/gitweb?p=openstack/nova.git;a=commitdiff;h=c27e1ccd3f1a9cda6fff70d87aece6e50eba887d">c27e1cc</a>)<br />
+</div>
+<div class="header">
+<a href="/gitweb?p=openstack/nova.git;a=commit;h=01e6f7575a3c75bd73e297f3d9d003292e0a0e1e" class="title">Adds simple policy engine support <span class="refs"> <span class="change" title="changes/66/2766/8"><a href="/gitweb?p=openstack/nova.git;a=shortlog;h=refs/changes/66/2766/8">66/2766/8</a></span></span></a>
+</div>
+<div class="title_text">
+<table class="object_header">
+<tr><td>author</td><td><a class="list" href="/gitweb?p=openstack/nova.git;a=search;h=01e6f7575a3c75bd73e297f3d9d003292e0a0e1e;s=Vishvananda+Ishaya;st=author" title="Search for commits authored by Vishvananda Ishaya">Vishvananda Ishaya</a> <a class="list" href="/gitweb?p=openstack/nova.git;a=search;h=01e6f7575a3c75bd73e297f3d9d003292e0a0e1e;s=vishvananda@gmail.com;st=author" title="Search for commits authored by vishvananda@gmail.com">&lt;vishvananda@gmail.com&gt;</a></td><td rowspan="2"></td></tr>
+<tr><td></td><td><span class="datetime" title="Click to change timezone">Wed, 4 Jan 2012 22:42:21 -0400</span> (18:42 -0800)</td></tr>
+<tr><td>committer</td><td><a title="Search for commits committed by Vishvananda Ishaya" href="/gitweb?p=openstack/nova.git;a=search;h=01e6f7575a3c75bd73e297f3d9d003292e0a0e1e;s=Vishvananda+Ishaya;st=committer" class="list">Vishvananda Ishaya</a> <a class="list" title="Search for commits committed by vishvananda@gmail.com" href="/gitweb?p=openstack/nova.git;a=search;h=01e6f7575a3c75bd73e297f3d9d003292e0a0e1e;s=vishvananda@gmail.com;st=committer">&lt;vishvananda@gmail.com&gt;</a></td><td rowspan="2"></td></tr>
+<tr><td></td><td><span class="datetime" title="Click to change timezone">Mon, 9 Jan 2012 15:40:04 -0400</span> (11:40 -0800)</td></tr>
+</table></div>
+<div class="page_body">
+<div class="log">
+*Firststepofblueprintinterim-nova-authz-service<br />
+*Commonpolicyenginethatcanbeusedbyotherprojects<br />
+*Novaspecificpolicyenginethatusescommonpolicy<br />
+*Policyfilecanbegeneratedbyexternaltool(dashboard)<br />
+*Ultimately,policieswillberequestedfromaservice<br />
+<br />
+Change-Id:Icaf934037e790bde6ce2346746ce38b11134423b<br />
+<br />
+</div>
+<div class="list_head">
+</div>
+<table class="diff_tree">
+<tr class="dark">
+<td><a class="list" href="/gitweb?p=openstack/nova.git;a=blob;f=nova/common/policy.py;h=9d811c784f4cd081dbf8af2d565d3f58d832fcc1;hb=01e6f7575a3c75bd73e297f3d9d003292e0a0e1e">nova/common/policy.py</a></td>
+<td><span class="file_status new">[new file with mode: 0644]</span></td>
+<td class="link"><a href="/gitweb?p=openstack/nova.git;a=commitdiff;h=01e6f7575a3c75bd73e297f3d9d003292e0a0e1e#patch1">patch</a> | <a href="/gitweb?p=openstack/nova.git;a=blob;f=nova/common/policy.py;h=9d811c784f4cd081dbf8af2d565d3f58d832fcc1;hb=01e6f7575a3c75bd73e297f3d9d003292e0a0e1e">blob</a></td>
+</tr>
+<tr class="light">
+<td><a class="list" href="/gitweb?p=openstack/nova.git;a=blob;f=nova/exception.py;h=8ec942a76979810a23d41af3edbe3683593ad626;hb=01e6f7575a3c75bd73e297f3d9d003292e0a0e1e">nova/exception.py</a></td>
+<td></td>
+<td class="link"><a href="/gitweb?p=openstack/nova.git;a=commitdiff;h=01e6f7575a3c75bd73e297f3d9d003292e0a0e1e#patch2">patch</a> | <a href="/gitweb?p=openstack/nova.git;a=blob;f=nova/exception.py;h=8ec942a76979810a23d41af3edbe3683593ad626;hb=01e6f7575a3c75bd73e297f3d9d003292e0a0e1e">blob</a> | <a href="/gitweb?p=openstack/nova.git;a=history;f=nova/exception.py;hb=01e6f7575a3c75bd73e297f3d9d003292e0a0e1e">history</a></td>
+</tr>
+<tr class="dark">
+<td><a href="/gitweb?p=openstack/nova.git;a=blob;f=nova/policy.py;h=2ebe6a69c2e40fd4a68168dd74dc7ef32b8f6c39;hb=01e6f7575a3c75bd73e297f3d9d003292e0a0e1e" class="list">nova/policy.py</a></td>
+<td><span class="file_status new">[new file with mode: 0644]</span></td>
+<td class="link"><a href="/gitweb?p=openstack/nova.git;a=commitdiff;h=01e6f7575a3c75bd73e297f3d9d003292e0a0e1e#patch3">patch</a> | <a href="/gitweb?p=openstack/nova.git;a=blob;f=nova/policy.py;h=2ebe6a69c2e40fd4a68168dd74dc7ef32b8f6c39;hb=01e6f7575a3c75bd73e297f3d9d003292e0a0e1e">blob</a></td>
+</tr>
+<tr class="light">
+<td><a href="/gitweb?p=openstack/nova.git;a=blob;f=nova/tests/fake_flags.py;h=b95aa77d0dcca8ab1251efcd36d232d7b4af409c;hb=01e6f7575a3c75bd73e297f3d9d003292e0a0e1e" class="list">nova/tests/fake_flags.py</a></td>
+<td></td>
+<td class="link"><a href="/gitweb?p=openstack/nova.git;a=commitdiff;h=01e6f7575a3c75bd73e297f3d9d003292e0a0e1e#patch4">patch</a> | <a href="/gitweb?p=openstack/nova.git;a=blob;f=nova/tests/fake_flags.py;h=b95aa77d0dcca8ab1251efcd36d232d7b4af409c;hb=01e6f7575a3c75bd73e297f3d9d003292e0a0e1e">blob</a> | <a href="/gitweb?p=openstack/nova.git;a=history;f=nova/tests/fake_flags.py;hb=01e6f7575a3c75bd73e297f3d9d003292e0a0e1e">history</a></td>
+</tr>
+<tr class="dark">
+<td><a class="list" href="/gitweb?p=openstack/nova.git;a=blob;f=nova/tests/policy.json;h=47c3d870e0198d9bc73e42b600ee438b3b48ec4b;hb=01e6f7575a3c75bd73e297f3d9d003292e0a0e1e">nova/tests/policy.json</a></td>
+<td><span class="file_status new">[new file with mode: 0644]</span></td>
+<td class="link"><a href="/gitweb?p=openstack/nova.git;a=commitdiff;h=01e6f7575a3c75bd73e297f3d9d003292e0a0e1e#patch5">patch</a> | <a href="/gitweb?p=openstack/nova.git;a=blob;f=nova/tests/policy.json;h=47c3d870e0198d9bc73e42b600ee438b3b48ec4b;hb=01e6f7575a3c75bd73e297f3d9d003292e0a0e1e">blob</a></td>
+</tr>
+<tr class="light">
+<td><a href="/gitweb?p=openstack/nova.git;a=blob;f=nova/tests/test_policy.py;h=39dca2ae7059282d11f6bf01c98122c0a4d4b26e;hb=01e6f7575a3c75bd73e297f3d9d003292e0a0e1e" class="list">nova/tests/test_policy.py</a></td>
+<td><span class="file_status new">[new file with mode: 0644]</span></td>
+<td class="link"><a href="/gitweb?p=openstack/nova.git;a=commitdiff;h=01e6f7575a3c75bd73e297f3d9d003292e0a0e1e#patch6">patch</a> | <a href="/gitweb?p=openstack/nova.git;a=blob;f=nova/tests/test_policy.py;h=39dca2ae7059282d11f6bf01c98122c0a4d4b26e;hb=01e6f7575a3c75bd73e297f3d9d003292e0a0e1e">blob</a></td>
+</tr>
+</table>
+<br />
+<div class="patchset">
+<div class="patch" id="patch1">
+<div class="diff header">diff --git a/nova/common/policy.py <a class="path" href="/gitweb?p=openstack/nova.git;a=blob;f=nova/common/policy.py;h=9d811c784f4cd081dbf8af2d565d3f58d832fcc1;hb=01e6f7575a3c75bd73e297f3d9d003292e0a0e1e">b/nova/common/policy.py</a></div>
+<div class="diff extended_header">
+new file mode 100644<span class="info"> (file)</span><br />
+index 0000000..<a href="/gitweb?p=openstack/nova.git;a=blob;f=nova/common/policy.py;h=9d811c784f4cd081dbf8af2d565d3f58d832fcc1;hb=01e6f7575a3c75bd73e297f3d9d003292e0a0e1e" class="hash">9d811c7</a><br />
+</div>
+<div class="diff from_file">--- /dev/null</div>
+<div class="diff to_file">+++ b/<a class="path" href="/gitweb?p=openstack/nova.git;a=blob;f=nova/common/policy.py;h=9d811c784f4cd081dbf8af2d565d3f58d832fcc1;hb=01e6f7575a3c75bd73e297f3d9d003292e0a0e1e">nova/common/policy.py</a></div>
+<div class="diff chunk_header"><span class="chunk_info">@@ -0,0 <a href="/gitweb?p=openstack/nova.git;a=blob;f=nova/common/policy.py;h=9d811c784f4cd081dbf8af2d565d3f58d832fcc1;hb=01e6f7575a3c75bd73e297f3d9d003292e0a0e1e#l1" class="list">+1,202</a> @@</span><span class="section"></span></div>
+<div class="diff add">+#vim:tabstop=4shiftwidth=4softtabstop=4</div>
+<div class="diff add">+</div>
+<div class="diff add">+#Copyright(c)2011OpenStack,LLC.</div>
+<div class="diff add">+#AllRightsReserved.</div>
+<div class="diff add">+#</div>
+<div class="diff add">+#LicensedundertheApacheLicense,Version2.0(the"License");youmay</div>
+<div class="diff add">+#notusethisfileexceptincompliancewiththeLicense.Youmayobtain</div>
+<div class="diff add">+#acopyoftheLicenseat</div>
+<div class="diff add">+#</div>
+<div class="diff add">+#http://www.apache.org/licenses/LICENSE-2.0</div>
+<div class="diff add">+#</div>
+<div class="diff add">+#Unlessrequiredbyapplicablelaworagreedtoinwriting,software</div>
+<div class="diff add">+#distributedundertheLicenseisdistributedonan"ASIS"BASIS,WITHOUT</div>
+<div class="diff add">+#WARRANTIESORCONDITIONSOFANYKIND,eitherexpressorimplied.Seethe</div>
+<div class="diff add">+#Licenseforthespecificlanguagegoverningpermissionsandlimitations</div>
+<div class="diff add">+#undertheLicense.</div>
+<div class="diff add">+</div>
+<div class="diff add">+"""CommonPolicyEngineImplementation"""</div>
+<div class="diff add">+</div>
+<div class="diff add">+importjson</div>
+<div class="diff add">+importurllib</div>
+<div class="diff add">+importurllib2</div>
+<div class="diff add">+</div>
+<div class="diff add">+</div>
+<div class="diff add">+classNotAllowed(Exception):</div>
+<div class="diff add">+pass</div>
+<div class="diff add">+</div>
+<div class="diff add">+</div>
+<div class="diff add">+_BRAIN=None</div>
+<div class="diff add">+</div>
+<div class="diff add">+</div>
+<div class="diff add">+defset_brain(brain):</div>
+<div class="diff add">+"""Setthebrainusedbyenforce().</div>
+<div class="diff add">+</div>
+<div class="diff add">+DefaultsuseBrain()ifnotset.</div>
+<div class="diff add">+</div>
+<div class="diff add">+"""</div>
+<div class="diff add">+global_BRAIN</div>
+<div class="diff add">+_BRAIN=brain</div>
+<div class="diff add">+</div>
+<div class="diff add">+</div>
+<div class="diff add">+defreset():</div>
+<div class="diff add">+"""Clearthebrainusedbyenforce()."""</div>
+<div class="diff add">+global_BRAIN</div>
+<div class="diff add">+_BRAIN=None</div>
+<div class="diff add">+</div>
+<div class="diff add">+</div>
+<div class="diff add">+defenforce(match_list,target_dict,credentials_dict):</div>
+<div class="diff add">+"""Enforcesauthorizationofsomerulesagainstcredentials.</div>
+<div class="diff add">+</div>
+<div class="diff add">+:parammatch_list:nestedtuplesofdatatomatchagainst</div>
+<div class="diff add">+Thebasicbrainsupportsthreetypesofmatchlists:</div>
+<div class="diff add">+1)rules</div>
+<div class="diff add">+lookslike:('rule:compute:get_instance',)</div>
+<div class="diff add">+Retrievesthenamedrulefromtherulesdictandrecursively</div>
+<div class="diff add">+checksagainstthecontentsoftherule.</div>
+<div class="diff add">+2)roles</div>
+<div class="diff add">+lookslike:('role:compute:admin',)</div>
+<div class="diff add">+Matchesifthespecifiedroleisincredentials_dict['roles'].</div>
+<div class="diff add">+3)generic</div>
+<div class="diff add">+('tenant_id:%(tenant_id)s',)</div>
+<div class="diff add">+Substitutesvaluesfromthetargetdictintothematchusing</div>
+<div class="diff add">+the%operatorandmatchesthemagainstthecredsdict.</div>
+<div class="diff add">+</div>
+<div class="diff add">+Combiningrules:</div>
+<div class="diff add">+ThebrainreturnsTrueifanyoftheoutertupleofrulesmatch</div>
+<div class="diff add">+andalsoTrueifalloftheinnertuplesmatch.Youcanusethisto</div>
+<div class="diff add">+performsimplebooleanlogic.Forexample,thefollowingrulewould</div>
+<div class="diff add">+returnTrueifthecredscontaintherole'admin'ORtheifthe</div>
+<div class="diff add">+tenant_idmatchesthetargetdictANDthethecredscontainsthe</div>
+<div class="diff add">+role'compute_sysadmin':</div>
+<div class="diff add">+</div>
+<div class="diff add">+{</div>
+<div class="diff add">+"rule:combined":(</div>
+<div class="diff add">+'role:admin',</div>
+<div class="diff add">+('tenant_id:%(tenant_id)s','role:compute_sysadmin')</div>
+<div class="diff add">+)</div>
+<div class="diff add">+}</div>
+<div class="diff add">+</div>
+<div class="diff add">+</div>
+<div class="diff add">+Notethatruleandrolearereservedwordsinthecredentialsmatch,so</div>
+<div class="diff add">+youcan'tmatchagainstpropertieswiththosenames.Custombrainsmay</div>
+<div class="diff add">+alsoaddnewreservedwords.Forexample,theHttpBrainaddshttpasa</div>
+<div class="diff add">+reservedword.</div>
+<div class="diff add">+</div>
+<div class="diff add">+:paramtarget_dict:dictofobjectproperties</div>
+<div class="diff add">+Targetdictscontainasmuchinformationaswecanabouttheobjectbeing</div>
+<div class="diff add">+operatedon.</div>
+<div class="diff add">+</div>
+<div class="diff add">+:paramcredentials_dict:dictofactorproperties</div>
+<div class="diff add">+Credentialsdictscontainasmuchinformationaswecanabouttheuser</div>
+<div class="diff add">+performingtheaction.</div>
+<div class="diff add">+</div>
+<div class="diff add">+:raisesNotAllowedifthecheckfails</div>
+<div class="diff add">+</div>
+<div class="diff add">+"""</div>
+<div class="diff add">+global_BRAIN</div>
+<div class="diff add">+ifnot_BRAIN:</div>
+<div class="diff add">+_BRAIN=Brain()</div>
+<div class="diff add">+ifnot_BRAIN.check(match_list,target_dict,credentials_dict):</div>
+<div class="diff add">+raiseNotAllowed()</div>
+<div class="diff add">+</div>
+<div class="diff add">+</div>
+<div class="diff add">+classBrain(object):</div>
+<div class="diff add">+"""Implementspolicychecking."""</div>
+<div class="diff add">+@classmethod</div>
+<div class="diff add">+defload_json(cls,data):</div>
+<div class="diff add">+"""Initabrainusingjsoninsteadofarulesdictionary."""</div>
+<div class="diff add">+rules_dict=json.loads(data)</div>
+<div class="diff add">+returncls(rules=rules_dict)</div>
+<div class="diff add">+</div>
+<div class="diff add">+def__init__(self,rules=None):</div>
+<div class="diff add">+self.rules=rulesor{}</div>
+<div class="diff add">+</div>
+<div class="diff add">+defadd_rule(self,key,match):</div>
+<div class="diff add">+self.rules[key]=match</div>
+<div class="diff add">+</div>
+<div class="diff add">+def_check(self,match,target_dict,cred_dict):</div>
+<div class="diff add">+match_kind,match_value=match.split(':',1)</div>
+<div class="diff add">+try:</div>
+<div class="diff add">+f=getattr(self,'_check_%s'%match_kind)</div>
+<div class="diff add">+exceptAttributeError:</div>
+<div class="diff add">+ifnotself._check_generic(match,target_dict,cred_dict):</div>
+<div class="diff add">+returnFalse</div>
+<div class="diff add">+else:</div>
+<div class="diff add">+ifnotf(match_value,target_dict,cred_dict):</div>
+<div class="diff add">+returnFalse</div>
+<div class="diff add">+returnTrue</div>
+<div class="diff add">+</div>
+<div class="diff add">+defcheck(self,match_list,target_dict,cred_dict):</div>
+<div class="diff add">+"""Checksauthorizationofsomerulesagainstcredentials.</div>
+<div class="diff add">+</div>
+<div class="diff add">+Detaileddescriptionofthecheckwithexamplesinpolicy.enforce().</div>
+<div class="diff add">+</div>
+<div class="diff add">+:parammatch_list:nestedtuplesofdatatomatchagainst</div>
+<div class="diff add">+:paramtarget_dict:dictofobjectproperties</div>
+<div class="diff add">+:paramcredentials_dict:dictofactorproperties</div>
+<div class="diff add">+</div>
+<div class="diff add">+:returns:Trueifthecheckpasses</div>
+<div class="diff add">+</div>
+<div class="diff add">+"""</div>
+<div class="diff add">+ifnotmatch_list:</div>
+<div class="diff add">+returnTrue</div>
+<div class="diff add">+forand_listinmatch_list:</div>
+<div class="diff add">+ifisinstance(and_list,basestring):</div>
+<div class="diff add">+and_list=(and_list,)</div>
+<div class="diff add">+ifall([self._check(item,target_dict,cred_dict)</div>
+<div class="diff add">+foriteminand_list]):</div>
+<div class="diff add">+returnTrue</div>
+<div class="diff add">+returnFalse</div>
+<div class="diff add">+</div>
+<div class="diff add">+def_check_rule(self,match,target_dict,cred_dict):</div>
+<div class="diff add">+"""Recursivelycheckscredentialsbasedonthebrainsrules."""</div>
+<div class="diff add">+try:</div>
+<div class="diff add">+new_match_list=self.rules[match]</div>
+<div class="diff add">+exceptKeyError:</div>
+<div class="diff add">+returnFalse</div>
+<div class="diff add">+returnself.check(new_match_list,target_dict,cred_dict)</div>
+<div class="diff add">+</div>
+<div class="diff add">+def_check_role(self,match,target_dict,cred_dict):</div>
+<div class="diff add">+"""Checkthatthereisamatchingroleinthecreddict."""</div>
+<div class="diff add">+returnmatchincred_dict['roles']</div>
+<div class="diff add">+</div>
+<div class="diff add">+def_check_generic(self,match,target_dict,cred_dict):</div>
+<div class="diff add">+"""Checkanindividualmatch.</div>
+<div class="diff add">+</div>
+<div class="diff add">+Matcheslooklike:</div>
+<div class="diff add">+</div>
+<div class="diff add">+tenant:%(tenant_id)s</div>
+<div class="diff add">+role:compute:admin</div>
+<div class="diff add">+</div>
+<div class="diff add">+"""</div>
+<div class="diff add">+</div>
+<div class="diff add">+#TODO(termie):dodictinspectionviadotsyntax</div>
+<div class="diff add">+match=match%target_dict</div>
+<div class="diff add">+key,value=match.split(':',1)</div>
+<div class="diff add">+ifkeyincred_dict:</div>
+<div class="diff add">+returnvalue==cred_dict[key]</div>
+<div class="diff add">+returnFalse</div>
+<div class="diff add">+</div>
+<div class="diff add">+</div>
+<div class="diff add">+classHttpBrain(Brain):</div>
+<div class="diff add">+"""Abrainthatcancheckexternalurlsforpolicy.</div>
+<div class="diff add">+</div>
+<div class="diff add">+Postsjsonblobsfortargetandcredentials.</div>
+<div class="diff add">+</div>
+<div class="diff add">+"""</div>
+<div class="diff add">+</div>
+<div class="diff add">+def_check_http(self,match,target_dict,cred_dict):</div>
+<div class="diff add">+"""Checkhttp:rulesbycallingtoaremoteserver.</div>
+<div class="diff add">+</div>
+<div class="diff add">+Thisexampleimplementationsimplyverifiesthattheresponseis</div>
+<div class="diff add">+exactly'True'.Acustombrainusingresponsecodescouldeasily</div>
+<div class="diff add">+beimplemented.</div>
+<div class="diff add">+</div>
+<div class="diff add">+"""</div>
+<div class="diff add">+url=match%target_dict</div>
+<div class="diff add">+data={'target':json.dumps(target_dict),</div>
+<div class="diff add">+'credentials':json.dumps(cred_dict)}</div>
+<div class="diff add">+post_data=urllib.urlencode(data)</div>
+<div class="diff add">+f=urllib2.urlopen(url,post_data)</div>
+<div class="diff add">+returnf.read()=="True"</div>
+</div>
+<div class="patch" id="patch2">
+<div class="diff header">diff --git <a href="/gitweb?p=openstack/nova.git;a=blob;f=nova/exception.py;h=f2df97964046302c0804ab582a9beb989a797c32" class="path">a/nova/exception.py</a> <a href="/gitweb?p=openstack/nova.git;a=blob;f=nova/exception.py;h=8ec942a76979810a23d41af3edbe3683593ad626;hb=01e6f7575a3c75bd73e297f3d9d003292e0a0e1e" class="path">b/nova/exception.py</a></div>
+<div class="diff extended_header">
+index <a class="hash" href="/gitweb?p=openstack/nova.git;a=blob;f=nova/exception.py;h=f2df97964046302c0804ab582a9beb989a797c32">f2df979</a>..<a class="hash" href="/gitweb?p=openstack/nova.git;a=blob;f=nova/exception.py;h=8ec942a76979810a23d41af3edbe3683593ad626;hb=01e6f7575a3c75bd73e297f3d9d003292e0a0e1e">8ec942a</a> 100644<span class="info"> (file)</span><br />
+</div>
+<div class="diff from_file">--- a/<a class="path" href="/gitweb?p=openstack/nova.git;a=blob;f=nova/exception.py;h=f2df97964046302c0804ab582a9beb989a797c32">nova/exception.py</a></div>
+<div class="diff to_file">+++ b/<a class="path" href="/gitweb?p=openstack/nova.git;a=blob;f=nova/exception.py;h=8ec942a76979810a23d41af3edbe3683593ad626;hb=01e6f7575a3c75bd73e297f3d9d003292e0a0e1e">nova/exception.py</a></div>
+<div class="diff chunk_header"><span class="chunk_info">@@ <a class="list" href="/gitweb?p=openstack/nova.git;a=blob;f=nova/exception.py;h=f2df97964046302c0804ab582a9beb989a797c32#l207">-207,6</a> <a class="list" href="/gitweb?p=openstack/nova.git;a=blob;f=nova/exception.py;h=8ec942a76979810a23d41af3edbe3683593ad626;hb=01e6f7575a3c75bd73e297f3d9d003292e0a0e1e#l207">+207,10</a> @@</span><span class="section">classAdminRequired(NotAuthorized):</span></div>
+<div class="diff ctx">message=_("Userdoesnothaveadminprivileges")</div>
+<div class="diff ctx"></div>
+<div class="diff ctx"></div>
+<div class="diff add">+classPolicyNotAllowed(NotAuthorized):</div>
+<div class="diff add">+message=_("PolicyDoesn'tallow%(action)stobeperformed.")</div>
+<div class="diff add">+</div>
+<div class="diff add">+</div>
+<div class="diff ctx">classInstanceBusy(NovaException):</div>
+<div class="diff ctx">message=_("Instance%(instance_id)sisbusy.(%(task_state)s)")</div>
+<div class="diff ctx"></div>
+</div>
+<div class="patch" id="patch3">
+<div class="diff header">diff --git a/nova/policy.py <a class="path" href="/gitweb?p=openstack/nova.git;a=blob;f=nova/policy.py;h=2ebe6a69c2e40fd4a68168dd74dc7ef32b8f6c39;hb=01e6f7575a3c75bd73e297f3d9d003292e0a0e1e">b/nova/policy.py</a></div>
+<div class="diff extended_header">
+new file mode 100644<span class="info"> (file)</span><br />
+index 0000000..<a class="hash" href="/gitweb?p=openstack/nova.git;a=blob;f=nova/policy.py;h=2ebe6a69c2e40fd4a68168dd74dc7ef32b8f6c39;hb=01e6f7575a3c75bd73e297f3d9d003292e0a0e1e">2ebe6a6</a><br />
+</div>
+<div class="diff from_file">--- /dev/null</div>
+<div class="diff to_file">+++ b/<a href="/gitweb?p=openstack/nova.git;a=blob;f=nova/policy.py;h=2ebe6a69c2e40fd4a68168dd74dc7ef32b8f6c39;hb=01e6f7575a3c75bd73e297f3d9d003292e0a0e1e" class="path">nova/policy.py</a></div>
+<div class="diff chunk_header"><span class="chunk_info">@@ -0,0 <a href="/gitweb?p=openstack/nova.git;a=blob;f=nova/policy.py;h=2ebe6a69c2e40fd4a68168dd74dc7ef32b8f6c39;hb=01e6f7575a3c75bd73e297f3d9d003292e0a0e1e#l1" class="list">+1,78</a> @@</span><span class="section"></span></div>
+<div class="diff add">+#vim:tabstop=4shiftwidth=4softtabstop=4</div>
+<div class="diff add">+</div>
+<div class="diff add">+#Copyright(c)2011OpenStack,LLC.</div>
+<div class="diff add">+#AllRightsReserved.</div>
+<div class="diff add">+#</div>
+<div class="diff add">+#LicensedundertheApacheLicense,Version2.0(the"License");youmay</div>
+<div class="diff add">+#notusethisfileexceptincompliancewiththeLicense.Youmayobtain</div>
+<div class="diff add">+#acopyoftheLicenseat</div>
+<div class="diff add">+#</div>
+<div class="diff add">+#http://www.apache.org/licenses/LICENSE-2.0</div>
+<div class="diff add">+#</div>
+<div class="diff add">+#Unlessrequiredbyapplicablelaworagreedtoinwriting,software</div>
+<div class="diff add">+#distributedundertheLicenseisdistributedonan"ASIS"BASIS,WITHOUT</div>
+<div class="diff add">+#WARRANTIESORCONDITIONSOFANYKIND,eitherexpressorimplied.Seethe</div>
+<div class="diff add">+#Licenseforthespecificlanguagegoverningpermissionsandlimitations</div>
+<div class="diff add">+#undertheLicense.</div>
+<div class="diff add">+</div>
+<div class="diff add">+"""PolicyEngineForNova"""</div>
+<div class="diff add">+</div>
+<div class="diff add">+fromnovaimportexception</div>
+<div class="diff add">+fromnovaimportflags</div>
+<div class="diff add">+fromnovaimportutils</div>
+<div class="diff add">+fromnova.commonimportpolicy</div>
+<div class="diff add">+</div>
+<div class="diff add">+FLAGS=flags.FLAGS</div>
+<div class="diff add">+flags.DEFINE_string('policy_file','policy.json',</div>
+<div class="diff add">+_('JSONfilerepresentingpolicy'))</div>
+<div class="diff add">+</div>
+<div class="diff add">+_POLICY_PATH=None</div>
+<div class="diff add">+_POLICY_CACHE={}</div>
+<div class="diff add">+</div>
+<div class="diff add">+</div>
+<div class="diff add">+defreset():</div>
+<div class="diff add">+global_POLICY_PATH</div>
+<div class="diff add">+global_POLICY_CACHE</div>
+<div class="diff add">+_POLICY_PATH=None</div>
+<div class="diff add">+_POLICY_CACHE={}</div>
+<div class="diff add">+policy.reset()</div>
+<div class="diff add">+</div>
+<div class="diff add">+</div>
+<div class="diff add">+definit():</div>
+<div class="diff add">+global_POLICY_PATH</div>
+<div class="diff add">+global_POLICY_CACHE</div>
+<div class="diff add">+ifnot_POLICY_PATH:</div>
+<div class="diff add">+_POLICY_PATH=utils.find_config(FLAGS.policy_file)</div>
+<div class="diff add">+data=utils.read_cached_file(_POLICY_PATH,_POLICY_CACHE,</div>
+<div class="diff add">+reload_func=_set_brain)</div>
+<div class="diff add">+</div>
+<div class="diff add">+</div>
+<div class="diff add">+def_set_brain(data):</div>
+<div class="diff add">+policy.set_brain(policy.HttpBrain.load_json(data))</div>
+<div class="diff add">+</div>
+<div class="diff add">+</div>
+<div class="diff add">+defenforce(context,action,target):</div>
+<div class="diff add">+"""Verifiesthattheactionisvalidonthetargetinthiscontext.</div>
+<div class="diff add">+</div>
+<div class="diff add">+:paramcontext:novacontext</div>
+<div class="diff add">+:paramaction:stringrepresentingtheactiontobechecked</div>
+<div class="diff add">+thisshouldbecolonseparatedforclarity.</div>
+<div class="diff add">+i.e.compute:create_instance</div>
+<div class="diff add">+compute:attach_volume</div>
+<div class="diff add">+volume:attach_volume</div>
+<div class="diff add">+</div>
+<div class="diff add">+:paramobject:dictionaryrepresentingtheobjectoftheaction</div>
+<div class="diff add">+forobjectcreationthisshouldbeadictionaryrepresentingthe</div>
+<div class="diff add">+locationoftheobjecte.g.{'project_id':context.project_id}</div>
+<div class="diff add">+</div>
+<div class="diff add">+:raises:`nova.exception.PolicyNotAllowed`ifverificationfails.</div>
+<div class="diff add">+</div>
+<div class="diff add">+"""</div>
+<div class="diff add">+init()</div>
+<div class="diff add">+match_list=('rule:%s'%action,)</div>
+<div class="diff add">+target_dict=target</div>
+<div class="diff add">+credentials_dict=context.to_dict()</div>
+<div class="diff add">+try:</div>
+<div class="diff add">+policy.enforce(match_list,target_dict,credentials_dict)</div>
+<div class="diff add">+exceptpolicy.NotAllowed:</div>
+<div class="diff add">+raiseexception.PolicyNotAllowed(action=action)</div>
+</div>
+<div class="patch" id="patch4">
+<div class="diff header">diff --git <a href="/gitweb?p=openstack/nova.git;a=blob;f=nova/tests/fake_flags.py;h=fc7bb059a0d86be8bc78b9feafaef44a37180ee7" class="path">a/nova/tests/fake_flags.py</a> <a class="path" href="/gitweb?p=openstack/nova.git;a=blob;f=nova/tests/fake_flags.py;h=b95aa77d0dcca8ab1251efcd36d232d7b4af409c;hb=01e6f7575a3c75bd73e297f3d9d003292e0a0e1e">b/nova/tests/fake_flags.py</a></div>
+<div class="diff extended_header">
+index <a href="/gitweb?p=openstack/nova.git;a=blob;f=nova/tests/fake_flags.py;h=fc7bb059a0d86be8bc78b9feafaef44a37180ee7" class="hash">fc7bb05</a>..<a class="hash" href="/gitweb?p=openstack/nova.git;a=blob;f=nova/tests/fake_flags.py;h=b95aa77d0dcca8ab1251efcd36d232d7b4af409c;hb=01e6f7575a3c75bd73e297f3d9d003292e0a0e1e">b95aa77</a> 100644<span class="info"> (file)</span><br />
+</div>
+<div class="diff from_file">--- a/<a href="/gitweb?p=openstack/nova.git;a=blob;f=nova/tests/fake_flags.py;h=fc7bb059a0d86be8bc78b9feafaef44a37180ee7" class="path">nova/tests/fake_flags.py</a></div>
+<div class="diff to_file">+++ b/<a class="path" href="/gitweb?p=openstack/nova.git;a=blob;f=nova/tests/fake_flags.py;h=b95aa77d0dcca8ab1251efcd36d232d7b4af409c;hb=01e6f7575a3c75bd73e297f3d9d003292e0a0e1e">nova/tests/fake_flags.py</a></div>
+<div class="diff chunk_header"><span class="chunk_info">@@ <a class="list" href="/gitweb?p=openstack/nova.git;a=blob;f=nova/tests/fake_flags.py;h=fc7bb059a0d86be8bc78b9feafaef44a37180ee7#l41">-41,3</a> <a href="/gitweb?p=openstack/nova.git;a=blob;f=nova/tests/fake_flags.py;h=b95aa77d0dcca8ab1251efcd36d232d7b4af409c;hb=01e6f7575a3c75bd73e297f3d9d003292e0a0e1e#l41" class="list">+41,5</a> @@</span><span class="section">FLAGS['sqlite_db'].SetDefault("tests.sqlite")</span></div>
+<div class="diff ctx">FLAGS['use_ipv6'].SetDefault(True)</div>
+<div class="diff ctx">FLAGS['flat_network_bridge'].SetDefault('br100')</div>
+<div class="diff ctx">FLAGS['sqlite_synchronous'].SetDefault(False)</div>
+<div class="diff add">+flags.DECLARE('policy_file','nova.policy')</div>
+<div class="diff add">+FLAGS['policy_file'].SetDefault('nova/tests/policy.json')</div>
+</div>
+<div class="patch" id="patch5">
+<div class="diff header">diff --git a/nova/tests/policy.json <a href="/gitweb?p=openstack/nova.git;a=blob;f=nova/tests/policy.json;h=47c3d870e0198d9bc73e42b600ee438b3b48ec4b;hb=01e6f7575a3c75bd73e297f3d9d003292e0a0e1e" class="path">b/nova/tests/policy.json</a></div>
+<div class="diff extended_header">
+new file mode 100644<span class="info"> (file)</span><br />
+index 0000000..<a href="/gitweb?p=openstack/nova.git;a=blob;f=nova/tests/policy.json;h=47c3d870e0198d9bc73e42b600ee438b3b48ec4b;hb=01e6f7575a3c75bd73e297f3d9d003292e0a0e1e" class="hash">47c3d87</a><br />
+</div>
+<div class="diff from_file">--- /dev/null</div>
+<div class="diff to_file">+++ b/<a class="path" href="/gitweb?p=openstack/nova.git;a=blob;f=nova/tests/policy.json;h=47c3d870e0198d9bc73e42b600ee438b3b48ec4b;hb=01e6f7575a3c75bd73e297f3d9d003292e0a0e1e">nova/tests/policy.json</a></div>
+<div class="diff chunk_header"><span class="chunk_info">@@ -0,0 <a href="/gitweb?p=openstack/nova.git;a=blob;f=nova/tests/policy.json;h=47c3d870e0198d9bc73e42b600ee438b3b48ec4b;hb=01e6f7575a3c75bd73e297f3d9d003292e0a0e1e#l1" class="list">+1,11</a> @@</span><span class="section"></span></div>
+<div class="diff add">+{</div>
+<div class="diff add">+"true":[],</div>
+<div class="diff add">+"compute:create_instance":[],</div>
+<div class="diff add">+"compute:attach_network":[],</div>
+<div class="diff add">+"compute:attach_volume":[],</div>
+<div class="diff add">+"compute:list_instances":[],</div>
+<div class="diff add">+"compute:get_instance":[],</div>
+<div class="diff add">+"network:attach_network":[],</div>
+<div class="diff add">+"volume:create_volume":[],</div>
+<div class="diff add">+"volume:attach_volume":[]</div>
+<div class="diff add">+}</div>
+</div>
+<div class="patch" id="patch6">
+<div class="diff header">diff --git a/nova/tests/test_policy.py <a class="path" href="/gitweb?p=openstack/nova.git;a=blob;f=nova/tests/test_policy.py;h=39dca2ae7059282d11f6bf01c98122c0a4d4b26e;hb=01e6f7575a3c75bd73e297f3d9d003292e0a0e1e">b/nova/tests/test_policy.py</a></div>
+<div class="diff extended_header">
+new file mode 100644<span class="info"> (file)</span><br />
+index 0000000..<a class="hash" href="/gitweb?p=openstack/nova.git;a=blob;f=nova/tests/test_policy.py;h=39dca2ae7059282d11f6bf01c98122c0a4d4b26e;hb=01e6f7575a3c75bd73e297f3d9d003292e0a0e1e">39dca2a</a><br />
+</div>
+<div class="diff from_file">--- /dev/null</div>
+<div class="diff to_file">+++ b/<a class="path" href="/gitweb?p=openstack/nova.git;a=blob;f=nova/tests/test_policy.py;h=39dca2ae7059282d11f6bf01c98122c0a4d4b26e;hb=01e6f7575a3c75bd73e297f3d9d003292e0a0e1e">nova/tests/test_policy.py</a></div>
+<div class="diff chunk_header"><span class="chunk_info">@@ -0,0 <a href="/gitweb?p=openstack/nova.git;a=blob;f=nova/tests/test_policy.py;h=39dca2ae7059282d11f6bf01c98122c0a4d4b26e;hb=01e6f7575a3c75bd73e297f3d9d003292e0a0e1e#l1" class="list">+1,139</a> @@</span><span class="section"></span></div>
+<div class="diff add">+#vim:tabstop=4shiftwidth=4softtabstop=4</div>
+<div class="diff add">+</div>
+<div class="diff add">+#Copyright2011PistonCloudComputing,Inc.</div>
+<div class="diff add">+#AllRightsReserved.</div>
+<div class="diff add">+</div>
+<div class="diff add">+#LicensedundertheApacheLicense,Version2.0(the"License");youmay</div>
+<div class="diff add">+#notusethisfileexceptincompliancewiththeLicense.Youmayobtain</div>
+<div class="diff add">+#acopyoftheLicenseat</div>
+<div class="diff add">+#</div>
+<div class="diff add">+#http://www.apache.org/licenses/LICENSE-2.0</div>
+<div class="diff add">+#</div>
+<div class="diff add">+#Unlessrequiredbyapplicablelaworagreedtoinwriting,software</div>
+<div class="diff add">+#distributedundertheLicenseisdistributedonan"ASIS"BASIS,WITHOUT</div>
+<div class="diff add">+#WARRANTIESORCONDITIONSOFANYKIND,eitherexpressorimplied.Seethe</div>
+<div class="diff add">+#Licenseforthespecificlanguagegoverningpermissionsandlimitations</div>
+<div class="diff add">+#undertheLicense.</div>
+<div class="diff add">+</div>
+<div class="diff add">+"""TestofPolicyEngineForNova"""</div>
+<div class="diff add">+</div>
+<div class="diff add">+importStringIO</div>
+<div class="diff add">+importtempfile</div>
+<div class="diff add">+importurllib2</div>
+<div class="diff add">+</div>
+<div class="diff add">+fromnova.commonimportpolicyascommon_policy</div>
+<div class="diff add">+fromnovaimportcontext</div>
+<div class="diff add">+fromnovaimportexception</div>
+<div class="diff add">+fromnovaimportflags</div>
+<div class="diff add">+fromnovaimportpolicy</div>
+<div class="diff add">+fromnovaimporttest</div>
+<div class="diff add">+</div>
+<div class="diff add">+FLAGS=flags.FLAGS</div>
+<div class="diff add">+</div>
+<div class="diff add">+</div>
+<div class="diff add">+classPolicyFileTestCase(test.TestCase):</div>
+<div class="diff add">+defsetUp(self):</div>
+<div class="diff add">+super(PolicyFileTestCase,self).setUp()</div>
+<div class="diff add">+policy.reset()</div>
+<div class="diff add">+_,self.tmpfilename=tempfile.mkstemp()</div>
+<div class="diff add">+self.flags(policy_file=self.tmpfilename)</div>
+<div class="diff add">+self.context=context.RequestContext('fake','fake')</div>
+<div class="diff add">+self.target={}</div>
+<div class="diff add">+</div>
+<div class="diff add">+deftearDown(self):</div>
+<div class="diff add">+super(PolicyFileTestCase,self).tearDown()</div>
+<div class="diff add">+policy.reset()</div>
+<div class="diff add">+</div>
+<div class="diff add">+deftest_modified_policy_reloads(self):</div>
+<div class="diff add">+action="example:test"</div>
+<div class="diff add">+withopen(self.tmpfilename,"w")aspolicyfile:</div>
+<div class="diff add">+policyfile.write("""{"example:test":[]}""")</div>
+<div class="diff add">+policy.enforce(self.context,action,self.target)</div>
+<div class="diff add">+withopen(self.tmpfilename,"w")aspolicyfile:</div>
+<div class="diff add">+policyfile.write("""{"example:test":["false:false"]}""")</div>
+<div class="diff add">+#NOTE(vish):resetstoredpolicycachesowedon'thavetosleep(1)</div>
+<div class="diff add">+policy._POLICY_CACHE={}</div>
+<div class="diff add">+self.assertRaises(exception.PolicyNotAllowed,policy.enforce,</div>
+<div class="diff add">+self.context,action,self.target)</div>
+<div class="diff add">+</div>
+<div class="diff add">+</div>
+<div class="diff add">+classPolicyTestCase(test.TestCase):</div>
+<div class="diff add">+defsetUp(self):</div>
+<div class="diff add">+super(PolicyTestCase,self).setUp()</div>
+<div class="diff add">+policy.reset()</div>
+<div class="diff add">+#NOTE(vish):preloadrulestocircumventreloadingfromfile</div>
+<div class="diff add">+policy.init()</div>
+<div class="diff add">+rules={</div>
+<div class="diff add">+"true":[],</div>
+<div class="diff add">+"example:allowed":[],</div>
+<div class="diff add">+"example:denied":[["false:false"]],</div>
+<div class="diff add">+"example:get_http":[["http:http://www.example.com"]],</div>
+<div class="diff add">+"example:my_file":[["role:compute_admin"],</div>
+<div class="diff add">+["project_id:%(project_id)s"]],</div>
+<div class="diff add">+"example:early_and_fail":[["false:false","rule:true"]],</div>
+<div class="diff add">+"example:early_or_success":[["rule:true"],["false:false"]],</div>
+<div class="diff add">+"example:sysadmin_allowed":[["role:admin"],["role:sysadmin"]],</div>
+<div class="diff add">+}</div>
+<div class="diff add">+#NOTE(vish):thenoverloadunderlyingbrain</div>
+<div class="diff add">+common_policy.set_brain(common_policy.HttpBrain(rules))</div>
+<div class="diff add">+self.context=context.RequestContext('fake','fake',roles=['member'])</div>
+<div class="diff add">+self.admin_context=context.RequestContext('admin',</div>
+<div class="diff add">+'fake',</div>
+<div class="diff add">+roles=['admin'],</div>
+<div class="diff add">+is_admin=True)</div>
+<div class="diff add">+self.target={}</div>
+<div class="diff add">+</div>
+<div class="diff add">+deftearDown(self):</div>
+<div class="diff add">+policy.reset()</div>
+<div class="diff add">+super(PolicyTestCase,self).tearDown()</div>
+<div class="diff add">+</div>
+<div class="diff add">+deftest_enforce_nonexistent_action_throws(self):</div>
+<div class="diff add">+action="example:noexist"</div>
+<div class="diff add">+self.assertRaises(exception.PolicyNotAllowed,policy.enforce,</div>
+<div class="diff add">+self.context,action,self.target)</div>
+<div class="diff add">+</div>
+<div class="diff add">+deftest_enforce_bad_action_throws(self):</div>
+<div class="diff add">+action="example:denied"</div>
+<div class="diff add">+self.assertRaises(exception.PolicyNotAllowed,policy.enforce,</div>
+<div class="diff add">+self.context,action,self.target)</div>
+<div class="diff add">+</div>
+<div class="diff add">+deftest_enforce_good_action(self):</div>
+<div class="diff add">+action="example:allowed"</div>
+<div class="diff add">+policy.enforce(self.context,action,self.target)</div>
+<div class="diff add">+</div>
+<div class="diff add">+deftest_enforce_http_true(self):</div>
+<div class="diff add">+</div>
+<div class="diff add">+deffakeurlopen(url,post_data):</div>
+<div class="diff add">+returnStringIO.StringIO("True")</div>
+<div class="diff add">+self.stubs.Set(urllib2,'urlopen',fakeurlopen)</div>
+<div class="diff add">+action="example:get_http"</div>
+<div class="diff add">+target={}</div>
+<div class="diff add">+result=policy.enforce(self.context,action,target)</div>
+<div class="diff add">+self.assertEqual(result,None)</div>
+<div class="diff add">+</div>
+<div class="diff add">+deftest_enforce_http_false(self):</div>
+<div class="diff add">+</div>
+<div class="diff add">+deffakeurlopen(url,post_data):</div>
+<div class="diff add">+returnStringIO.StringIO("False")</div>
+<div class="diff add">+self.stubs.Set(urllib2,'urlopen',fakeurlopen)</div>
+<div class="diff add">+action="example:get_http"</div>
+<div class="diff add">+target={}</div>
+<div class="diff add">+self.assertRaises(exception.PolicyNotAllowed,policy.enforce,</div>
+<div class="diff add">+self.context,action,target)</div>
+<div class="diff add">+</div>
+<div class="diff add">+deftest_templatized_enforcement(self):</div>
+<div class="diff add">+target_mine={'project_id':'fake'}</div>
+<div class="diff add">+target_not_mine={'project_id':'another'}</div>
+<div class="diff add">+action="example:my_file"</div>
+<div class="diff add">+policy.enforce(self.context,action,target_mine)</div>
+<div class="diff add">+self.assertRaises(exception.PolicyNotAllowed,policy.enforce,</div>
+<div class="diff add">+self.context,action,target_not_mine)</div>
+<div class="diff add">+</div>
+<div class="diff add">+deftest_early_AND_enforcement(self):</div>
+<div class="diff add">+action="example:early_and_fail"</div>
+<div class="diff add">+self.assertRaises(exception.PolicyNotAllowed,policy.enforce,</div>
+<div class="diff add">+self.context,action,self.target)</div>
+<div class="diff add">+</div>
+<div class="diff add">+deftest_early_OR_enforcement(self):</div>
+<div class="diff add">+action="example:early_or_success"</div>
+<div class="diff add">+policy.enforce(self.context,action,self.target)</div>
+</div>
+</div>
+</div>
+<div class="page_footer">
+<a title="log RSS feed" class="rss_logo" href="/gitweb?p=openstack/nova.git;a=rss">RSS</a>
+<a href="/gitweb?p=openstack/nova.git;a=atom" title="log Atom feed" class="rss_logo">Atom</a>
+</div>
+<script type="text/javascript" src="gitweb.js"></script>
+<script type="text/javascript">
+window.onload = function () {
+	var tz_cookie = { name: 'gitweb_tz', expires: 14, path: '/' };
+	onloadTZSetup('local', tz_cookie, 'datetime');
+};
+</script>
+</body>
+</html>
